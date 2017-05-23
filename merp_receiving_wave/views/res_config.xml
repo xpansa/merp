@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+
+        <record id="view_stock_config_settings" model="ir.ui.view">
+            <field name="name">mERP Receiving Wave - Stock Settings</field>
+            <field name="model">stock.config.settings</field>
+            <field name="inherit_id" ref="merp_base.view_stock_config_settings"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='module_merp_receiving_wave']/.." position="after">
+                    <field name="wave_behavior_on_confirm" widget="radio"
+                           attrs="{'invisible': [('module_merp_receiving_wave','=',False)]}"/>
+                </xpath>
+            </field>
+        </record>
+
+    </data>
+</openerp>

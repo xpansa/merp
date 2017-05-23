@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+
+        <template id="report_picking_sort_pack_operation_ids" inherit_id="stock.report_picking">
+            <!--
+            <xpath expr="//tr[contains(@t-as, 'pack_operation')]" position="before">
+                <t t-set="strategy">o.company_id.outgoing_routing_strategy</t>
+                <t t-set="strategy_order">o.company.outgoing_routing_order</t>
+            </xpath>
+            <xpath expr="//tr[contains(@t-as, 'pack_operation')]" position="attributes">
+                <attribute name="t-foreach">o.pack_operation_ids.sorted(
+                    key=lambda r: getattr(r.location_id, strategy, 'None'),
+                    reverse=True if strategy_order == '1' else False
+                )</attribute>
+            </xpath>
+            -->
+            <xpath expr="//tr[contains(@t-as, 'pack_operation')]" position="attributes">
+                <attribute name="t-foreach">o.sort_printer_picking_list(o.pack_operation_ids)</attribute>
+            </xpath>
+        </template>
+
+    </data>
+</openerp>
