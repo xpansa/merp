@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+
+        <record id="stock_picking_wave.menu_action_picking_wave" model="ir.ui.menu">
+            <field name="groups_id" eval="[(4, ref('merp_menu_receiving_wave'))]"/>
+        </record>
+
+    </data>
+</openerp>
