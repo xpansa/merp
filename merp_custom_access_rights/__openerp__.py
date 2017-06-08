@@ -20,5 +20,6 @@ mERP Custom Access Rights
     ],
     'data': [
         'security/groups.xml',
+        'views/res_users.xml',
     ],
 }
