@@ -3,24 +3,24 @@
 # License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl.html).
 
 {
-    'name': 'mERP Picking Advanced Search',
+    'name': 'mERP Inventory Improvements',
     "version": "8.0.1.0.0",
     'author': 'Xpansa Group',
     'website': 'http://xpansa.com',
     'installable': True,
     'images': ['static/description/icon.png'],
     'description': """
-Advanced search for picking
-===========================
- Search by products not moved
+Module allows to define default location that will be used for Inventory Adjustments instead of deafult 'WH/Stock'
+
 """,
-    'summary': 'Advanced search for picking',
+    'summary': 'Add small improvements to Inventory Adjustment process',
     'depends': [
-        'base',
-        'stock',
         'merp_base',
+        'stock'
     ],
     'data': [
-        'views/stock_picking.xml',
+        'security/ir.model.access.csv',
+        'views/res_config.xml',
+        'views/res_users.xml',
     ],
 }

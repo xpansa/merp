@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+
+        <record id="inventory_stock_config_settings" model="ir.ui.view">
+            <field name="name">Inventory - Stock Settings</field>
+            <field name="model">stock.config.settings</field>
+            <field name="inherit_id" ref="merp_base.view_stock_config_settings"/>
+            <field name="arch" type="xml">
+                <group name="merp_application" position="inside">
+                    <field name="default_inventory_location"/>
+                </group>
+            </field>
+        </record>
+
+    </data>
+</openerp>

@@ -4,7 +4,7 @@
 
 {
     'name': 'mERP Base',
-    "version": "9.0.1.0.0",
+    "version": "8.0.1.0.0",
     'author': 'Xpansa Group',
     'website': 'http://xpansa.com',
     'installable': True,
@@ -19,5 +19,6 @@ Base module that allow relation between mERP modules
     ],
     'data': [
         'views/res_config.xml',
+        'views/res_users.xml',
     ],
 }
