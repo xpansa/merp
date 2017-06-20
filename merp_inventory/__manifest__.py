@@ -3,21 +3,23 @@
 # License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl.html).
 
 {
-    'name': 'mERP Base',
+    'name': 'mERP Inventory Improvements',
     "version": "10.0.1.0.0",
     'author': 'Xpansa Group',
     'website': 'http://xpansa.com',
     'installable': True,
     'images': ['static/description/icon.png'],
     'description': """
-Base module that allow relation between mERP modules
+Module allows to define default location that will be used for Inventory Adjustments instead of deafult 'WH/Stock'
+
 """,
-    'summary': 'Base module that allow relation between mERP modules',
+    'summary': 'Add small improvements to Inventory Adjustment process',
     'depends': [
-        'base',
-        'stock',
+        'merp_base',
+        'stock'
     ],
     'data': [
+        'security/ir.model.access.csv',
         'views/res_config.xml',
         'views/res_users.xml',
     ],
