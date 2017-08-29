@@ -17,11 +17,10 @@ Allows configurable picking and receiving wave
         'base',
         'stock_picking_wave',
         'merp_base',
-        'merp_custom_access_rights',
+        'merp_picking_wave_access_rights',
         'merp_picking_advanced_search',
     ],
     'data': [
-        'security/groups.xml',
         'views/stock_picking.xml',
         'views/stock_picking_wave.xml'
     ],
