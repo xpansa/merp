@@ -2,11 +2,13 @@
 <openerp>
     <data>
 
+        <!--
         <record id="merp_menu_picking_wave" model="res.groups">
             <field name="name">Menu: Picking Wave</field>
             <field name="category_id" ref="merp_custom_access_rights.module_category_merp_application"/>
             <field name="users" eval="[(4, ref('base.user_root'))]"/>
         </record>
+         -->
 
     </data>
 </openerp>
