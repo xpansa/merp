@@ -29,7 +29,7 @@
                             <field name="module_merp_picking_wave_access_rights"/>
                             <label for="module_merp_picking_wave_access_rights"/>
                         </div>
-                        <label for="id" string="Receiving Wave"/>
+                        <label for="id" string="Picking Wave"/>
                         <div>
                             <field name="module_merp_picking_wave"/>
                             <label for="module_merp_picking_wave"/>
