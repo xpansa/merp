@@ -8,7 +8,7 @@
             <field name="inherit_id" ref="stock_picking_wave.view_picking_wave_form"/>
             <field name="arch" type="xml">
                 <button name="done" position="replace">
-                     <button name="done" states="in_progress" string="Done" type="object" class="oe_highlight" groups="merp_picking_wave_base.merp_picking_wave_allow_done"/>
+                     <button name="done" states="in_progress" string="Done" type="object" class="oe_highlight" groups="merp_picking_wave_access_rights.merp_picking_wave_allow_done"/>
                 </button>
                 <field name="user_id" position="after">
                     <field name="warehouse_id"/>
@@ -62,6 +62,19 @@
                 <field name="state" position="before">
                     <field name="picking_wave_type"/>
                 </field>
+            </field>
+        </record>
+
+        <!-- Picking Wave -->
+
+        <record id="view_picking_wave_form_products_skip" model="ir.ui.view">
+            <field name="name">stock.picking.wave.form.products.skip</field>
+            <field name="model">stock.picking.wave</field>
+            <field name="inherit_id" ref="merp_picking_wave_base.view_picking_wave_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='related_pack_operations']/tree/field[@name='qty_done']" position="after">
+                    <field name="skipped" />
+                </xpath>
             </field>
         </record>
 

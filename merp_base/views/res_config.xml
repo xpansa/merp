@@ -14,15 +14,30 @@
                             <field name="module_merp_custom_access_rights"/>
                             <label for="module_merp_custom_access_rights"/>
                         </div>
+                        <label for="id" string="Receiving Wave Access Rights"/>
+                        <div>
+                            <field name="module_merp_receiving_wave_access_rights"/>
+                            <label for="module_merp_receiving_wave_access_rights"/>
+                        </div>
                         <label for="id" string="Receiving Wave"/>
                         <div>
                             <field name="module_merp_receiving_wave"/>
                             <label for="module_merp_receiving_wave"/>
                         </div>
+                        <label for="id" string="Picking Wave Access Rights"/>
+                        <div>
+                            <field name="module_merp_picking_wave_access_rights"/>
+                            <label for="module_merp_picking_wave_access_rights"/>
+                        </div>
                         <label for="id" string="Picking Wave"/>
                         <div>
                             <field name="module_merp_picking_wave"/>
                             <label for="module_merp_picking_wave"/>
+                        </div>
+                        <label for="id" string="Smart Skip of Products"/>
+                        <div>
+                            <field name="module_merp_picking_products_skip"/>
+                            <label for="module_merp_picking_products_skip"/>
                         </div>
                     </group>
                 </group>

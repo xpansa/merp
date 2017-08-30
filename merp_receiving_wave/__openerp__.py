@@ -15,9 +15,9 @@ Allows configurable receiving wave
     'summary': 'Allows configurable receiving wave',
     'depends': [
         'merp_picking_wave_base',
+        'merp_receiving_wave_access_rights',
     ],
     'data': [
-        'security/groups.xml',
         'views/res_config.xml',
         'views/stock_picking_wave.xml',
     ],
