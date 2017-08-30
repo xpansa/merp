@@ -19,6 +19,7 @@ Allows configurable picking and receiving wave
         'merp_base',
         'merp_picking_wave_access_rights',
         'merp_picking_advanced_search',
+        'merp_picking_products_skip',
     ],
     'data': [
         'views/stock_picking.xml',

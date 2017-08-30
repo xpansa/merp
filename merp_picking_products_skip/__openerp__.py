@@ -14,7 +14,7 @@ Allows smart skip of products in pickings and picking waves
 """,
     'summary': 'Allows smart skip of products in pickings and picking waves',
     'depends': [
-        'merp_picking_wave_base',
+        'stock',
     ],
     'data': [
         'views/stock_picking.xml',
