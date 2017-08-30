@@ -15,3 +15,5 @@ class StockConfigSettings(models.TransientModel):
         'Enable Picking Wave Rights for mERP Warehouse App')
     module_merp_picking_wave = fields.Boolean('Enable Picking Wave')
 
+    module_merp_picking_products_skip = fields.Boolean(
+        'Allow smart skip of products in pickings and picking waves')
