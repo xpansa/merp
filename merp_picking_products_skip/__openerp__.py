@@ -3,26 +3,20 @@
 # License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl.html).
 
 {
-    'name': 'mERP Picking Wave Base Module',
+    'name': 'mERP Picking Product Skip',
     "version": "8.0.1.0.0",
     'author': 'Xpansa Group',
     'website': 'http://xpansa.com',
     'installable': True,
     'images': ['static/description/icon.png'],
     'description': """
-Allows configurable picking and receiving wave
+Allows smart skip of products in pickings and picking waves
 """,
-    'summary': 'Allows configurable picking/picking wave',
+    'summary': 'Allows smart skip of products in pickings and picking waves',
     'depends': [
-        'base',
-        'stock_picking_wave',
-        'merp_base',
-        'merp_picking_wave_access_rights',
-        'merp_picking_advanced_search',
-        'merp_picking_products_skip',
+        'stock',
     ],
     'data': [
         'views/stock_picking.xml',
-        'views/stock_picking_wave.xml'
     ],
 }
