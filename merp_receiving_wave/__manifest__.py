@@ -13,16 +13,11 @@
 Allows configurable receiving wave
 """,
     'summary': 'Allows configurable receiving wave',
-    'category': 'Warehouse',
     'depends': [
-        'base',
-        'stock_picking_wave',
-        'merp_base',
-        'merp_custom_access_rights',
-        'merp_picking_advanced_search',
+        'merp_picking_wave_base',
+        'merp_receiving_wave_access_rights',
     ],
     'data': [
-        'security/groups.xml',
         'views/res_config.xml',
         'views/stock_picking_wave.xml',
     ],

@@ -15,7 +15,6 @@ Advanced search for picking
  Search by products not moved
 """,
     'summary': 'Advanced search for picking',
-    'category': 'Warehouse',
     'depends': [
         'base',
         'stock',

@@ -13,7 +13,6 @@
 mERP Custom Access Rights
 """,
     'summary': 'mERP Custom Access Rights',
-    'category': 'Warehouse',
     'depends': [
         'base',
         'stock',
