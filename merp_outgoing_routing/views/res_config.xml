@@ -8,7 +8,9 @@
             <field name="inherit_id" ref="merp_base.view_stock_config_settings"/>
             <field name="arch" type="xml">
                 <xpath expr="//field[@name='module_merp_picking_wave']/.." position="after">
-                    <field name="outgoing_wave_behavior_on_confirm" widget="radio"
+                    <field name="outgoing_routing_strategy" widget="radio"
+                           attrs="{'invisible': [('module_merp_picking_wave','=',False)]}"/>
+                    <field name="outgoing_routing_order" widget="radio"
                            attrs="{'invisible': [('module_merp_picking_wave','=',False)]}"/>
                 </xpath>
             </field>

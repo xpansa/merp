@@ -3,23 +3,21 @@
 # License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl.html).
 
 {
-    'name': 'mERP Picking Wave',
+    'name': 'mERP Outgoing Routing',
     "version": "8.0.1.0.0",
     'author': 'Xpansa Group',
     'website': 'http://xpansa.com',
     'installable': True,
     'images': ['static/description/icon.png'],
     'description': """
-Allows configurable picking wave
+Adds Outgoing Routing options
 """,
-    'summary': 'Allows configurable picking wave',
+    'summary': 'Adds Outgoing Routing options',
     'depends': [
-        'merp_picking_wave_base',
-        'merp_outgoing_routing',
+        'merp_base',
     ],
     'data': [
         'views/res_config.xml',
-        'views/stock_picking_wave.xml',
-        'wizard/message_wizard.xml'
+        'views/stock.xml'
     ],
 }

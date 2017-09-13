@@ -18,21 +18,31 @@
 #
 ##############################################################################
 
-{
-    'name': 'mERP Removal Strategy Priority',
-    "version": "8.0.1.0.0",
-    'author': 'Xpansa Group',
-    'website': 'http://xpansa.com',
-    'installable': True,
-    'images': ['static/description/icon.png'],
-    'description': """
-Sort pack operations by location removal strategy priority
-""",
-    'summary': 'Sort pack ops by location removal strategy priority',
-    'depends': [
-        'merp_outgoing_routing',
-    ],
-    'data': [
-        'views/stock.xml',
-    ],
-}
+from openerp import models, fields, api
+import logging
+_logger = logging.getLogger(__name__)
+
+
+class StockLocation(models.Model):
+    _inherit = "stock.location"
+
+    strategy_sequence = fields.Integer(
+        string='Sequence',
+        help='Sequence based on warehouse location outgoing strategy/order',
+        compute='_compute_outgoing_strategy_sequence',
+        store=False
+    )
+
+    @api.multi
+    def _compute_outgoing_strategy_sequence(self):
+
+        strategy = self.env.user.company_id.outgoing_routing_strategy
+        strategy_order = self.env.user.company_id.outgoing_routing_order
+
+        if not strategy in self:
+        	return
+
+        order = '%s %s' % (strategy, ['asc', 'desc'][strategy_order])
+    	res = self.search([], order=order)
+    	for sequence, location in enumerate(res):
+    		location.strategy_sequence = sequence
