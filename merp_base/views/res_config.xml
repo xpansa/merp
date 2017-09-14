@@ -34,6 +34,11 @@
                             <field name="module_merp_picking_wave"/>
                             <label for="module_merp_picking_wave"/>
                         </div>
+                        <label for="id" string="Outgoing Routing"/>
+                        <div>
+                            <field name="module_merp_outgoing_routing"/>
+                            <label for="module_merp_outgoing_routing"/>
+                        </div>
                         <label for="id" string="Smart Skip of Products"/>
                         <div>
                             <field name="module_merp_picking_products_skip"/>

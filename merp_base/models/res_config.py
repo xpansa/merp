@@ -4,6 +4,9 @@ from openerp import models, fields
 class StockConfigSettings(models.TransientModel):
     _inherit = 'stock.config.settings'
 
+    module_merp_outgoing_routing = fields.Boolean(
+        'Add Outgoing Routing strategy options (sort locations)')
+
     module_merp_custom_access_rights = fields.Boolean(
         'Enable Custom Access Rights for mERP Warehouse App')
 

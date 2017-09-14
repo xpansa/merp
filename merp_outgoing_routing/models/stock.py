@@ -26,6 +26,11 @@ _logger = logging.getLogger(__name__)
 class StockLocation(models.Model):
     _inherit = "stock.location"
 
+    removal_prio = fields.Integer(
+        string='Removal Strategy Priority',
+        default=0
+    )
+
     strategy_sequence = fields.Integer(
         string='Sequence',
         help='Sequence based on warehouse location outgoing strategy/order',

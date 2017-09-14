@@ -7,11 +7,11 @@
             <field name="model">stock.config.settings</field>
             <field name="inherit_id" ref="merp_base.view_stock_config_settings"/>
             <field name="arch" type="xml">
-                <xpath expr="//field[@name='module_merp_picking_wave']/.." position="after">
+                <xpath expr="//field[@name='module_merp_outgoing_routing']/.." position="after">
                     <field name="outgoing_routing_strategy" widget="radio"
-                           attrs="{'invisible': [('module_merp_picking_wave','=',False)]}"/>
+                           attrs="{'invisible': [('module_merp_outgoing_routing','=',False)]}"/>
                     <field name="outgoing_routing_order" widget="radio"
-                           attrs="{'invisible': [('module_merp_picking_wave','=',False)]}"/>
+                           attrs="{'invisible': [('module_merp_outgoing_routing','=',False)]}"/>
                 </xpath>
             </field>
         </record>
