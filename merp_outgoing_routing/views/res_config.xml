@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<openerp>
+<odoo>
     <data>
 
         <record id="view_stock_config_settings" model="ir.ui.view">
@@ -7,12 +7,14 @@
             <field name="model">stock.config.settings</field>
             <field name="inherit_id" ref="merp_base.view_stock_config_settings"/>
             <field name="arch" type="xml">
-                <xpath expr="//field[@name='module_merp_picking_wave']/.." position="after">
-                    <field name="outgoing_wave_behavior_on_confirm" widget="radio"
-                           attrs="{'invisible': [('module_merp_picking_wave','=',False)]}"/>
+                <xpath expr="//field[@name='module_merp_outgoing_routing']/.." position="after">
+                    <field name="outgoing_routing_strategy" widget="radio"
+                           attrs="{'invisible': [('module_merp_outgoing_routing','=',False)]}"/>
+                    <field name="outgoing_routing_order" widget="radio"
+                           attrs="{'invisible': [('module_merp_outgoing_routing','=',False)]}"/>
                 </xpath>
             </field>
         </record>
 
     </data>
-</openerp>
+</odoo>

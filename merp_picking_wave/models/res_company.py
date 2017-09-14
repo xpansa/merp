@@ -12,16 +12,3 @@ class Company(models.Model):
             (2, 'Move wave to "On Hold" if not all pickings are confirmed')
         ],
         string='Behavior on Confirm', default=0)
-
-    outgoing_routing_strategy = fields.Selection(
-        [
-            ('name', 'Sort by source locations in alphabetical order'),
-        ],
-        string='Routing Strategy', default='name')
-
-    outgoing_routing_order = fields.Selection(
-        [
-            (0, 'Ascending (A-Z)'),
-            (1, 'Descending (Z-A)'),
-        ],
-        string='Routing Order', default=0)
