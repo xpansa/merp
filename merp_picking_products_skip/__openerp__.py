@@ -10,12 +10,12 @@
     'installable': True,
     'images': ['static/description/icon.png'],
     'description': """
-Allows smart skip of products in pickings and picking waves
+Allows smart skip of products in pickings
 """,
-    'summary': 'Allows smart skip of products in pickings and picking waves',
+    'summary': 'Allows smart skip of products in pickings',
     'depends': [
         'stock',
-        'merp_picking_wave_base',
+        'merp_base',
     ],
     'data': [
         'views/stock_picking.xml',

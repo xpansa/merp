@@ -21,30 +21,6 @@
 from openerp import models, fields, api, _
 
 
-class PickingWave(models.Model):
-    _inherit = 'stock.picking.wave'
-
-    operations_to_pick = fields.Many2many(
-        'stock.pack.operation', relation='wave_operations_to_pick',
-        string='Operations to Pick',
-        compute='_compute_operations_to_pick', store=False)
-
-    @api.one
-    @api.depends('picking_ids',
-                 'picking_ids.pack_operation_ids',
-                 'picking_ids.pack_operation_ids.location_id',
-                 'picking_ids.pack_operation_ids.qty_done')
-    def _compute_operations_to_pick(self):
-        strategy = self.env.user.company_id.outgoing_routing_strategy
-        strategy_order = self.env.user.company_id.outgoing_routing_order
-        res = self.env['stock.pack.operation']
-        for picking in self.picking_ids:
-            res += picking.operations_to_pick
-        self.operations_to_pick = res.sorted(
-            key=lambda r: getattr(r.location_id, strategy, 'None'),
-            reverse=strategy_order
-        )
-
 class StockPicking(models.Model):
     _inherit = 'stock.picking'
 

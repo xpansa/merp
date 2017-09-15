@@ -21,6 +21,7 @@ removal_prio: sort by location removal strategy priority field
     ],
     'data': [
         'views/res_config.xml',
-        'views/stock.xml'
+        'views/stock.xml',
+        'views/picking.xml'
     ],
 }
