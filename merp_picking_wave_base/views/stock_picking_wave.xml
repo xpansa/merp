@@ -11,14 +11,13 @@
                 <field name="picking_ids" position="replace">
                     <notebook>
                         <page string="Pickings" name="pickings">
-                            <field name="picking_ids" widget="many2many" domain="[('state', 'in', ('assigned', 'partially_available'))]">
+                            <field name="picking_ids" widget="many2many" domain="[('state', 'not in', ('done', 'cancel'))]">
                                 <tree>
                                     <field name="name"/>
                                     <field name="backorder_id"/>
                                     <field name="origin"/>
                                     <field name="date"/>
                                     <field name="min_date"/>
-                                    <field name="picking_type_id"/>
                                     <field name="state"/>
                                     <button name="action_assign" string="Confirm picking" type="object" icon="gtk-apply" attrs="{'invisible': [('state', 'in', ('done', 'cancel', 'confirmed', 'assigned'))]}"/>
                                     <button name="force_assign" string="Force availability" type="object" icon="gtk-go-forward" attrs="{'invisible': [('state', 'in', ('done', 'cancel', 'draft', 'assigned'))]}"/>
@@ -41,7 +40,7 @@
                             </field>
                         </page>
                         <page string="To Process" name="operations_to_pick" groups="merp_custom_access_rights.merp_debug">
-                            <field name="operations_to_pick" readonly="1" context="{'order_by_rs': 1}">
+                            <field name="operations_to_pick" readonly="1">
                                 <tree>
                                     <field name="picking_id"/>
                                     <field name="product_id"/>

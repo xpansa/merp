@@ -14,7 +14,7 @@ Allows configurable receiving wave
 """,
     'summary': 'Allows configurable receiving wave',
     'depends': [
-        'merp_picking_wave_base',
+        'merp_picking_wave_core',
         'merp_receiving_wave_access_rights',
     ],
     'data': [

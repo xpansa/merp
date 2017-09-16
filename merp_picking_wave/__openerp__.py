@@ -14,7 +14,7 @@ Allows configurable picking wave
 """,
     'summary': 'Allows configurable picking wave',
     'depends': [
-        'merp_picking_wave_base',
+        'merp_picking_wave_core',
     ],
     'data': [
         'views/res_config.xml',
