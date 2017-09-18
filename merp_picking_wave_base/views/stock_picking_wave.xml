@@ -7,27 +7,17 @@
             <field name="model">stock.picking.wave</field>
             <field name="inherit_id" ref="stock_picking_wave.view_picking_wave_form"/>
             <field name="arch" type="xml">
-                <button name="done" position="replace">
-                     <button name="done" states="in_progress" string="Done" type="object" class="oe_highlight" groups="merp_picking_wave_access_rights.merp_picking_wave_allow_done"/>
-                </button>
-                <field name="user_id" position="after">
-                    <field name="warehouse_id"/>
-                    <field name="view_location_id" invisible="1"/>
-                    <field name="location_id" domain="[('id','child_of',view_location_id)]"/>
-                    <field name="picking_wave_type"/>
-                </field>
                 <xpath expr="/form/sheet/separator" position="replace"/>
                 <field name="picking_ids" position="replace">
                     <notebook>
                         <page string="Pickings" name="pickings">
-                            <field name="picking_ids" widget="many2many" domain="[('state', 'in', ('assigned', 'partially_available')), ('picking_type_id', '=?', picking_wave_type), ('picking_type_id.warehouse_id', '=?', warehouse_id)]">
+                            <field name="picking_ids" widget="many2many" domain="[('state', 'not in', ('done', 'cancel'))]">
                                 <tree>
                                     <field name="name"/>
                                     <field name="backorder_id"/>
                                     <field name="origin"/>
                                     <field name="date"/>
                                     <field name="min_date"/>
-                                    <field name="picking_type_id"/>
                                     <field name="state"/>
                                     <button name="action_assign" string="Confirm picking" type="object" icon="gtk-apply" attrs="{'invisible': [('state', 'in', ('done', 'cancel', 'confirmed', 'assigned'))]}"/>
                                     <button name="force_assign" string="Force availability" type="object" icon="gtk-go-forward" attrs="{'invisible': [('state', 'in', ('done', 'cancel', 'draft', 'assigned'))]}"/>
@@ -49,32 +39,22 @@
                                 </tree>
                             </field>
                         </page>
+                        <page string="To Process" name="operations_to_pick" groups="merp_custom_access_rights.merp_debug">
+                            <field name="operations_to_pick" readonly="1">
+                                <tree>
+                                    <field name="picking_id"/>
+                                    <field name="product_id"/>
+                                    <field name="product_uom_id" groups="product.group_uom"/>
+                                    <field name="owner_id" groups="stock.group_tracking_owner"/>
+                                    <field name="location_id" groups="stock.group_locations,stock.group_tracking_lot"/>
+                                    <field name="location_dest_id" groups="stock.group_locations,stock.group_tracking_lot"/>
+                                    <field name="product_qty"/>
+                                    <field name="qty_done"/>
+                                </tree>
+                            </field>
+                        </page>
                     </notebook>
                 </field>
-            </field>
-        </record>
-
-        <record id="view_picking_wave_tree" model="ir.ui.view">
-            <field name="name">picking.wave.tree.inherit</field>
-            <field name="model">stock.picking.wave</field>
-            <field name="inherit_id" ref="stock_picking_wave.view_picking_wave_tree"/>
-            <field name="arch" type="xml">
-                <field name="state" position="before">
-                    <field name="picking_wave_type"/>
-                </field>
-            </field>
-        </record>
-
-        <!-- Picking Wave -->
-
-        <record id="view_picking_wave_form_products_skip" model="ir.ui.view">
-            <field name="name">stock.picking.wave.form.products.skip</field>
-            <field name="model">stock.picking.wave</field>
-            <field name="inherit_id" ref="merp_picking_wave_base.view_picking_wave_form"/>
-            <field name="arch" type="xml">
-                <xpath expr="//field[@name='related_pack_operations']/tree/field[@name='qty_done']" position="after">
-                    <field name="skipped" />
-                </xpath>
             </field>
         </record>
 

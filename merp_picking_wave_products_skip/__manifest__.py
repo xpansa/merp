@@ -19,20 +19,21 @@
 ##############################################################################
 
 {
-    'name': 'mERP Stock Picking Report (sorted)',
+    'name': 'mERP Picking Wave Product Skip',
     "version": "10.0.1.0.0",
     'author': 'Ventor, Xpansa Group',
     'website': 'https://ventor.tech/',
     'installable': True,
     'images': ['static/description/icon.png'],
     'description': """
-Sort Pack Operations within Stock Picking report
+Allows smart skip of products in picking waves
 """,
-    'summary': 'Sort pack operations in report',
+    'summary': 'Allows smart skip of products in picking waves',
     'depends': [
-        'merp_picking_wave',
+        'merp_picking_products_skip',
+        'merp_picking_wave_base',
     ],
     'data': [
-        'views/report_stockpicking.xml',
+        'views/stock_picking.xml',
     ],
 }
