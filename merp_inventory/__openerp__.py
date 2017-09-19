@@ -24,15 +24,13 @@
     'author': 'Ventor, Xpansa Group',
     'website': 'https://ventor.tech/',
     'installable': True,
-    'images': ['static/description/icon.png'],
+    'images': ['static/description/main_banner.png'],
     'description': """
-Module allows to define default location that will be used for Inventory Adjustments instead of deafult 'WH/Stock'
-
+Module allows to define default location that will be used for Inventory Adjustments instead of default 'WH/Stock'
 """,
     'summary': 'Add small improvements to Inventory Adjustment process',
     'depends': [
         'merp_base',
-        'stock'
     ],
     'data': [
         'security/ir.model.access.csv',
