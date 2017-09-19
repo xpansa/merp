@@ -20,4 +20,6 @@
 
 import res_company
 import res_config
-import stock
+import stock_location
+import stock_picking
+import stock_pack_operation

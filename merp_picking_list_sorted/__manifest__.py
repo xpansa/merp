@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 ##############################################################################
 #
-#    Copyright (C) 2017 Xpansa Group (<http://xpansa.com>).
+#    Copyright (C) 2017 Ventor, Xpansa Group (<https://ventor.tech/>).
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU Lesser General Public License as
@@ -21,10 +21,10 @@
 {
     'name': 'mERP Stock Picking Report (sorted)',
     "version": "10.0.1.0.0",
-    'author': 'Xpansa Group',
-    'website': 'http://xpansa.com',
+    'author': 'Ventor, Xpansa Group',
+    'website': 'https://ventor.tech/',
     'installable': True,
-    'images': ['static/description/icon.png'],
+    'images': ['static/description/main_banner.png'],
     'description': """
 Sort Pack Operations within Stock Picking report
 """,

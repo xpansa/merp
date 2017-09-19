@@ -45,5 +45,11 @@
             <field name="users" eval="[(4, ref('base.user_root'))]"/>
         </record>
 
+        <record id="merp_debug" model="res.groups">
+            <field name="name">Debug: Technical Features</field>
+            <field name="category_id" ref="module_category_merp_application"/>
+            <field name="users" eval="[(4, ref('base.user_root'))]"/>
+        </record>
+
     </data>
 </openerp>
