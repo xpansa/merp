@@ -1,4 +1,4 @@
-from openerp import models, fields, api
+from openerp import api, models, fields
 
 
 class PickingWave(models.Model):
@@ -21,13 +21,13 @@ class PickingWave(models.Model):
                     continue
                 if picking.state == 'draft' \
                         or all([x.qty_done == 0.0
-                                for x in picking.pack_operation_ids]):
+                                for x in picking.pack_operation_product_ids]):
                     # In draft or with no pack operations edited yet,
                     # remove from wave
                     picking.wave_id = False
                     continue
 
-                for pack in picking.pack_operation_ids:
+                for pack in picking.pack_operation_product_ids:
                     if pack.qty_done > 0:
                         pack.product_qty = pack.qty_done
                     else:
