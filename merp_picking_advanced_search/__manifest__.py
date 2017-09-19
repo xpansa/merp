@@ -24,7 +24,7 @@
     'author': 'Ventor, Xpansa Group',
     'website': 'https://ventor.tech/',
     'installable': True,
-    'images': ['static/description/icon.png'],
+    'images': ['static/description/main_banner.png'],
     'description': """
 Advanced search for picking
 ===========================
@@ -32,8 +32,6 @@ Advanced search for picking
 """,
     'summary': 'Advanced search for picking',
     'depends': [
-        'base',
-        'stock',
         'merp_base',
     ],
     'data': [
