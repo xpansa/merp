@@ -24,7 +24,7 @@
     'author': 'Ventor, Xpansa Group',
     'website': 'https://ventor.tech/',
     'installable': True,
-    'images': ['static/description/icon.png'],
+    'images': ['static/description/main_banner.png'],
     'description': """
 mERP Picking Wave Access Rights
 """,

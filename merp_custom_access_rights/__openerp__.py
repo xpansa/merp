@@ -24,14 +24,12 @@
     'author': 'Ventor, Xpansa Group',
     'website': 'https://ventor.tech/',
     'installable': True,
-    'images': ['static/description/icon.png'],
+    'images': ['static/description/main_banner.png'],
     'description': """
 mERP Custom Access Rights
 """,
     'summary': 'mERP Custom Access Rights',
     'depends': [
-        'base',
-        'stock',
         'merp_base',
     ],
     'data': [

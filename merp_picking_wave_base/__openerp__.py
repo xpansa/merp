@@ -24,13 +24,12 @@
     'author': 'Ventor, Xpansa Group',
     'website': 'https://ventor.tech/',
     'installable': True,
-    'images': ['static/description/icon.png'],
+    'images': ['static/description/main_banner.png'],
     'description': """
 Allows configurable picking and receiving wave
 """,
     'summary': 'Allows configurable picking/picking wave',
     'depends': [
-        'base',
         'stock_picking_wave',
         'merp_base',
         'merp_picking_wave_access_rights',
