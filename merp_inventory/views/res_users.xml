@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <record id="inventory_res_users" model="ir.ui.view">
+            <field name="name">Inventory - Users Form</field>
+            <field name="model">res.users</field>
+            <field name="inherit_id" ref="merp_base.res_user_form"/>
+            <field name="arch" type="xml">
+                <data>
+                    <xpath expr="//group[@name='merp']" position="inside">
+                        <field name="default_inventory_location"/>
+                    </xpath>
+                </data>
+            </field>
+        </record>
+
+    </data>
+</odoo>
