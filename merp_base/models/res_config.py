@@ -1,4 +1,8 @@
-from openerp import models, fields
+from openerp import models, fields, api
+from odoo import http
+
+import logging
+_logger = logging.getLogger(__name__)
 
 
 class StockConfigSettings(models.TransientModel):
@@ -28,3 +32,12 @@ class StockConfigSettings(models.TransientModel):
 
     module_merp_inventory = fields.Boolean(
         'mERP Inventory')
+
+    merp_version = fields.Char(string='mERP Version',
+        compute='_compute_merp_version', store=False)
+
+    @api.depends('company_id')
+    def _compute_merp_version(self):
+        manifest = http.addons_manifest.get('merp_base', None)
+        version = manifest['version'].split('.')
+        self.merp_version = '.'.join(version[-3:])
