@@ -14,6 +14,9 @@ class PickingWave(models.Model):
         string='Operations to Pick',
         compute='_compute_operations_to_pick', store=False)
 
+    strategy_order_r = fields.Char(string='Strategy Order',
+        compute='_compute_operations_to_pick', store=False)
+
     @api.one
     @api.depends('picking_ids', 'picking_ids.move_line_ids')
     def _compute_related_pack_operations(self):
@@ -38,3 +41,12 @@ class PickingWave(models.Model):
             key=lambda r: getattr(r.location_id, strategy, 'None'),
             reverse=strategy_order
         )
+
+        settings = self.env['res.company'].fields_get(
+            ['outgoing_routing_strategy', 'outgoing_routing_order'])
+        strategies = settings['outgoing_routing_strategy']['selection']
+        orders = settings['outgoing_routing_order']['selection']
+        self.strategy_order_r = _('Strategy Order: ') + ', '.join([
+            dict(strategies)[strategy].lower(),
+            dict(orders)[strategy_order].lower()
+        ])
