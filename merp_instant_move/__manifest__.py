@@ -27,6 +27,11 @@
     'images': ['static/description/main_banner.png'],
     'description': """
 mERP Instant Move
+=================
+The module allows using 'Instant Movements' menu on Ventor app for Odoo 11.
+Using 'Instant Movements' menu user can move items from one location to another
+(internal transfers) just in few clicks. Just scan an item,
+choose the source and destination locations, change QTY and the movement is done.
 """,
     'summary': 'mERP Instant Move',
     'depends': [
