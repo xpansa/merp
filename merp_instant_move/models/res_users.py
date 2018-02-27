@@ -1,4 +1,4 @@
-from openerp import models, fields
+from odoo import models, fields
 
 
 class res_users(models.Model):
@@ -7,4 +7,5 @@ class res_users(models.Model):
     instant_add_more = fields.Boolean(
         string='Instant Move: \'add more\' automatically',
         help='Perform \'add more\' actions automatically',
+        default=False,
     )
