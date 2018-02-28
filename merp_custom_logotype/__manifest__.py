@@ -19,23 +19,20 @@
 ##############################################################################
 
 {
-    'name': 'mERP Base',
+    'name': 'mERP Customer Logotype',
     "version": "11.0.1.0.0",
     'author': 'Ventor, Xpansa Group',
     'website': 'https://ventor.tech/',
     'installable': True,
     'images': ['static/description/main_banner.png'],
     'description': """
-Base module that allow relation between mERP modules
+Adds customer logotype for mERP app
 """,
-    'summary': 'Base module that allow relation between mERP modules',
+    'summary': 'Customer logotype for mERP app',
     'depends': [
-        'base',
-        'stock',
+        'merp_base',
     ],
     'data': [
         'views/merp_config.xml',
-        'views/res_config.xml',
-        'views/res_users.xml',
     ],
 }
