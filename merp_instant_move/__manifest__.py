@@ -19,16 +19,16 @@
 ##############################################################################
 
 {
-    'name': 'mERP Instant Move',
+    'name': 'Ventor Instant Move',
     "version": "11.0.1.0.0",
     'author': 'Ventor, Xpansa Group',
     'website': 'https://ventor.tech/',
     'installable': True,
     'images': ['static/description/main_banner.png'],
     'description': """
-mERP Instant Move
+Ventor Instant Move
 """,
-    'summary': 'mERP Instant Move',
+    'summary': 'Ventor Instant Move',
     'depends': [
         'merp_base',
     ],

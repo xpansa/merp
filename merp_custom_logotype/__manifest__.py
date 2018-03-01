@@ -19,16 +19,16 @@
 ##############################################################################
 
 {
-    'name': 'mERP Customer Logotype',
+    'name': 'Ventor Customer Logotype',
     "version": "11.0.1.0.0",
     'author': 'Ventor, Xpansa Group',
     'website': 'https://ventor.tech/',
     'installable': True,
     'images': ['static/description/main_banner.png'],
     'description': """
-Adds customer logotype for mERP app
+Adds customer logotype for Ventor app
 """,
-    'summary': 'Customer logotype for mERP app',
+    'summary': 'Customer logotype for Ventor app',
     'depends': [
         'merp_base',
     ],

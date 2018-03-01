@@ -19,16 +19,16 @@
 ##############################################################################
 
 {
-    'name': 'mERP Picking Wave Access Rights',
+    'name': 'Ventor Picking Wave Access Rights',
     "version": "11.0.1.0.0",
     'author': 'Ventor, Xpansa Group',
     'website': 'https://ventor.tech/',
     'installable': True,
     'images': ['static/description/main_banner.png'],
     'description': """
-mERP Picking Wave Access Rights
+Ventor Picking Wave Access Rights
 """,
-    'summary': 'mERP Picking Wave Access Rights',
+    'summary': 'Ventor Picking Wave Access Rights',
     'depends': [
         'merp_custom_access_rights',
     ],

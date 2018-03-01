@@ -1,2 +1,2 @@
-# merp
-mERP Warehouse free addons to simplify works with scanner
+# Ventor
+Ventor free addons to simplify works with scanner

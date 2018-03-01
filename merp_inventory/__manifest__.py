@@ -19,7 +19,7 @@
 ##############################################################################
 
 {
-    'name': 'mERP Inventory Improvements',
+    'name': 'Ventor Inventory Improvements',
     "version": "11.0.1.0.0",
     'author': 'Ventor, Xpansa Group',
     'website': 'https://ventor.tech/',
