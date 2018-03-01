@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 ##############################################################################
 #
-#    Copyright (C) 2017 Ventor, Xpansa Group (<https://ventor.tech/>).
+#    Copyright (C) 2017 Xpansa Group (<http://xpansa.com>).
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU Lesser General Public License as
@@ -18,23 +18,4 @@
 #
 ##############################################################################
 
-{
-    'name': 'Ventor Picking Wave',
-    "version": "11.0.1.0.0",
-    'author': 'Ventor, Xpansa Group',
-    'website': 'https://ventor.tech/',
-    'installable': True,
-    'images': ['static/description/main_banner.png'],
-    'description': """
-Allows configurable picking wave
-""",
-    'summary': 'Allows configurable picking wave',
-    'depends': [
-        'merp_picking_wave_core',
-    ],
-    'data': [
-        'views/res_config.xml',
-        'views/stock_picking_wave.xml',
-        'wizard/message_wizard.xml'
-    ],
-}
+from . import models

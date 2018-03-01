@@ -19,22 +19,20 @@
 ##############################################################################
 
 {
-    'name': 'Ventor Picking Wave',
+    'name': 'Ventor Customer Logotype',
     "version": "11.0.1.0.0",
     'author': 'Ventor, Xpansa Group',
     'website': 'https://ventor.tech/',
     'installable': True,
     'images': ['static/description/main_banner.png'],
     'description': """
-Allows configurable picking wave
+Adds customer logotype for Ventor app
 """,
-    'summary': 'Allows configurable picking wave',
+    'summary': 'Customer logotype for Ventor app',
     'depends': [
-        'merp_picking_wave_core',
+        'merp_base',
     ],
     'data': [
-        'views/res_config.xml',
-        'views/stock_picking_wave.xml',
-        'wizard/message_wizard.xml'
+        'views/merp_config.xml',
     ],
 }

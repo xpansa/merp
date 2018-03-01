@@ -19,7 +19,7 @@
 ##############################################################################
 
 {
-    'name': 'mERP Picking Wave Core Module',
+    'name': 'Ventor Picking Wave Core Module',
     "version": "11.0.1.0.0",
     'author': 'Ventor, Xpansa Group',
     'website': 'https://ventor.tech/',

@@ -32,6 +32,9 @@ class StockConfigSettings(models.TransientModel):
 
     module_merp_inventory = fields.Boolean(
         'mERP Inventory')
+        
+    module_merp_custom_logotype = fields.Boolean(
+        'Customer Logotype')
 
     merp_version = fields.Char(string='mERP Version',
         compute='_compute_merp_version', store=False)
