@@ -34,6 +34,7 @@ Base module that allow relation between Ventor modules
         'stock',
     ],
     'data': [
+        'security/ir.model.access.csv',
         'views/merp_config.xml',
         'views/res_config.xml',
         'views/res_users.xml',
