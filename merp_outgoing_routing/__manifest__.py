@@ -19,7 +19,7 @@
 ##############################################################################
 
 {
-    'name': 'mERP Outgoing Routing',
+    'name': 'Ventor Outgoing Routing',
     "version": "11.0.1.0.0",
     'author': 'Ventor, Xpansa Group',
     'website': 'https://ventor.tech/',

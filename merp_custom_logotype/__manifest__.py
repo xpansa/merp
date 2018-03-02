@@ -19,25 +19,20 @@
 ##############################################################################
 
 {
-    'name': 'Ventor Instant Move',
+    'name': 'Ventor Customer Logotype',
     "version": "11.0.1.0.0",
     'author': 'Ventor, Xpansa Group',
     'website': 'https://ventor.tech/',
     'installable': True,
     'images': ['static/description/main_banner.png'],
     'description': """
-Ventor Instant Move
-===================
-The module allows using 'Instant Movements' menu on Ventor app for Odoo 11.
-Using 'Instant Movements' menu user can move items from one location to another
-(internal transfers) just in few clicks. Just scan an item,
-choose the source and destination locations, change QTY and the movement is done.
+Adds customer logotype for Ventor app
 """,
-    'summary': 'Ventor Instant Move',
+    'summary': 'Customer logotype for Ventor app',
     'depends': [
         'merp_base',
     ],
     'data': [
-        'views/res_users.xml',
+        'views/merp_config.xml',
     ],
 }

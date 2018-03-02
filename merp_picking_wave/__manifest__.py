@@ -19,7 +19,7 @@
 ##############################################################################
 
 {
-    'name': 'mERP Picking Wave',
+    'name': 'Ventor Picking Wave',
     "version": "11.0.1.0.0",
     'author': 'Ventor, Xpansa Group',
     'website': 'https://ventor.tech/',

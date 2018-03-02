@@ -19,7 +19,7 @@
 ##############################################################################
 
 {
-    'name': 'mERP Stock Picking Report (sorted)',
+    'name': 'Ventor Stock Picking Report (sorted)',
     "version": "11.0.1.0.0",
     'author': 'Ventor, Xpansa Group',
     'website': 'https://ventor.tech/',

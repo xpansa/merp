@@ -19,16 +19,16 @@
 ##############################################################################
 
 {
-    'name': 'mERP Custom Access Rights',
+    'name': 'Ventor Custom Access Rights',
     "version": "11.0.1.0.0",
     'author': 'Ventor, Xpansa Group',
     'website': 'https://ventor.tech/',
     'installable': True,
     'images': ['static/description/main_banner.png'],
     'description': """
-mERP Custom Access Rights
+Ventor Custom Access Rights
 """,
-    'summary': 'mERP Custom Access Rights',
+    'summary': 'Ventor Custom Access Rights',
     'depends': [
         'merp_base',
     ],

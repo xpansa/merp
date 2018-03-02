@@ -19,21 +19,23 @@
 ##############################################################################
 
 {
-    'name': 'mERP Base',
+    'name': 'Ventor Base',
     "version": "11.0.1.0.0",
     'author': 'Ventor, Xpansa Group',
     'website': 'https://ventor.tech/',
     'installable': True,
     'images': ['static/description/main_banner.png'],
     'description': """
-Base module that allow relation between mERP modules
+Base module that allow relation between Ventor modules
 """,
-    'summary': 'Base module that allow relation between mERP modules',
+    'summary': 'Base module that allow relation between Ventor modules',
     'depends': [
         'base',
         'stock',
     ],
     'data': [
+        'security/ir.model.access.csv',
+        'views/merp_config.xml',
         'views/res_config.xml',
         'views/res_users.xml',
     ],
