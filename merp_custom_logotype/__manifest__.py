@@ -19,7 +19,7 @@
 ##############################################################################
 
 {
-    'name': 'Ventor Customer Logotype',
+    'name': 'Custom Mobile Logo',
     "version": "11.0.1.0.0",
     'author': 'Ventor, Xpansa Group',
     'website': 'https://ventor.tech/',
@@ -28,7 +28,7 @@
     'description': """
 Adds customer logotype for Ventor app
 """,
-    'summary': 'Customer logotype for Ventor app',
+    'summary': 'Custom Mobile Logo',
     'depends': [
         'merp_base',
     ],
