@@ -40,7 +40,7 @@ class StockPicking(models.Model):
         strategy = self.env.user.company_id.outgoing_routing_strategy
         strategy_order = self.env.user.company_id.outgoing_routing_order
         res = self.env['stock.move.line']
-        for operation in self.move_line_ids:
+        for operation in res.search([('picking_id', '=', self.id)]):
             if operation._compute_operation_valid():
                 res += operation
         self.operations_to_pick = res.sorted(
