@@ -66,14 +66,14 @@
         <field name="name">Warehouse worker</field>
         <field name="category_id" ref="module_category_ventor_roles"/>
         <field name="implied_ids"
-               eval="[(4, ref('merp_menu_warehouse_operations')), (4, ref('merp_menu_instant_move'))]"/>
+               eval="[(4, ref('merp_menu_warehouse_operations'))]"/>
     </record>
 
     <record id="ventor_role_wh_manager" model="res.groups">
         <field name="name">Warehouse manager</field>
         <field name="category_id" ref="module_category_ventor_roles"/>
         <field name="implied_ids"
-               eval="[(4, ref('ventor_role_wh_worker')), (4, ref('merp_menu_inventory_adjustments')), (4, ref('merp_menu_info')), (4, ref('merp_menu_instant_inventory'))]"/>
+               eval="[(4, ref('ventor_role_wh_worker')), (4, ref('merp_menu_inventory_adjustments')), (4, ref('merp_menu_info')), (4, ref('merp_menu_instant_inventory')), (4, ref('merp_menu_instant_move'))]"/>
     </record>
 
     <record id="ventor_role_admin" model="res.groups">
