@@ -1,28 +1,35 @@
 <?xml version="1.0" encoding="utf-8"?>
-<openerp>
-    <data>
+<odoo>
+    <!-- delete legacy records created in merp_picking_wave module
+         note openerp skips deletion of missing records by default
+     -->
 
-        <!-- delete legacy records created in merp_picking_wave module
-             note openerp skips deletion of missing records by default
-         -->
+    <delete model="res.groups" id="merp_picking_wave.merp_menu_picking_wave"/>
+    <delete model="res.groups" id="merp_picking_wave_base.merp_picking_wave_allow_done"/>
 
-        <delete model="res.groups" id="merp_picking_wave.merp_menu_picking_wave"/>
-        <delete model="res.groups" id="merp_picking_wave_base.merp_picking_wave_allow_done"/>
+    <!-- new groups
+     -->
 
-        <!-- new groups
-         -->
+    <record id="merp_menu_picking_wave" model="res.groups">
+        <field name="name">Menu: Picking Wave</field>
+        <field name="category_id" ref="merp_custom_access_rights.module_category_merp_application"/>
+        <field name="users" eval="[(4, ref('base.user_root'))]"/>
+    </record>
 
-        <record id="merp_menu_picking_wave" model="res.groups">
-            <field name="name">Menu: Picking Wave</field>
-            <field name="category_id" ref="merp_custom_access_rights.module_category_merp_application"/>
-            <field name="users" eval="[(4, ref('base.user_root'))]"/>
-        </record>
+    <record id="merp_picking_wave_allow_done" model="res.groups">
+        <field name="name">Picking Wave: Allow Finalizing</field>
+        <field name="category_id" ref="merp_custom_access_rights.module_category_merp_application"/>
+        <field name="users" eval="[(4, ref('base.user_root'))]"/>
+    </record>
 
-        <record id="merp_picking_wave_allow_done" model="res.groups">
-            <field name="name">Picking Wave: Allow Finalizing</field>
-            <field name="category_id" ref="merp_custom_access_rights.module_category_merp_application"/>
-            <field name="users" eval="[(4, ref('base.user_root'))]"/>
-        </record>
+    <record id="merp_custom_access_rights.ventor_role_wh_worker" model="res.groups">
+        <field name="implied_ids"
+           eval="[(4, ref('merp_menu_picking_wave'))]"/>
+    </record>
 
-    </data>
-</openerp>
+    <record id="merp_custom_access_rights.ventor_role_admin" model="res.groups">
+        <field name="implied_ids"
+           eval="[(4, ref('merp_picking_wave_allow_done'))]"/>
+    </record>
+
+</odoo>
