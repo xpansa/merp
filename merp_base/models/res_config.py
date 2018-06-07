@@ -34,7 +34,7 @@ class StockConfigSettings(models.TransientModel):
         'Ventor/mERP Inventory')
 
     module_merp_custom_logotype = fields.Boolean(
-        'Customer Logotype')
+        'Use Custom Logo')
 
     merp_version = fields.Char(string='Ventor/mERP Version',
         compute='_compute_merp_version', store=False)
