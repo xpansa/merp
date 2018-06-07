@@ -26,7 +26,7 @@
     'installable': True,
     'images': ['static/description/main_banner.png'],
     'description': """
-Adds customer logotype for Ventor app
+Adds customer logotype for Ventor/mERP App
 """,
     'summary': 'Custom Mobile Logo',
     'depends': [
