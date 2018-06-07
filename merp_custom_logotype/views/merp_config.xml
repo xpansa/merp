@@ -18,7 +18,7 @@
                                     <field name="merp_logotype_file" widget="binary"
                                         filename="merp_logotype_name" />
                                     <div class="text-muted">
-                                        Customer Logo
+                                        My Logo
                                     </div>
                                 </div>
                             </div>
