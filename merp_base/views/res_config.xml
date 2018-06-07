@@ -3,13 +3,13 @@
     <data>
 
         <record id="view_stock_config_settings" model="ir.ui.view">
-            <field name="name">mERP Demo - Stock Settings</field>
+            <field name="name">Ventor/mERP Demo - Stock Settings</field>
             <field name="model">res.config.settings</field>
             <field name="inherit_id" ref="base.res_config_settings_view_form" />
             <field name="arch" type="xml">
                 <xpath expr="//div[hasclass('settings')]" position="inside" >
-                    <div class="app_settings_block" data-string="mERP" string="mERP" data-key="merp_base" groups="stock.group_stock_manager">
-                        <h2>mERP Warehouse App modules</h2>
+                    <div class="app_settings_block" data-string="Ventor/mERP" string="Ventor/mERP" data-key="merp_base" groups="stock.group_stock_manager">
+                        <h2>Ventor App modules</h2>
                         <div class="row mt16 o_settings_container">
                             <div class="col-xs-12 col-md-6 o_setting_box">
                                 <div class="o_setting_left_pane">
@@ -18,7 +18,7 @@
                                 <div class="o_setting_right_pane">
                                     <label for="module_merp_custom_access_rights"/>
                                     <div class="text-muted">
-                                        Enable Custom Access Rights for mERP Warehouse App
+                                        Enable Custom Access Rights for Ventor App
                                     </div>
                                 </div>
                             </div>
@@ -29,7 +29,7 @@
                                 <div class="o_setting_right_pane">
                                     <label for="module_merp_inventory"/>
                                     <div class="text-muted">
-                                        Enable Advanced mERP Inventory Improvements
+                                        Enable Advanced Ventor/mERP Inventory Improvements
                                     </div>
                                 </div>
                             </div>
@@ -40,7 +40,7 @@
                                 <div class="o_setting_right_pane">
                                     <label for="module_merp_receiving_wave_access_rights"/>
                                     <div class="text-muted">
-                                        Enable Receiving Wave Access Rights for mERP Warehouse App
+                                        Enable Receiving Wave Access Rights for Ventor App
                                     </div>
                                 </div>
                             </div>
@@ -62,7 +62,7 @@
                                 <div class="o_setting_right_pane">
                                     <label for="module_merp_picking_wave_access_rights"/>
                                     <div class="text-muted">
-                                        Enable Picking Wave Rights for mERP Warehouse App
+                                        Enable Picking Wave Rights for Ventor App
                                     </div>
                                 </div>
                             </div>
@@ -106,7 +106,7 @@
                                 <div class="o_setting_right_pane">
                                     <label for="module_merp_instant_move"/>
                                     <div class="text-muted">
-                                        Allow add more items automatically via mERP Warehouse app
+                                        Allow add more items automatically via Ventor App
                                     </div>
                                 </div>
                             </div>
@@ -115,7 +115,7 @@
                                 <div class="o_setting_right_pane">
                                     <field name="merp_version"/>
                                     <div class="text-muted">
-                                        mERP version
+                                        Ventor/mERP version
                                     </div>
                                 </div>
                             </div>
@@ -126,12 +126,12 @@
                                 <div class="o_setting_right_pane">
                                     <label for="module_merp_custom_logotype"/>
                                     <div class="text-muted">
-                                        Allows set custom logotype for mERP Warehouse app
+                                        Allows set custom logotype for Ventor app
                                     </div>
                                 </div>
                             </div>
                         </div>
-                        <h2>mERP Warehouse App settings</h2>
+                        <h2>Ventor App settings</h2>
                         <div class="row mt16 o_settings_container">
                         </div>
                     </div>
@@ -139,7 +139,7 @@
             </field>
         </record>
 
-        
+
 
     </data>
 </odoo>

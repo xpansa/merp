@@ -10,7 +10,7 @@
             <field name="arch" type="xml">
                 <data>
                     <xpath expr="//group[@name='messaging']" position="after">
-                        <group string="mERP Application" name="merp">
+                        <group string="Ventor/mERP Application" name="merp">
                         </group>
                     </xpath>
                 </data>
