@@ -3,7 +3,7 @@
     <data>
 
         <record model="ir.module.category" id="module_category_merp_application">
-            <field name="name">mERP Application</field>
+            <field name="name">Ventor/mERP Application</field>
             <field name="sequence">0</field>
             <field name="visible" eval="0"/>
         </record>
