@@ -31,12 +31,12 @@ class StockConfigSettings(models.TransientModel):
         'Instant Move')
 
     module_merp_inventory = fields.Boolean(
-        'mERP Inventory')
-        
-    module_merp_custom_logotype = fields.Boolean(
-        'Customer Logotype')
+        'Ventor/mERP Inventory')
 
-    merp_version = fields.Char(string='mERP Version',
+    module_merp_custom_logotype = fields.Boolean(
+        'Use Custom Logo')
+
+    merp_version = fields.Char(string='Ventor/mERP Version',
         compute='_compute_merp_version', store=False)
 
     @api.depends('company_id')
