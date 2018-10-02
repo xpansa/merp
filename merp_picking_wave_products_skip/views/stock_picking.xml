@@ -12,6 +12,9 @@
                 <xpath expr="//field[@name='related_pack_operations']/tree/field[@name='qty_done']" position="after">
                     <field name="skipped" />
                 </xpath>
+                <xpath expr="//field[@name='operations_to_pick']/tree/field[@name='qty_done']" position="after">
+                    <field name="skipped" />
+                </xpath>
             </field>
         </record>
 
