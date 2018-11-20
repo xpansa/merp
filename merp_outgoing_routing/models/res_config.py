@@ -29,25 +29,13 @@ class StockConfigSettings(models.TransientModel):
             ('name', 'Sort by source locations in alphabetical order'),
             ('removal_prio', 'Sort by location removal strategy priority field'),
         ],
-        string='Routing Strategy', default='name')
+        string='Routing Strategy', default='name',
+        related='company_id.outgoing_routing_strategy')
 
     outgoing_routing_order = fields.Selection(
         [
             (0, 'Ascending (A-Z)'),
             (1, 'Descending (Z-A)'),
         ],
-        string='Routing Order', default=0)
-
-    @api.model
-    def get_default_company_outgoing_strategy_values(self, fields):
-        company = self.env.user.company_id
-        return {
-            'outgoing_routing_strategy': company.outgoing_routing_strategy,
-            'outgoing_routing_order': company.outgoing_routing_order,
-        }
-
-    @api.multi
-    def set_company_outgoing_strategy_values(self):
-        company = self.env.user.company_id
-        company.outgoing_routing_strategy = self.outgoing_routing_strategy
-        company.outgoing_routing_order = self.outgoing_routing_order
+        string='Routing Order', default=0,
+        related='company_id.outgoing_routing_order')
