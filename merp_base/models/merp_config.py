@@ -1,9 +1,4 @@
-from openerp import models, fields, api
-
-
-class merpConfigSettings(models.TransientModel):
-    _name = 'merp.config.settings'
-    _inherit = 'res.config.settings'
+from odoo import models, fields, api
 
 
 class merpConfig(models.Model):

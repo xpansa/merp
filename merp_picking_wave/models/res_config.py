@@ -1,4 +1,4 @@
-from openerp import api, models, fields
+from odoo import api, models, fields
 
 
 class StockConfigSettings(models.TransientModel):
@@ -12,4 +12,5 @@ class StockConfigSettings(models.TransientModel):
             (2, 'Move wave to "On Hold" if not all pickings are confirmed')
         ],
         string='Behavior on Confirm', default=0,
-        related='company_id.outgoing_wave_behavior_on_confirm')
+        related='company_id.outgoing_wave_behavior_on_confirm',
+        readonly=False)

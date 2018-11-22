@@ -1,4 +1,4 @@
-from openerp import api, models, fields
+from odoo import api, models, fields
 
 
 class StockChangeQtyMerp(models.TransientModel):
@@ -17,8 +17,8 @@ class StockChangeQtyMerp(models.TransientModel):
 
             if not default_location_id:
                 default_location_id = \
-                    self.env.user.company_id.default_inventory_location \
-                    and self.env.user.company_id.default_inventory_location.id or False
+                    self.env.user.company_id.stock_inventory_location \
+                    and self.env.user.company_id.stock_inventory_location.id or False
 
             if default_location_id:
                 res['location_id'] = default_location_id

@@ -1,4 +1,4 @@
-from openerp import models, fields, api, exceptions, _
+from odoo import models, fields, api, exceptions, _
 
 
 class PickingWave(models.Model):
@@ -47,9 +47,8 @@ class PickingWave(models.Model):
             #     'outgoing': list of stock.picking.wave,
             #     'internal': list of stock.picking.wave
             # } and call done_*(incoming or internal or outgoing) dynamically
-            sub_res = getattr(ws_to_done[code].with_context(sub_done_called=True), 'done_%s' % code)()
-            if type(sub_res) == dict and sub_res.get('message', ''):
-                res = sub_res['message']
+            if ws_to_done[code]:
+                res = getattr(ws_to_done[code].with_context(sub_done_called=True), 'done_%s' % code)()
 
         return res
 

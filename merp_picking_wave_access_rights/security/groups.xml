@@ -1,15 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-    <!-- delete legacy records created in merp_picking_wave module
-         note openerp skips deletion of missing records by default
-     -->
-
-    <delete model="res.groups" id="merp_picking_wave.merp_menu_picking_wave"/>
-    <delete model="res.groups" id="merp_picking_wave_base.merp_picking_wave_allow_done"/>
-
-    <!-- new groups
-     -->
-
     <record id="merp_menu_picking_wave" model="res.groups">
         <field name="name">Picking Wave Menu</field>
         <field name="category_id" ref="merp_custom_access_rights.module_category_merp_application"/>

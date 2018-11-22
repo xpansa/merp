@@ -1,4 +1,4 @@
-from openerp import api, models, fields
+from odoo import api, models, fields
 
 
 class StockConfigSettings(models.TransientModel):
@@ -11,4 +11,5 @@ class StockConfigSettings(models.TransientModel):
             (1, 'Close pickings in wave without creating backorders')
         ],
         string='Behavior on Confirm', default=0,
-        related='company_id.wave_behavior_on_confirm')
+        related='company_id.wave_behavior_on_confirm',
+        readonly=False)

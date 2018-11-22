@@ -19,7 +19,7 @@
                     string="Return to In Progress" />
             </xpath>
 
-            <xpath expr="//button[@name='action_done']" position="attributes">
+            <xpath expr="//button[@name='action_validate']" position="attributes">
                 <attribute name="states">confirm,ready</attribute>
             </xpath>
             <xpath expr="//button[@name='action_cancel_draft']" position="attributes">

@@ -1,4 +1,4 @@
-from openerp import models, fields, api, _
+from odoo import models, api, _
 
 
 class PickingWave(models.Model):
@@ -10,12 +10,8 @@ class PickingWave(models.Model):
         message_obj = self.env['message.wizard']
         behavior = self.env.user.company_id.outgoing_wave_behavior_on_confirm
 
-        if behavior == 1:
-            # i.e. close pickings in wave without creating backorders
-            return super(PickingWave, self).done()
-
-        elif behavior == 0:
-            # i.e. close pickings in wave with creation of backorders for incomplete pickings
+        if behavior in (0, 1):
+             # i.e. close pickings in wave with/without creating backorders
             for wave in self:
                 for picking in wave.picking_ids:
                     if picking.state in ('cancel', 'done'):
@@ -27,16 +23,14 @@ class PickingWave(models.Model):
                         # remove from wave
                         picking.batch_id = False
                         continue
-                    if not picking.move_line_ids:
-                        picking.do_prepare_partial()
-                    for pack in picking.move_line_ids.with_context(no_recompute=True):
-                        pack.product_qty = pack.qty_done
-                    picking.do_transfer()
-
-                    # Find backorder and remove it from wave
-                    back_orders = picking_obj.search([
-                        ('backorder_id', '=', picking.id)])
-                    back_orders.write({'batch_id': False})
+                    picking.action_done()
+                    backorder_pick = self.env['stock.picking'].search([('backorder_id', '=', picking.id)])
+                    if backorder_pick:
+                        backorder_pick.write({'batch_id': False})
+                        if behavior == 1:
+                            # i.e. close pickings in wave without creating backorders
+                            backorder_pick.action_cancel()
+                            picking.message_post(body=_("Back order <em>%s</em> <b>cancelled</b>.") % (backorder_pick.name))    
             return super(PickingWave, self).done()
 
         elif behavior == 2:
@@ -50,13 +44,10 @@ class PickingWave(models.Model):
                     elif picking.state != 'assigned':
                         break
                     else:
-                        if not picking.move_line_ids:
-                            picking.do_prepare_partial()
-                        all_processed = True
                         if picking.move_line_ids.filtered(lambda o: o.qty_done < o.product_qty):
                             on_hold = True
                         else:
-                            picking.do_transfer()
+                            picking.action_done()
 
                 if on_hold:
                     wave.write({'state': 'on_hold'})
@@ -64,16 +55,8 @@ class PickingWave(models.Model):
 Not all products were found in wave pickings.
 Wave is moved to "On Hold" for manual processing.
                     ''')
-                elif wave.picking_ids:
-                    super(PickingWave, self).done()
-                    message = _('All pickings were confirmed!')
-
             if message:
-                return {
-                    'message': message_obj.with_context(message=message).wizard_view()
-                }
-            else:
-                return True
+                return message_obj.with_context(message=message).wizard_view()
 
 
 class StockPicking(models.Model):

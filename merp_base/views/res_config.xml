@@ -131,9 +131,6 @@
                                 </div>
                             </div>
                         </div>
-                        <h2>Ventor App settings</h2>
-                        <div class="row mt16 o_settings_container">
-                        </div>
                     </div>
                 </xpath>
             </field>

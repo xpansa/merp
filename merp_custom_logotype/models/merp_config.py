@@ -1,5 +1,5 @@
-from openerp import models, fields, api, _
-from openerp.exceptions import Warning
+from odoo import models, fields, api, _
+from odoo.exceptions import Warning
 import base64
 import struct
 import logging
@@ -11,7 +11,7 @@ LOGOTYPE_H = 500
 
 
 class merpConfigSettings(models.TransientModel):
-    _inherit = 'merp.config.settings'
+    _inherit = 'res.config.settings'
 
     merp_logotype_file = fields.Binary('Ventor/mERP logotype file')
     merp_logotype_name = fields.Char('Ventor/mERP logotype name')

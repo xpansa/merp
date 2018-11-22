@@ -1,15 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<openerp>
+<odoo>
     <data>
-
-        <!-- delete legacy records created in merp_receiving_wave module
-             note openerp skips deletion of missing records by default
-         -->
-
-        <delete model="res.groups" id="merp_receiving_wave.merp_menu_receiving_wave"/>
-
-        <!-- new groups
-         -->
 
         <record id="merp_menu_receiving_wave" model="res.groups">
             <field name="name">Menu: Receiving Wave</field>
@@ -18,4 +9,4 @@
         </record>
 
     </data>
-</openerp>
+</odoo>
