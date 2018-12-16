@@ -9,7 +9,8 @@
             <field name="arch" type="xml">
                 <data>
                     <xpath expr="//group[@name='merp']" position="inside">
-                        <field name="default_inventory_location"/>
+                        <label for="default_inventory_location" colspan="3"/>
+                        <field name="default_inventory_location" nolabel="1" colspan="5"/>
                     </xpath>
                 </data>
             </field>

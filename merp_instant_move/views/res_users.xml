@@ -10,7 +10,8 @@
             <field name="arch" type="xml">
                 <data>
                     <xpath expr="//group[@name='merp']" position="inside">
-                        <field name="instant_add_more"/>
+                        <label for="instant_add_more" colspan="3"/>
+                        <field name="instant_add_more" nolabel="1" colspan="5"/>
                     </xpath>
                 </data>
             </field>
