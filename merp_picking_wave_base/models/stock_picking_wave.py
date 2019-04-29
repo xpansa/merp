@@ -31,7 +31,7 @@ class PickingWave(models.Model):
     def _compute_related_pack_operations(self):
         for rec in self:
             res = self.env['stock.move.line']
-            for picking in self.picking_ids:
+            for picking in rec.picking_ids:
                 for operation in picking.move_line_ids:
                     res += operation
             rec.related_pack_operations = res
