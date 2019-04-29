@@ -1,3 +1,6 @@
+﻿# Copyright 2019 VentorTech OU
+# Part of Ventor modules. See LICENSE file for full copyright and licensing details.
+
 from odoo import models, api, _
 
 
@@ -6,12 +9,11 @@ class PickingWave(models.Model):
 
     @api.multi
     def done_outgoing(self):
-        picking_obj = self.env['stock.picking']
         message_obj = self.env['message.wizard']
         behavior = self.env.user.company_id.outgoing_wave_behavior_on_confirm
 
         if behavior in (0, 1):
-             # i.e. close pickings in wave with/without creating backorders
+            # i.e. close pickings in wave with/without creating backorders
             for wave in self:
                 for picking in wave.picking_ids:
                     if picking.state in ('cancel', 'done'):
@@ -30,7 +32,7 @@ class PickingWave(models.Model):
                         if behavior == 1:
                             # i.e. close pickings in wave without creating backorders
                             backorder_pick.action_cancel()
-                            picking.message_post(body=_("Back order <em>%s</em> <b>cancelled</b>.") % (backorder_pick.name))    
+                            picking.message_post(body=_("Back order <em>%s</em> <b>cancelled</b>.") % (backorder_pick.name))
             return super(PickingWave, self).done()
 
         elif behavior == 2:
@@ -74,4 +76,4 @@ class StockPicking(models.Model):
             ('state', 'in', ('assigned', 'partially_available')),
             '|',
             ('name', '=', name),
-            ('origin','=', name)])
+            ('origin', '=', name)])

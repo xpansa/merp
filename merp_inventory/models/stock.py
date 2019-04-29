@@ -1,9 +1,11 @@
-from odoo import api, models, fields
+﻿# Copyright 2019 VentorTech OU
+# Part of Ventor modules. See LICENSE file for full copyright and licensing details.
+
+from odoo import api, models
 
 
 class StockChangeQtyMerp(models.TransientModel):
     _inherit = 'stock.change.product.qty'
-
 
     @api.model
     def default_get(self, fields):

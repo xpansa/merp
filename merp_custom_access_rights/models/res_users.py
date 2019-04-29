@@ -1,7 +1,10 @@
+﻿# Copyright 2019 VentorTech OU
+# Part of Ventor modules. See LICENSE file for full copyright and licensing details.
+
 from odoo import models, fields
 
 
-class res_users(models.Model):
+class ResUsers(models.Model):
     _inherit = 'res.users'
 
     stock_location_id = fields.Many2one(

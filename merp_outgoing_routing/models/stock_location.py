@@ -1,3 +1,6 @@
+﻿# Copyright 2019 VentorTech OU
+# Part of Ventor modules. See LICENSE file for full copyright and licensing details.
+
 from odoo import models, fields, api
 
 
@@ -22,10 +25,10 @@ class StockLocation(models.Model):
         strategy = self.env.user.company_id.outgoing_routing_strategy
         strategy_order = self.env.user.company_id.outgoing_routing_order
 
-        if not strategy in self:
+        if strategy not in self:
             return
 
         order = '%s %s' % (strategy, ['asc', 'desc'][strategy_order])
         res = self.search([], order=order)
         for sequence, location in enumerate(res):
-                location.strategy_sequence = sequence
+            location.strategy_sequence = sequence

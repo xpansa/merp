@@ -25,11 +25,6 @@
             <xpath expr="//button[@name='action_cancel_draft']" position="attributes">
                 <attribute name="states">confirm,ready</attribute>
             </xpath>
-            <!--
-            <xpath expr="//button[@name='action_inventory_line_tree']" position="attributes">
-                <attribute name="states">confirm,ready</attribute>
-            </xpath>
-             -->
 
             <xpath expr="//field[@name='line_ids']" position="attributes">
                 <attribute name="attrs">{'readonly': [('state', 'in', ('done', 'ready'))]}</attribute>

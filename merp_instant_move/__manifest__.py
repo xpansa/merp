@@ -1,22 +1,14 @@
-# -*- coding: utf-8 -*-
-# Copyright 2018 Ventor, Xpansa Group.
-# License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl.html).
+# Copyright 2019 VentorTech OU
+# Part of Ventor modules. See LICENSE file for full copyright and licensing details.
 
 {
     'name': 'Ventor Instant Move',
     "version": "12.0.1.0.0",
-    'author': 'Ventor, Xpansa Group',
+    'author': 'VentorTech',
     'website': 'https://ventor.tech/',
+    'license': 'LGPL-3',
     'installable': True,
     'images': ['static/description/main_banner.png'],
-    'description': """
-Ventor Instant Move
-===================
-The module allows using 'Instant Movements' menu on Ventor app for Odoo 11.
-Using 'Instant Movements' menu user can move items from one location to another
-(internal transfers) just in few clicks. Just scan an item,
-choose the source and destination locations, change QTY and the movement is done.
-""",
     'summary': 'Ventor Instant Move',
     'depends': [
         'merp_base',

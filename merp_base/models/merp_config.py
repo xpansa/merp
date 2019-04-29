@@ -1,7 +1,10 @@
+﻿# Copyright 2019 VentorTech OU
+# Part of Ventor modules. See LICENSE file for full copyright and licensing details.
+
 from odoo import models, fields, api
 
 
-class merpConfig(models.Model):
+class MerpConfig(models.Model):
     _name = 'merp.config'
     _rec_name = 'key'
 

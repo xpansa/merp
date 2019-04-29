@@ -1,17 +1,14 @@
-# -*- coding: utf-8 -*-
-# Copyright 2018 Ventor, Xpansa Group.
-# License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl.html).
+# Copyright 2019 VentorTech OU
+# Part of Ventor modules. See LICENSE file for full copyright and licensing details.
 
 {
     'name': 'Ventor Picking Wave Product Skip',
     "version": "12.0.1.0.0",
-    'author': 'Ventor, Xpansa Group',
+    'author': 'VentorTech',
     'website': 'https://ventor.tech/',
+    'license': 'LGPL-3',
     'installable': True,
     'images': ['static/description/main_banner.png'],
-    'description': """
-Allows smart skip of products in picking waves
-""",
     'summary': 'Allows smart skip of products in picking waves',
     'depends': [
         'merp_picking_products_skip',

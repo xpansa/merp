@@ -1,17 +1,14 @@
-# -*- coding: utf-8 -*-
-# Copyright 2018 Ventor, Xpansa Group.
-# License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl.html).
+# Copyright 2019 VentorTech OU
+# Part of Ventor modules. See LICENSE file for full copyright and licensing details.
 
 {
     'name': 'Ventor Base',
     'version': '12.0.1.1.0',
-    'author': 'Ventor, Xpansa Group',
+    'author': 'VentorTech',
     'website': 'https://ventor.tech/',
+    'license': 'LGPL-3',
     'installable': True,
     'images': ['static/description/main_banner.png'],
-    'description': """
-Base module that allow relation between Ventor modules
-""",
     'summary': 'Base module that allow relation between Ventor modules',
     'depends': [
         'base',

@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-    <data>
 
         <!-- Update User form -->
         <record model="ir.ui.view" id="res_user_form">
@@ -17,21 +16,4 @@
             </field>
         </record>
 
-        <!-- Update Preferences form -->
-        <!-- uncomment and update, if required
-        <record id="view_users_form_preferences" model="ir.ui.view">
-            <field name="name">res.users.preferences.form</field>
-            <field name="model">res.users</field>
-            <field name="inherit_id" ref="base.view_users_form_simple_modif" />
-            <field name="arch" type="xml">
-                <data>
-                    <xpath expr="//field[@name='company_id']" position="before">
-                        <field name="instant_add_more" readonly="0" />
-                    </xpath>
-                </data>
-            </field>
-        </record>
-         -->
-
-    </data>
 </odoo>
