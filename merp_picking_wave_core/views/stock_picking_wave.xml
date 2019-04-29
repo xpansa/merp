@@ -8,7 +8,7 @@
             <field name="inherit_id" ref="merp_picking_wave_base.view_picking_wave_form"/>
             <field name="arch" type="xml">
                 <button name="done" position="replace">
-                     <button name="done" states="in_progress" string="Done" type="object" class="oe_highlight" groups="merp_picking_wave_access_rights.merp_picking_wave_allow_done"/>
+                     <button name="done" states="in_progress" string="Done" type="object" class="oe_highlight" groups="merp_custom_access_rights.merp_picking_wave_allow_done"/>
                 </button>
                 <field name="user_id" position="after">
                     <field name="warehouse_id"/>

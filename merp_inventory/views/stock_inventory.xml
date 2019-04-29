@@ -12,10 +12,10 @@
 
             <xpath expr="//button[@name='action_start']" position="after">
                 <button name="finish_inventory" type="object" states="confirm"
-                    groups="merp_inventory.merp_inventory_allow_ready_state"
+                    groups="merp_custom_access_rights.merp_inventory_allow_ready_state"
                     string="Finish Inventory" />
                 <button name="return_inventory" type="object" states="ready"
-                    groups="merp_inventory.merp_inventory_allow_ready_state"
+                    groups="merp_custom_access_rights.merp_inventory_allow_ready_state"
                     string="Return to In Progress" />
             </xpath>
 

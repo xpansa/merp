@@ -19,7 +19,6 @@ Module allows to define default location that will be used for Inventory Adjustm
         'merp_custom_access_rights'
     ],
     'data': [
-        'security/groups.xml',
         'views/res_config.xml',
         'views/res_users.xml',
         'views/stock_inventory.xml',

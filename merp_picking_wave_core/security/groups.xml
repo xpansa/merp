@@ -5,7 +5,7 @@
         <!--
         <record id="merp_picking_wave_allow_done" model="res.groups">
             <field name="name">Picking Wave: Allow Finalizing</field>
-            <field name="category_id" ref="merp_custom_access_rights.module_category_merp_application"/>
+            <field name="category_id" ref="merp_custom_access_rights.module_category_merp_menu_application"/>
             <field name="users" eval="[(4, ref('base.user_root'))]"/>
         </record>
          -->

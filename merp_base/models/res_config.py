@@ -19,8 +19,6 @@ class StockConfigSettings(models.TransientModel):
     module_merp_receiving_wave = fields.Boolean(
         'Receiving Wave')
 
-    module_merp_picking_wave_access_rights = fields.Boolean(
-        'Picking Wave Access Rights')
     module_merp_picking_wave = fields.Boolean(
         'Picking Wave')
 

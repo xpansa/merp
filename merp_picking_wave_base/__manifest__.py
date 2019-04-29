@@ -16,7 +16,7 @@ Allows configurable picking and receiving wave
     'depends': [
         'stock_picking_batch',
         'merp_base',
-        'merp_picking_wave_access_rights',
+        'merp_custom_access_rights',
         'merp_picking_advanced_search',
         'merp_outgoing_routing'
     ],
