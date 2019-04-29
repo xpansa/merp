@@ -14,11 +14,6 @@ class StockConfigSettings(models.TransientModel):
     module_merp_custom_access_rights = fields.Boolean(
         'Custom Access Rights')
 
-    module_merp_receiving_wave_access_rights = fields.Boolean(
-        'Receiving Wave Access Rights')
-    module_merp_receiving_wave = fields.Boolean(
-        'Receiving Wave')
-
     module_merp_picking_wave = fields.Boolean(
         'Picking Wave')
 
