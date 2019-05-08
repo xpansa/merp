@@ -15,3 +15,7 @@ class Company(models.Model):
             (2, 'Move wave to "On Hold" if not all pickings are confirmed')
         ],
         string='Behavior on Confirm', default=0)
+
+    outgoing_wave_remove_not_moved = fields.Boolean(
+        string='Remove pickings with no done transfers on Batch Picking Closing',
+        default=False)

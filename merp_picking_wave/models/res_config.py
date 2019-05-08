@@ -17,3 +17,12 @@ class StockConfigSettings(models.TransientModel):
         string='Behavior on Confirm', default=0,
         related='company_id.outgoing_wave_behavior_on_confirm',
         readonly=False)
+
+    outgoing_wave_remove_not_moved = fields.Boolean(
+        string='Remove pickings with no done transfers on Batch Picking Closing',
+        default=False,
+        help='''Sometimes you want to remove pickings with no Done transfers from Picking Wave,
+                so you can add them to new picking wave later. Instead of just closing them.
+                Check this option if this is desired behavior .''',
+        related='company_id.outgoing_wave_remove_not_moved',
+        readonly=False)

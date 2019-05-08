@@ -22,6 +22,15 @@
                         </div>
                     </div>
                 </div>
+                <div class="col-xs-12 col-md-6 o_setting_box"
+                     attrs="{'invisible': [('module_merp_picking_wave','=',False)]}">
+                    <div class="o_setting_left_pane">
+                        <field name="outgoing_wave_remove_not_moved"/>
+                    </div>
+                    <div class="o_setting_right_pane">
+                        <label for="outgoing_wave_remove_not_moved"/>
+                    </div>
+                </div>
             </xpath>
         </field>
     </record>
