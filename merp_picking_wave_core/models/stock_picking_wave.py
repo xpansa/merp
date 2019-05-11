@@ -63,8 +63,6 @@ class PickingWave(models.Model):
                 move_ids = pick.move_lines.filtered(lambda x: x.state not in ('draft', 'cancel', 'done'))
                 if move_ids:
                     move_ids._action_assign()
-                if not pick.move_line_ids:
-                    pick.do_prepare_partial()
         return True
 
     @api.multi
