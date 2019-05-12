@@ -49,7 +49,7 @@ class PickingWave(models.Model):
 
         for rec in self:
             res = self.env['stock.move.line']
-            for picking in self.picking_ids:
+            for picking in rec.picking_ids:
                 res += picking.operations_to_pick
             rec.operations_to_pick = res.sorted(
                 key=lambda r: getattr(r.location_id, strategy, 'None'),
