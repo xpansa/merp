@@ -27,9 +27,10 @@ class PickingWave(models.Model):
                     if picking.state != 'assigned':
                         picking.action_assign()
                     if picking.state == 'assigned':
-                        for move in picking.move_lines.filtered(lambda m: m.state not in ['done', 'cancel']):
-                            for move_line in move.move_line_ids:
-                                move_line.qty_done = move_line.product_uom_qty
+                        if picking_not_moved:
+                            for move in picking.move_lines.filtered(lambda m: m.state not in ['done', 'cancel']):
+                                for move_line in move.move_line_ids:
+                                    move_line.qty_done = move_line.product_uom_qty
                     picking.action_done()
                     backorder_pick = self.env['stock.picking'].search([('backorder_id', '=', picking.id)])
                     if backorder_pick:
