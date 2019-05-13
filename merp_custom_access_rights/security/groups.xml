@@ -27,7 +27,7 @@
     </record>
 
     <record id="merp_menu_picking_wave" model="res.groups">
-        <field name="name">Picking Wave Menu</field>
+        <field name="name">Batch Picking Menu</field>
         <field name="category_id" ref="module_category_merp_menu_application"/>
         <field name="users" eval="[(4, ref('base.user_root'))]"/>
     </record>
@@ -76,7 +76,7 @@
     </record>
 
     <record id="merp_menu_allow_update_product_on_hand" model="res.groups">
-        <field name="name">Allow Update Product On Hand (Info Menu)</field>
+        <field name="name">Quick Info: Update product on hand</field>
         <field name="category_id" ref="module_category_merp_access_application"/>
         <field name="implied_ids" eval="[(6, 0, [ref('merp_menu_info')])]"/>
         <field name="users" eval="[(4, ref('base.user_root'))]"/>
@@ -95,7 +95,7 @@
     </record>
 
     <record id="merp_picking_wave_allow_done" model="res.groups">
-        <field name="name">Allow Picking Wave Finalizing</field>
+        <field name="name">Batch Picking: Close batch picking</field>
         <field name="category_id" ref="module_category_merp_access_application"/>
         <field name="users" eval="[(4, ref('base.user_root'))]"/>
     </record>
