@@ -11,7 +11,7 @@
     'images': ['static/description/main_banner.png'],
     'summary': 'Sort pack operations in report',
     'depends': [
-        'merp_picking_wave',
+        'merp_outgoing_routing',
     ],
     'data': [
         'views/report_stockpicking.xml',
