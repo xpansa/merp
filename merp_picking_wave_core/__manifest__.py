@@ -17,4 +17,5 @@
         'views/stock_picking.xml',
         'views/stock_picking_wave.xml'
     ],
+    'post_init_hook': 'post_init'
 }

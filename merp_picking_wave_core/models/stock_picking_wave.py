@@ -109,7 +109,15 @@ class StockPicking(models.Model):
     @api.multi
     @api.depends('group_id', 'group_id.picking_ids')
     def _compute_first_proc_picking(self):
+        if self.env.context.get('module', '') == 'merp_picking_wave_core':
+            # Do not recompute on installing module as it's done in pre_init hook
+            wave_count = self.env['stock.picking.batch'].search_count([('location_id', '!=', False)])
+            if not wave_count:
+                return
         for picking in self:
+            if not picking.group_id:
+                picking.first_proc_picking = picking.id
+                continue
             res = self.search([('group_id', '=', picking.group_id.id)], order='id asc', limit=1)
             if res:
                 picking.first_proc_picking = res[0]
