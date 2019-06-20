@@ -10,10 +10,14 @@ class TestMerpOutgoingRouting(TransactionCase):
         super(TestMerpOutgoingRouting, self).setUp()
         self.user = self.env['res.users'].create({
             'name': 'test_user',
-            'login': 'test_user',
-            'sel_group_42_43_44': 42,
-            'sel_group_19_20': 20
+            'login': 'test_user'
         })
+        self.ventor_worker = self.env.ref('merp_custom_access_rights.ventor_role_wh_worker')
+        self.ventor_worker.write({'users': [(4, self.user.id, 0)]})
+        self.inventory_manager = self.env.ref('stock.group_stock_manager')
+        self.inventory_manager.write({'users': [(4, self.user.id, 0)]})
+        self.administration_settings = self.env.ref('base.group_system')
+        self.administration_settings.write({'users': [(4, self.user.id, 0)]})
         self.location_1 = self.env['stock.location'].create({
             'name': 'test_location_1',
             'removal_prio': 2
