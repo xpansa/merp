@@ -13,10 +13,14 @@ class TestCheckDefaultLocation(TransactionCase):
         self.user = self.env['res.users'].create({
             'name': 'test_user',
             'login': 'test_user',
-            'email': 'test.user@email.com',
-            'sel_groups_42_43_44': 42,
-            'sel_groups_19_20': 20
+            'email': 'test.user@email.com'
         })
+        self.ventor_worker = self.env.ref('merp_custom_access_rights.ventor_role_wh_worker')
+        self.ventor_worker.write({'users': [(4, self.user.id, 0)]})
+        self.inventory_manager = self.env.ref('stock.group_stock_manager')
+        self.inventory_manager.write({'users': [(4, self.user.id, 0)]})
+        self.administration_settings = self.env.ref('base.group_system')
+        self.administration_settings.write({'users': [(4, self.user.id, 0)]})
         self.company = self.env['res.company'].create({
             'name': 'test_company',
             'stock_inventory_location': self.location.id
