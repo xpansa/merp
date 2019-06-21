@@ -1,4 +1,5 @@
-# -*- coding: utf-8 -*-
+# Copyright 2019 VentorTech OU
+# Part of Ventor modules. See LICENSE file for full copyright and licensing details.
 
 from odoo.tests.common import TransactionCase
 
@@ -34,7 +35,7 @@ class TestCheckDefaultLocation(TransactionCase):
             'company_id': self.company.id,
             'company_ids': [(4, self.company.id, 0)]
         })
-        product = self.env['product.template'].sudo(self.user.id).browse(self.product.id)
+        product = self.product.sudo(self.user.id)
         res = product.action_update_quantity_on_hand()
         self.assertEqual(self.location.id, res['context'].get('default_location_id'))
 
@@ -42,6 +43,6 @@ class TestCheckDefaultLocation(TransactionCase):
         self.user.write({
             'default_inventory_location': self.location.id
         })
-        product = self.env['product.template'].sudo(self.user.id).browse(self.product.id)
+        product = self.product.sudo(self.user.id)
         res = product.action_update_quantity_on_hand()
         self.assertEqual(self.location.id, res['context'].get('default_location_id'))
