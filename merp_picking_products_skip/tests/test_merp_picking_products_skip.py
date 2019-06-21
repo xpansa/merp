@@ -1,4 +1,5 @@
-# -*- coding: utf-8 -*-
+# Copyright 2019 VentorTech OU
+# Part of Ventor modules. See LICENSE file for full copyright and licensing details.
 
 from odoo.tests.common import TransactionCase
 from datetime import datetime
@@ -52,15 +53,6 @@ class TestMerpPickingProductsSkip(TransactionCase):
         })
 
     def test_module_install_check(self):
-        module = self.env['ir.module.module'].search([('name', '=', 'merp_picking_products_skip')])
+        module = self.env['ir.module.module'].search([('name', '=', 'merp_outgoing_routing')])
         if module:
-            stock_picking = self.env['stock.picking'].browse(self.stock_picking.id)
-            move_lines = self.check_move_line_skipped()
-            self.assertEqual(len(stock_picking.operations_to_pick), len(move_lines))
-
-    def check_move_line_skipped(self):
-        move_lines = self.env['stock.move.line']
-        for move_line in move_lines.browse([self.move_line_1.id, self.move_line_2.id]):
-            if not move_line.skipped:
-                move_lines += move_line
-        return move_lines
+            self.assertEqual(len(self.stock_picking.operations_to_pick), 1)
