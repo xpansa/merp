@@ -1,4 +1,5 @@
-# -*- coding: utf-8 -*-
+# Copyright 2019 VentorTech OU
+# Part of Ventor modules. See LICENSE file for full copyright and licensing details.
 
 from odoo.tests.common import TransactionCase
 from datetime import datetime
@@ -13,11 +14,11 @@ class TestMerpOutgoingRouting(TransactionCase):
             'login': 'test_user'
         })
         self.ventor_worker = self.env.ref('merp_custom_access_rights.ventor_role_wh_worker')
-        self.ventor_worker.write({'users': [(4, self.user.id, 0)]})
+        self.ventor_worker.write({'users': [(4, self.user.id)]})
         self.inventory_manager = self.env.ref('stock.group_stock_manager')
-        self.inventory_manager.write({'users': [(4, self.user.id, 0)]})
+        self.inventory_manager.write({'users': [(4, self.user.id)]})
         self.administration_settings = self.env.ref('base.group_system')
-        self.administration_settings.write({'users': [(4, self.user.id, 0)]})
+        self.administration_settings.write({'users': [(4, self.user.id)]})
         self.location_1 = self.env['stock.location'].create({
             'name': 'test_location_1',
             'removal_prio': 2
