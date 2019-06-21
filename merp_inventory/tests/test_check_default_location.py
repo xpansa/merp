@@ -17,11 +17,11 @@ class TestCheckDefaultLocation(TransactionCase):
             'email': 'test.user@email.com'
         })
         self.ventor_worker = self.env.ref('merp_custom_access_rights.ventor_role_wh_worker')
-        self.ventor_worker.write({'users': [(4, self.user.id, 0)]})
+        self.ventor_worker.write({'users': [(4, self.user.id)]})
         self.inventory_manager = self.env.ref('stock.group_stock_manager')
-        self.inventory_manager.write({'users': [(4, self.user.id, 0)]})
+        self.inventory_manager.write({'users': [(4, self.user.id)]})
         self.administration_settings = self.env.ref('base.group_system')
-        self.administration_settings.write({'users': [(4, self.user.id, 0)]})
+        self.administration_settings.write({'users': [(4, self.user.id)]})
         self.company = self.env['res.company'].create({
             'name': 'test_company',
             'stock_inventory_location': self.location.id
@@ -33,7 +33,7 @@ class TestCheckDefaultLocation(TransactionCase):
     def test_check_stock_inventory_location(self):
         self.user.write({
             'company_id': self.company.id,
-            'company_ids': [(4, self.company.id, 0)]
+            'company_ids': [(4, self.company.id)]
         })
         product = self.product.sudo(self.user.id)
         res = product.action_update_quantity_on_hand()
