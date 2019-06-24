@@ -83,39 +83,18 @@ class TestMerpPickingWaveBase(TransactionCase):
         })
 
     def test_related_pack_operations(self):
-        picking_batch = self.env['stock.picking.batch'].browse(self.picking_batch.id)
-        related_pack_operations = self.calculate_related_pack_operations()
-        self.assertEqual(len(picking_batch.related_pack_operations), len(related_pack_operations))
+        self.assertEqual(len(self.picking_batch.related_pack_operations), 4)
 
     def test_operations_to_pick(self):
-        picking_batch = self.env['stock.picking.batch'].browse(self.picking_batch.id)
-        operations_to_pick = self.calculate_operations_to_pick()
-        self.assertEqual(len(picking_batch.operations_to_pick), len(operations_to_pick))
+        self.assertEqual(len(self.picking_batch.operations_to_pick), 3)
 
     def test_sort_operations_to_pick(self):
-        picking_batch = self.env['stock.picking.batch'].browse(self.picking_batch.id)
-        operations_to_pick = self.calculate_operations_to_pick()
-        sorted_operations_to_pick = self.sort_operations_to_pick(operations_to_pick)
-        for i in range(len(picking_batch.operations_to_pick)):
-            self.assertEqual(picking_batch.operations_to_pick[i].id, sorted_operations_to_pick[i].id)
+        sorted_operations_to_pick = self.sort_operations_to_pick()
+        for i in range(len(self.picking_batch.operations_to_pick)):
+            self.assertEqual(self.picking_batch.operations_to_pick[i].id, sorted_operations_to_pick[i].id)
 
-    def calculate_related_pack_operations(self):
-        picking_batch = self.env['stock.picking.batch'].browse(self.picking_batch.id)
-        res = self.env['stock.move.line']
-        for picking in picking_batch.picking_ids:
-            for move_line in picking.move_line_ids:
-                res += move_line
-        return res
-
-    def calculate_operations_to_pick(self):
-        picking_batch = self.env['stock.picking.batch'].browse(self.picking_batch.id)
-        res = self.env['stock.move.line']
-        for picking in picking_batch.picking_ids:
-            for move_line in picking.operations_to_pick:
-                res += move_line
-        return res
-
-    def sort_operations_to_pick(self, operations_to_pick):
+    def sort_operations_to_pick(self):
         strategy = self.env.user.company_id.outgoing_routing_strategy
         strategy_order = self.env.user.company_id.outgoing_routing_order
+        operations_to_pick = self.stock_picking.operations_to_pick
         return operations_to_pick.sorted(key=lambda r: getattr(r.location_id, strategy, 'None'), reverse=strategy_order)
