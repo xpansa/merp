@@ -1,0 +1,4 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_barcode_multi_admin,barcode.multi.admin,model_barcode_multi,merp_custom_access_rights.ventor_role_admin,1,1,1,1
+access_barcode_multi_manager,barcode.multi.manager,model_barcode_multi,merp_custom_access_rights.ventor_role_wh_manager,1,1,1,0
+access_barcode_multi_worker,barcode.multi.worker,model_barcode_multi,merp_custom_access_rights.ventor_role_wh_worker,1,0,0,0
