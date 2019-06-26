@@ -57,7 +57,7 @@ class TestPickingAdvancedSearch(TransactionCase):
         })
         self.move_line_2 = self.env['stock.move.line'].create({
             'picking_id': self.stock_picking_2.id,
-            'qty_done': 25.0,
+            'qty_done': 300.0,
             'location_id': self.location_2.id,
             'date': datetime.now(),
             'location_dest_id': self.location_1.id,
@@ -77,7 +77,7 @@ class TestPickingAdvancedSearch(TransactionCase):
         })
         self.move_line_4 = self.env['stock.move.line'].create({
             'picking_id': self.stock_picking_3.id,
-            'qty_done': 10.0,
+            'qty_done': 180.0,
             'location_id': self.location_1.id,
             'date': datetime.now(),
             'location_dest_id': self.location_2.id,
@@ -87,15 +87,6 @@ class TestPickingAdvancedSearch(TransactionCase):
         })
 
     def test_check_product_not_moved(self):
-        stock_pickings = self.env['stock.picking'].browse([self.stock_picking_1.id, self.stock_picking_2.id, self.stock_picking_3.id])
-        for stock_picking in stock_pickings:
-            products_not_moved = self.compute_products_not_moved(stock_picking)
-            self.assertEqual(len(stock_picking.product_id_not_moved), len(products_not_moved))
-
-    def compute_products_not_moved(self, stock_picking):
-        stock_picking.ensure_one()
-        products = self.env['product.product']
-        for move_line in stock_picking.move_line_ids:
-            if move_line.qty_done < move_line.product_qty:
-                products += move_line.product_id
-        return products
+        self.assertEqual(len(self.stock_picking_1.product_id_not_moved), 1)
+        self.assertEqual(len(self.stock_picking_2.product_id_not_moved), 0)
+        self.assertEqual(len(self.stock_picking_3.product_id_not_moved), 1)
