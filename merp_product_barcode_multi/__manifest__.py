@@ -8,7 +8,7 @@
     'website': 'https://ventor.tech/',
     'license': 'LGPL-3',
     'installable': True,
-    'images': ['static/description/main_banner.png'],
+    'images': ['static/description/main_banner.gif'],
     'summary': 'Adds barcode multi on products',
     'depends': [
         'merp_base',
