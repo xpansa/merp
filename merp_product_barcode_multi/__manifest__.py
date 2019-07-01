@@ -12,7 +12,6 @@
     'summary': 'Adds barcode multi on products',
     'depends': [
         'merp_base',
-        'merp_custom_access_rights',
         'product',
     ],
     'data': [
