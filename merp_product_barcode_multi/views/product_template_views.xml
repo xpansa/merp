@@ -16,4 +16,19 @@
         </field>
     </record>
 
+    <record id="product_variant_barcode_multi_view_form" model="ir.ui.view">
+        <field name="name">product.variant.barcode.multi.view.form</field>
+        <field name="model">product.product</field>
+        <field name="inherit_id" ref="product.product_normal_form_view" />
+        <field name="arch" type="xml">
+            <field name="barcode" position="after">
+                <field name="barcode_ids">
+                    <tree editable="bottom">
+                        <field name="name" />
+                    </tree>
+                </field>
+            </field>
+        </field>
+    </record>
+
 </odoo>
