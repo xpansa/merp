@@ -39,7 +39,7 @@ class TestMerpPickingWaveBase(TransactionCase):
             'name': 'test_stock_picking_batch',
             'picking_ids': [(4, self.stock_picking.id, 0)]
         })
-        product_uom = company.currency_id
+        product_uom = self.env['uom.uom'].search([], limit=1, order='id')
         products = self.env['product.template'].search([], limit=4)
         self.move_line_1 = self.env['stock.move.line'].create({
             'picking_id': self.stock_picking.id,
