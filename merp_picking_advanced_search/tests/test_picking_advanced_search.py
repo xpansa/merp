@@ -43,7 +43,7 @@ class TestPickingAdvancedSearch(TransactionCase):
             'company_id': company.id,
             'picking_type_id': picking_type.id
         })
-        product_uom = company.currency_id
+        product_uom = self.env['uom.uom'].search([], limit=1, order='id')
         products = self.env['product.template'].search([], limit=3)
         self.move_line_1 = self.env['stock.move.line'].create({
             'picking_id': self.stock_picking_1.id,
@@ -71,7 +71,7 @@ class TestPickingAdvancedSearch(TransactionCase):
             'location_id': self.location_2.id,
             'date': datetime.now(),
             'location_dest_id': self.location_1.id,
-            'product_uom_qty': 10.0,
+            'product_uom_qty': 15.0,
             'product_uom_id': product_uom.id,
             'product_id': products[2].id
         })
