@@ -11,7 +11,7 @@
     'images': ['static/description/main_banner.png'],
     'summary': 'Automatically clears checkboxes while changing groups of access rights',
     'depends': [
-        'merp_base',
+        'base',
     ],
     'data': [
     ],
