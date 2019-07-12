@@ -7,4 +7,4 @@ from odoo import models, fields
 class ProductTemplate(models.Model):
     _inherit = 'product.template'
 
-    barcode_ids = fields.One2many('barcode.multi', 'product_id', string='Barcode Multi')
+    barcode_ids = fields.One2many('barcode.multi', 'product_id', string='Additional Barcodes')
