@@ -5,7 +5,7 @@ from odoo import models, fields
 
 
 class ProductBarcodeMulti(models.Model):
-    _name = 'barcode.multi'
+    _name = 'product.barcode.multi'
 
     name = fields.Char('Barcode')
-    product_id = fields.Many2one('product.template', string='Product')
+    product_id = fields.Many2one('product.product', string='Product')

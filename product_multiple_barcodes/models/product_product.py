@@ -1,12 +1,14 @@
 # Copyright 2019 VentorTech OU
 # Part of Ventor modules. See LICENSE file for full copyright and licensing details.
 
-from odoo import models, api
+from odoo import models, fields, api
 from odoo.osv import expression
 
 
 class ProductProduct(models.Model):
     _inherit = 'product.product'
+
+    barcode_ids = fields.One2many('product.barcode.multi', 'product_id', string='Additional Barcodes')
 
     @api.model
     def _name_search(self, name, args=None, operator='ilike', limit=100, name_get_uid=None):
