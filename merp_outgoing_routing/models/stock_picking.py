@@ -18,7 +18,6 @@ class StockPicking(models.Model):
         store=False,
     )
 
-    @api.multi
     @api.depends(
         'move_line_ids',
         'move_line_ids.location_id',
@@ -37,7 +36,7 @@ class StockPicking(models.Model):
 
             rec.operations_to_pick = res.sorted(
                 key=lambda r: getattr(r.location_id, strategy, 'None'),
-                reverse=strategy_order
+                reverse=int(strategy_order)
             )
 
             settings = self.env['res.company'].fields_get([
