@@ -88,13 +88,51 @@ class TestMerpPickingWaveBase(TransactionCase):
     def test_operations_to_pick(self):
         self.assertEqual(len(self.picking_batch.operations_to_pick), 3)
 
-    def test_sort_operations_to_pick(self):
-        sorted_operations_to_pick = self.sort_operations_to_pick()
-        for i in range(len(self.picking_batch.operations_to_pick)):
-            self.assertEqual(self.picking_batch.operations_to_pick[i].id, sorted_operations_to_pick[i].id)
+    def test_sort_alphabet_a_z(self):
+        outgoing_routing_strategy = 'name'
+        outgoing_routing_order = '0'
+        self.set_way_outgoing_routing(outgoing_routing_strategy, outgoing_routing_order)
 
-    def sort_operations_to_pick(self):
-        strategy = self.env.user.company_id.outgoing_routing_strategy
-        strategy_order = self.env.user.company_id.outgoing_routing_order
-        operations_to_pick = self.stock_picking.operations_to_pick
-        return operations_to_pick.sorted(key=lambda r: getattr(r.location_id, strategy, 'None'), reverse=strategy_order)
+        locations_name = self.stock_picking.mapped('operations_to_pick.location_id.name')
+        self.assertEqual(locations_name[0], 'test_location_1')
+        self.assertEqual(locations_name[1], 'test_location_2')
+        self.assertEqual(locations_name[2], 'test_location_3')
+
+    def test_sort_alphabet_z_a(self):
+        outgoing_routing_strategy = 'name'
+        outgoing_routing_order = '1'
+        self.set_way_outgoing_routing(outgoing_routing_strategy, outgoing_routing_order)
+
+        locations_name = self.stock_picking.mapped('operations_to_pick.location_id.name')
+        self.assertEqual(locations_name[0], 'test_location_3')
+        self.assertEqual(locations_name[1], 'test_location_2')
+        self.assertEqual(locations_name[2], 'test_location_1')
+
+    def test_sort_removal_priority_a_z(self):
+        outgoing_routing_strategy = 'removal_prio'
+        outgoing_routing_order = '0'
+        self.set_way_outgoing_routing(outgoing_routing_strategy, outgoing_routing_order)
+
+        locations_removal_prio = self.stock_picking \
+            .mapped('operations_to_pick.location_id.removal_prio')
+        self.assertEqual(locations_removal_prio[0], 1)
+        self.assertEqual(locations_removal_prio[1], 2)
+        self.assertEqual(locations_removal_prio[2], 3)
+
+    def test_sort_removal_priority_z_a(self):
+        outgoing_routing_strategy = 'removal_prio'
+        outgoing_routing_order = '1'
+        self.set_way_outgoing_routing(outgoing_routing_strategy, outgoing_routing_order)
+
+        locations_removal_prio = self.stock_picking \
+            .mapped('operations_to_pick.location_id.removal_prio')
+        self.assertEqual(locations_removal_prio[0], 3)
+        self.assertEqual(locations_removal_prio[1], 2)
+        self.assertEqual(locations_removal_prio[2], 1)
+
+    def set_way_outgoing_routing(self, outgoing_routing_strategy, outgoing_routing_order):
+        config = self.env['res.config.settings'].create({
+            'outgoing_routing_strategy': outgoing_routing_strategy,
+            'outgoing_routing_order': outgoing_routing_order
+        })
+        config.execute()

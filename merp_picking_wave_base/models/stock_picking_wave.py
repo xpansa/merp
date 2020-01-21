@@ -23,7 +23,6 @@ class PickingWave(models.Model):
         store=False,
     )
 
-    @api.multi
     @api.depends(
         'picking_ids',
         'picking_ids.move_line_ids',
@@ -36,7 +35,6 @@ class PickingWave(models.Model):
                     res += operation
             rec.related_pack_operations = res
 
-    @api.multi
     @api.depends(
         'picking_ids',
         'picking_ids.move_line_ids',
@@ -53,7 +51,7 @@ class PickingWave(models.Model):
                 res += picking.operations_to_pick
             rec.operations_to_pick = res.sorted(
                 key=lambda r: getattr(r.location_id, strategy, 'None'),
-                reverse=strategy_order
+                reverse=int(strategy_order)
             )
 
             settings = self.env['res.company'].fields_get([
