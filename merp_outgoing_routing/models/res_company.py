@@ -11,6 +11,7 @@ class Company(models.Model):
         [
             ('name', 'Sort by source locations in alphabetical order'),
             ('removal_prio', 'Sort by location removal strategy priority'),
+            ('product', 'Sort by product name'),
         ],
         string='Routing Strategy', default='name')
 

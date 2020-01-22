@@ -11,6 +11,7 @@ class StockConfigSettings(models.TransientModel):
         [
             ('name', 'Sort by source locations in alphabetical order'),
             ('removal_prio', 'Sort by location removal strategy priority field'),
+            ('product', 'Sort by product name'),
         ],
         string='Routing Strategy', default='name',
         related='company_id.outgoing_routing_strategy',
