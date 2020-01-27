@@ -16,6 +16,6 @@
     'data': [
         'views/res_config.xml',
         'views/stock.xml',
-        'views/picking.xml'
+        'views/picking.xml',
     ],
 }
