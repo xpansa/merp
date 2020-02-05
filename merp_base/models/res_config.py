@@ -41,8 +41,12 @@ class StockConfigSettings(models.TransientModel):
         store=False,
     )
 
+    module_two_factor_otp_auth = fields.Boolean(
+        string='Use Two Factor Authentication',
+    )
+
     module_merp_default_locations = fields.Boolean(
-        string='Use Advanced Locations'
+        string='Use Advanced Locations',
     )
 
     @api.depends('company_id')
