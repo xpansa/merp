@@ -3,7 +3,10 @@
 
 {
     "name": "Ventor Two Factor Authentication",
-    "summary": "Two factor authentication for users",
+    "summary": """
+        2FA implemented via Google Authenticator. Logging into the system requires
+         additional key generated on your mobile device.
+        """,
     "author": "VentorTech",
     "website": "https://ventor.tech",
     "category": "Uncategorized",
@@ -14,7 +17,7 @@
     ],
     "installable": True,
     "depends": [
-        "base",
+        "web",
     ],
     "data": [
         "security/two_factor_otp_auth.xml",
