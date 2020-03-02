@@ -4,6 +4,7 @@
 from odoo import models, fields, api, _
 from odoo.osv import expression
 from odoo.exceptions import UserError
+from collections import Counter
 
 
 class ProductProduct(models.Model):
@@ -14,6 +15,11 @@ class ProductProduct(models.Model):
         'product_id',
         string='Additional Barcodes',
     )
+
+    # THIS IS OVERRIDE SQL CONSTRAINTS.
+    _sql_constraints = [
+        ('barcode_uniq', 'check(1=1)', 'No error')
+    ]
 
     @api.model
     def _name_search(self, name, args=None, operator='ilike', limit=100, name_get_uid=None):
@@ -34,13 +40,17 @@ class ProductProduct(models.Model):
             ('barcode_ids', '!=', False),
         ])
 
-        additional_barcode_names = set(products.mapped('barcode_ids.name'))
-        barcode_names = set(products.mapped('barcode'))
-        res = additional_barcode_names & barcode_names
+        barcodes = products.mapped('barcode') + products.mapped('barcode_ids.name')
 
-        if res:
+        duplicate_barcodes = Counter(barcodes)
+        doubles_barcodes = {element: count for element, count in
+                              duplicate_barcodes.items() if count > 1}
+
+        if doubles_barcodes:
             raise UserError(
-                _('"The following barcode(s) were found in other active products: {0} .'
-                  '\n Note: That product barcodes should not repeat themselves both in'
-                  ' "Barcode" field and "Additional Barcodes" field.').format(", ".join(res))
+                _('The following barcode(s) were found in other active products: {0} .'
+                  ' Note: That product barcodes should not repeat themselves both in'
+                  '"Barcode" field and "Additional Barcodes" field.').format(
+                        ", ".join(doubles_barcodes.keys())
+                  )
             )
