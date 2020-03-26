@@ -77,15 +77,16 @@
         <field name="inherit_id" ref="product.product_template_only_form_view"/>
         <field name="arch" type="xml">
                 <field name="barcode" position="replace">
-                    <label for="barcode" attrs="{'invisible': [('product_variant_count', '!=', 1)]}" />
-                    <div attrs="{'invisible': [('product_variant_count', '!=', 1)]}" >
+                    <label for="barcode" attrs="{'invisible': [('product_variant_count', '&gt;', 1)]}" />
+                    <div attrs="{'invisible': [('product_variant_count', '&gt;', 1)]}" >
                         <field name="barcode"
                                string=""
                                class="oe_inline" />
                         <button string="Update Barcode" type="action"
                             name="%(product_multiple_barcodes.action_multiply_barcode_wizard)d"
                             class="oe_inline"
-                            icon="fa-arrow-right" />
+                            icon="fa-arrow-right"
+                            attrs="{'invisible': [('product_variant_count', '!=', 1)]}"/>
                     </div>
                     <field name="barcode_ids" attrs="{'invisible': [('product_variant_count', '!=', 1)]}">
                         <tree editable="bottom">
