@@ -99,7 +99,6 @@ class ResUsers(models.Model):
             `otp_code` in request params. Should be caught by controller and
             render and open enter "one-time-password" page or QR code creation
         """
-        self.ensure_one()
         super(ResUsers, self)._check_credentials(password)
         if self.enable_2fa:
             params = request.params
