@@ -38,6 +38,14 @@ class StockPicking(models.Model):
             rec.strategy_order_r = rec.get_strategy_string(strategy, strategy_order)
             rec.operations_to_pick = rec.sort_operations(all_operations, strategy, strategy_order)
 
+    def sort_printer_picking_list(self, move_line_ids):
+        """ sort list of pack operations by configured field
+        """
+        strategy = self.env.user.company_id.outgoing_routing_strategy
+        strategy_order = self.env.user.company_id.outgoing_routing_order
+
+        return self.sort_operations(move_line_ids, strategy, strategy_order)
+
     def get_strategy_string(self, strategy, strategy_order):
         """
         """

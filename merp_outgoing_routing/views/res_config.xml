@@ -85,19 +85,19 @@
                         </div>
                         <div class="text-muted" attrs="{'invisible': ['|', '|', ('module_merp_outgoing_routing','=',False), ('outgoing_routing_strategy', '=', 'location_id.removal_prio'),
                             '!', '&amp;', ('stock_reservation_strategy', '=', 'quantity'), ('outgoing_routing_order', '=', '0')]}">
-                            - quants are reserved first in locations that contain enough product quantity (and sorted by location name from 'A' to 'Z')
+                            - quants are reserved first in locations that contain a sufficient amount of product and have higher priority (i.e. from location name 'A' and beyond)
                         </div>
                         <div class="text-muted" attrs="{'invisible': ['|', '|', ('module_merp_outgoing_routing','=',False), ('outgoing_routing_strategy', '=', 'location_id.removal_prio'),
                             '!', '&amp;', ('stock_reservation_strategy', '=', 'quantity'), ('outgoing_routing_order', '=', '1')]}">
-                            - quants are reserved first in locations that contain enough product quantity (and sorted by location name from 'Z' to 'A')
+                            - quants are reserved first in locations that contain a sufficient amount of product and have higher priority (i.e. from location name 'Z' to 'A')
                         </div>
                         <div class="text-muted" attrs="{'invisible': ['|', '|', ('module_merp_outgoing_routing','=',False), ('outgoing_routing_strategy', '!=', 'location_id.removal_prio'),
                             '!', '&amp;', ('stock_reservation_strategy', '=', 'quantity'), ('outgoing_routing_order', '=', '0')]}">
-                            - quants are reserved first in locations that contain enough product quantity (and sorted by location removal priority from '0' to '∞')
+                            - quants are reserved first in locations that contain a sufficient amount of product and have higher priority (i.e. from location with removal priority '0' to '∞')
                         </div>
                         <div class="text-muted" attrs="{'invisible': ['|', '|', ('module_merp_outgoing_routing','=',False), ('outgoing_routing_strategy', '!=', 'location_id.removal_prio'),
                             '!', '&amp;', ('stock_reservation_strategy', '=', 'quantity'), ('outgoing_routing_order', '=', '1')]}">
-                            - quants are reserved first in locations that contain enough product quantity (and sorted by location removal priority from '∞' to '0')
+                            - quants are reserved first in locations that contain a sufficient amount of product and have higher priority (i.e. from location with removal priority '∞' to '0')
                         </div>
                     </div>
                     <div class="col-xs-12 col-md-8 o_setting_box">
