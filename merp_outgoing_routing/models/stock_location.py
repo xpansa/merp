@@ -20,14 +20,23 @@ class StockLocation(models.Model):
     )
 
     def _compute_outgoing_strategy_sequence(self):
-
+        """
+        """
         strategy = self.env.user.company_id.outgoing_routing_strategy
         strategy_order = self.env.user.company_id.outgoing_routing_order
 
-        if strategy not in self:
+        base, field = strategy.split('.', 1)
+        if base not in ('location_id') and field not in self:
             return
 
-        order = '%s %s' % (strategy, ['asc', 'desc'][int(strategy_order)])
-        res = self.search([], order=order)
+        res = self.search([], order='{} {}'.format(
+            field, ['asc', 'desc'][int(strategy_order)]))
         for sequence, location in enumerate(res):
             location.strategy_sequence = sequence
+
+    @api.onchange('location_id')
+    def _onchange_parent_location(self):
+        """ Set location's parent removal priority by default
+        """
+        if self.location_id:
+            self.removal_prio = self.location_id.removal_prio

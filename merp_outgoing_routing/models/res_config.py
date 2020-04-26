@@ -9,11 +9,12 @@ class StockConfigSettings(models.TransientModel):
 
     outgoing_routing_strategy = fields.Selection(
         [
-            ('name', 'Sort by source locations in alphabetical order'),
-            ('removal_prio', 'Sort by location removal strategy priority field'),
-            ('product', 'Sort by product name'),
+            # path should be valid for both stock pickings and quants
+            ('location_id.removal_prio', 'Location removal priority'),
+            ('location_id.name', 'Location name'),
+            ('product_id.name', 'Product name'),
         ],
-        string='Routing Strategy', default='name',
+        string='Routing Strategy', default='location_id.name',
         related='company_id.outgoing_routing_strategy',
         readonly=False)
 
@@ -24,4 +25,14 @@ class StockConfigSettings(models.TransientModel):
         ],
         string='Routing Order', default='0',
         related='company_id.outgoing_routing_order',
+        readonly=False)
+
+    stock_reservation_strategy = fields.Selection(
+        [
+            ('base', 'Routing Strategy'),
+            ('quantity', 'By Quantity'),
+            ('none', 'Default'),
+        ],
+        string='Reservation Strategy', default='base',
+        related='company_id.stock_reservation_strategy',
         readonly=False)

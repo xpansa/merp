@@ -24,9 +24,9 @@ class TestStockRouting(TransactionCase):
         today = date.today()
 
         self.env['res.config.settings'].create({
-            'outgoing_routing_strategy': 'removal_prio',
+            'outgoing_routing_strategy': 'location_id.removal_prio',
             'outgoing_routing_order': '0',
-            'custom_reservation_strategy': True,
+            'stock_reservation_strategy': 'base',
         }).execute()
 
         self.stock_A = self.stock_location_model.create({

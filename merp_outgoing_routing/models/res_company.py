@@ -9,11 +9,12 @@ class Company(models.Model):
 
     outgoing_routing_strategy = fields.Selection(
         [
-            ('name', 'Sort by source locations in alphabetical order'),
-            ('removal_prio', 'Sort by location removal strategy priority'),
-            ('product', 'Sort by product name'),
+            # path should be valid for both stock pickings and quants
+            ('location_id.removal_prio', 'Location removal priority'),
+            ('location_id.name', 'Location name'),
+            ('product_id.name', 'Product name'),
         ],
-        string='Routing Strategy', default='name')
+        string='Routing Strategy', default='location_id.name')
 
     outgoing_routing_order = fields.Selection(
         [
@@ -21,3 +22,11 @@ class Company(models.Model):
             ('1', 'Descending (Z-A)'),
         ],
         string='Routing Order', default='0')
+
+    stock_reservation_strategy = fields.Selection(
+        [
+            ('base', 'Routing Strategy'),
+            ('quantity', 'By Quantity'),
+            ('none', 'Default'),
+        ],
+        string='Reservation Strategy', default='base')

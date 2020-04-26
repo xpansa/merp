@@ -24,9 +24,9 @@ class TestStockRouting(TransactionCase):
         today = date.today()
 
         self.env['res.config.settings'].create({
-            'outgoing_routing_strategy': 'removal_prio',
+            'outgoing_routing_strategy': 'location_id.name',
             'outgoing_routing_order': '0',
-            'custom_reservation_strategy': True,
+            'stock_reservation_strategy': 'none',
         }).execute()
 
         self.stock_A = self.stock_location_model.create({
@@ -88,23 +88,23 @@ class TestStockRouting(TransactionCase):
 
         self.quants = quant_1 + quant_2 + quant_3
 
-    def test_stock_reservation_by_quantity_case1(self):
+    def test_stock_reservation_by_name_case1(self):
         quants = self.stock_quant_model._update_reserved_quantity(self.product_Z, self.stock_A, 10)
         for quant, quantity in quants:
-            if quant.location_id == self.stock_A1: self.assertEqual(quant.reserved_quantity, 0.0, 'No products should be reserved in A-1 (prio:2)')
-            if quant.location_id == self.stock_A2: self.assertEqual(quant.reserved_quantity, 0.0, 'No products should be reserved in A-2 (prio:3)')
-            if quant.location_id == self.stock_A3: self.assertEqual(quant.reserved_quantity, 10.0, '10 products should be reserved in A-3 (prio:1)')
+            if quant.location_id == self.stock_A1: self.assertEqual(quant.reserved_quantity, 10.0, '10 products should be reserved in A-1')
+            if quant.location_id == self.stock_A2: self.assertEqual(quant.reserved_quantity, 0.0, 'No products should be reserved in A-2')
+            if quant.location_id == self.stock_A3: self.assertEqual(quant.reserved_quantity, 0.0, 'No products should be reserved in A-3')
 
-    def test_stock_reservation_by_quantity_case2(self):
+    def test_stock_reservation_by_name_case2(self):
         quants = self.stock_quant_model._update_reserved_quantity(self.product_Z, self.stock_A, 12)
         for quant, quantity in quants:
-            if quant.location_id == self.stock_A1: self.assertEqual(quant.reserved_quantity, 12.0, 'No products should be reserved in A-1 (prio:2)')
-            if quant.location_id == self.stock_A2: self.assertEqual(quant.reserved_quantity, 0.0, '12 products should be reserved in A-2 (prio:3)')
-            if quant.location_id == self.stock_A3: self.assertEqual(quant.reserved_quantity, 0.0, 'No products should be reserved in A-3 (prio:1)')
+            if quant.location_id == self.stock_A1: self.assertEqual(quant.reserved_quantity, 12.0, '12 products should be reserved in A-1')
+            if quant.location_id == self.stock_A2: self.assertEqual(quant.reserved_quantity, 0.0, 'No products should be reserved in A-2')
+            if quant.location_id == self.stock_A3: self.assertEqual(quant.reserved_quantity, 0.0, 'No products should be reserved in A-3')
 
-    def test_stock_reservation_by_quantity_case3(self):
+    def test_stock_reservation_by_name_case3(self):
         quants = self.stock_quant_model._update_reserved_quantity(self.product_Z, self.stock_A, 22)
         for quant, quantity in quants:
-            if quant.location_id == self.stock_A1: self.assertEqual(quant.reserved_quantity, 12.0, '12 products should be reserved in A-1 (prio:2)')
-            if quant.location_id == self.stock_A2: self.assertEqual(quant.reserved_quantity, 0.0, 'No products should be reserved in A-2 (prio:3)')
-            if quant.location_id == self.stock_A3: self.assertEqual(quant.reserved_quantity, 10.0, '10 products should be reserved in A-3 (prio:1)')
+            if quant.location_id == self.stock_A1: self.assertEqual(quant.reserved_quantity, 15.0, '15 products should be reserved in A-1')
+            if quant.location_id == self.stock_A2: self.assertEqual(quant.reserved_quantity, 5.0, '5 products should be reserved in A-2')
+            if quant.location_id == self.stock_A3: self.assertEqual(quant.reserved_quantity, 2.0, '2 products should be reserved in A-3')
