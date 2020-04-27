@@ -142,7 +142,7 @@ class TestMerpQuantsLocationRouting(TransactionCase):
             5,
         )
 
-        picking_1.flush()
+        # picking_1.flush()
         picking_1.action_confirm()
         picking_1.action_assign()
 

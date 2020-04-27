@@ -91,9 +91,7 @@ class TestMerpOutgoingRouting(TransactionCase):
         return self.env['product.product'].create(product_data)
 
     def test_sort_alphabet_a_z(self):
-        outgoing_routing_strategy = 'name'
-        outgoing_routing_order = '0'
-        self.set_way_outgoing_routing(outgoing_routing_strategy, outgoing_routing_order)
+        self.set_way_outgoing_routing('location_id.name', '0')
 
         locations_name = self.stock_picking.mapped('operations_to_pick.location_id.name')
         self.assertEqual(locations_name[0], 'test_location_1')
@@ -101,9 +99,7 @@ class TestMerpOutgoingRouting(TransactionCase):
         self.assertEqual(locations_name[2], 'test_location_3')
 
     def test_sort_alphabet_z_a(self):
-        outgoing_routing_strategy = 'name'
-        outgoing_routing_order = '1'
-        self.set_way_outgoing_routing(outgoing_routing_strategy, outgoing_routing_order)
+        self.set_way_outgoing_routing('location_id.name', '1')
 
         locations_name = self.stock_picking.mapped('operations_to_pick.location_id.name')
         self.assertEqual(locations_name[0], 'test_location_3')
@@ -111,9 +107,7 @@ class TestMerpOutgoingRouting(TransactionCase):
         self.assertEqual(locations_name[2], 'test_location_1')
 
     def test_sort_removal_priority_a_z(self):
-        outgoing_routing_strategy = 'removal_prio'
-        outgoing_routing_order = '0'
-        self.set_way_outgoing_routing(outgoing_routing_strategy, outgoing_routing_order)
+        self.set_way_outgoing_routing('location_id.removal_prio', '0')
 
         locations_removal_prio = self.stock_picking\
             .mapped('operations_to_pick.location_id.removal_prio')
@@ -122,9 +116,7 @@ class TestMerpOutgoingRouting(TransactionCase):
         self.assertEqual(locations_removal_prio[2], 3)
 
     def test_sort_removal_priority_z_a(self):
-        outgoing_routing_strategy = 'removal_prio'
-        outgoing_routing_order = '1'
-        self.set_way_outgoing_routing(outgoing_routing_strategy, outgoing_routing_order)
+        self.set_way_outgoing_routing('location_id.removal_prio', '1')
 
         locations_removal_prio = self.stock_picking\
             .mapped('operations_to_pick.location_id.removal_prio')
@@ -133,9 +125,7 @@ class TestMerpOutgoingRouting(TransactionCase):
         self.assertEqual(locations_removal_prio[2], 1)
 
     def test_sort_by_products_name_a_z(self):
-        outgoing_routing_strategy = 'product'
-        outgoing_routing_order = '0'
-        self.set_way_outgoing_routing(outgoing_routing_strategy, outgoing_routing_order)
+        self.set_way_outgoing_routing('product_id.name', '0')
 
         products_name = self.stock_picking \
             .mapped('operations_to_pick.product_id.name')
@@ -144,9 +134,7 @@ class TestMerpOutgoingRouting(TransactionCase):
         self.assertEqual(products_name[2], 'test_product_3')
 
     def test_sort_by_products_name_z_a(self):
-        outgoing_routing_strategy = 'product'
-        outgoing_routing_order = '1'
-        self.set_way_outgoing_routing(outgoing_routing_strategy, outgoing_routing_order)
+        self.set_way_outgoing_routing('product_id.name', '1')
 
         products_name = self.stock_picking \
             .mapped('operations_to_pick.product_id.name')
