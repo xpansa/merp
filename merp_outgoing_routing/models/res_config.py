@@ -14,7 +14,7 @@ class StockConfigSettings(models.TransientModel):
             ('location_id.name', 'Location name'),
             ('product_id.name', 'Product name'),
         ],
-        string='Routing Strategy', default='location_id.name',
+        string='Picking Strategy', default='location_id.name',
         related='company_id.outgoing_routing_strategy',
         readonly=False)
 
@@ -23,7 +23,7 @@ class StockConfigSettings(models.TransientModel):
             ('0', 'Ascending (A-Z)'),
             ('1', 'Descending (Z-A)'),
         ],
-        string='Routing Order', default='0',
+        string='Picking Order', default='0',
         related='company_id.outgoing_routing_order',
         readonly=False)
 

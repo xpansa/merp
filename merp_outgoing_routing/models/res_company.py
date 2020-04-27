@@ -14,14 +14,14 @@ class Company(models.Model):
             ('location_id.name', 'Location name'),
             ('product_id.name', 'Product name'),
         ],
-        string='Routing Strategy', default='location_id.name')
+        string='Picking Strategy', default='location_id.name')
 
     outgoing_routing_order = fields.Selection(
         [
             ('0', 'Ascending (A-Z)'),
             ('1', 'Descending (Z-A)'),
         ],
-        string='Routing Order', default='0')
+        string='Picking Order', default='0')
 
     stock_reservation_strategy = fields.Selection(
         [

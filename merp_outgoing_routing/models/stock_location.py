@@ -8,7 +8,7 @@ class StockLocation(models.Model):
     _inherit = "stock.location"
 
     removal_prio = fields.Integer(
-        string='Removal Strategy Priority',
+        string='Removal Priority',
         default=0,
     )
 
