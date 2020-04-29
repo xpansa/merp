@@ -81,7 +81,7 @@
                         </div>
                         <div class="text-muted" attrs="{'invisible': ['|', ('module_merp_outgoing_routing','=',False),
                             '!', ('stock_reservation_strategy', '=', 'base')]}">
-                            - quants are reserved according to Rourting startegy (see above)
+                            - quants are reserved according to Routing startegy (see above)
                         </div>
                         <div class="text-muted" attrs="{'invisible': ['|', '|', ('module_merp_outgoing_routing','=',False), ('outgoing_routing_strategy', '=', 'location_id.removal_prio'),
                             '!', '&amp;', ('stock_reservation_strategy', '=', 'quantity'), ('outgoing_routing_order', '=', '0')]}">
