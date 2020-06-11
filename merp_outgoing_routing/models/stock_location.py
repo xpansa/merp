@@ -29,7 +29,7 @@ class StockLocation(models.Model):
         if base not in ('location_id') and field not in self:
             return
 
-        res = self.search([], order='{} {}'.format(
+        res = self.sudo().search([], order='{} {}'.format(
             field, ['asc', 'desc'][int(strategy_order)]))
         for sequence, location in enumerate(res):
             location.strategy_sequence = sequence
