@@ -34,23 +34,25 @@ class ProductProduct(models.Model):
 
     @api.constrains('barcode', 'barcode_ids', 'active')
     def _check_unique_barcode(self):
-        products = self.env['product.product'].search([
-            '|',
-            ('barcode', '!=', False),
-            ('barcode_ids', '!=', False),
-        ])
-
-        barcodes = products.mapped('barcode') + products.mapped('barcode_ids.name')
-
-        duplicate_barcodes = Counter(barcodes)
-        doubles_barcodes = {element: count for element, count in
-                              duplicate_barcodes.items() if count > 1 and element}
-
-        if doubles_barcodes:
-            raise UserError(
-                _('The following barcode(s) were found in other active products: {0}.'
-                  '\nNote that product barcodes should not repeat themselves both in '
-                  '"Barcode" field and "Additional Barcodes" field.').format(
-                        ", ".join(doubles_barcodes.keys())
-                  )
-            )
+        for product in self:
+            barcode_names = []
+            if product.barcode_ids:
+                barcode_names = product.mapped('barcode_ids.name')
+            if product.barcode:
+                barcode_names.append(product.barcode)
+            if not barcode_names:
+                continue
+            products = self.env['product.product'].search([
+                ('barcode', 'in', barcode_names), ('id', '!=', product.id)
+            ], limit=1)
+            barcode_ids = self.env['product.barcode.multi'].search([
+                ('name', 'in', barcode_names), ('product_id', '!=', product.id)
+            ], limit=1)
+            if products or barcode_ids or len(barcode_names) != len(set(barcode_names)):
+                raise UserError(
+                    _('The following barcode(s) were found in other active products: {0}.'
+                      '\nNote that product barcodes should not repeat themselves both in '
+                      '"Barcode" field and "Additional Barcodes" field.').format(
+                            ", ".join(barcode_names)
+                      )
+                )

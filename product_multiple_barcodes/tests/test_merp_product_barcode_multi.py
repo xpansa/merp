@@ -8,24 +8,18 @@ class TestMerpProductBarcodeMulti(TransactionCase):
 
     def setUp(self):
         super(TestMerpProductBarcodeMulti, self).setUp()
-        barcode_1 = self.env['product.barcode.multi'].create({
-            'name': 'test001'
-        })
-        barcode_2 = self.env['product.barcode.multi'].create({
-            'name': 'test002'
-        })
         self.product_1 = self.env['product.template'].create({
             'name': 'product_1',
             'barcode': 'test003',
-            'barcode_ids': [(4, barcode_1.id)]
+            'barcode_ids': [(0, 0, {'name': 'test001'})]
         })
         self.product_2 = self.env['product.template'].create({
             'name': 'product_2',
-            'barcode_ids': [(4, barcode_2.id)]
+            'barcode_ids': [(0, 0, {'name': 'test002'})]
         })
         self.product_3 = self.env['product.product'].create({
             'name': 'product_2',
-            'barcode_ids': [(4, barcode_2.id)]
+            'barcode_ids': [(0, 0, {'name': 'test004'})]
         })
 
         ctx = self.env.context.copy()
