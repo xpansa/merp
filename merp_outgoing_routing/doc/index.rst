@@ -13,7 +13,7 @@ Read also Picking and Packing optimization guide - https://ventor.tech/mobile/pi
 |
 
 1. Install the Ventor Outgoing routing module on your Odoo server (and all dependencies)
-2. Assign removal priority (sequence) for each location. You can do it manually or import a .csv file
+2. Assign removal priority (sequence) for each location. You can do it manually or `import <https://ventor.tech/warehouse-management/how-to-build-picking-routes-in-your-warehouse-for-walking-minimization/#upload-route>`_ a .csv file
 
 |
 
@@ -22,8 +22,7 @@ Read also Picking and Packing optimization guide - https://ventor.tech/mobile/pi
 
 |
 
-3. Go to Settings > Ventor/mERP 
-    Set up needed Picking strategy and Reservation strategy
+3. Go to Settings > Ventor/mERP. Set up needed Picking strategy and Reservation strategy
 
 |
 
