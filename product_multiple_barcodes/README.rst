@@ -6,6 +6,11 @@ This module allows to define multiple additional barcodes for products and to se
 Changelog
 ---------
 
+13.0.1.2.0 (2020-06-24)
+***********************
+
+* Improvement of validate a barcode on unique
+
 13.0.1.1.0 (2020-04-30)
 ***********************
 
