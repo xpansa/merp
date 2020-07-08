@@ -29,3 +29,7 @@ Read also Picking and Packing optimization guide - https://ventor.tech/mobile/pi
 
 .. image:: images/image8.png
    :width: 800px
+
+|
+
+\*Reservation strategy available for Odoo 12 and higher
