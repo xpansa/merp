@@ -6,7 +6,8 @@ from odoo import models, fields as oe_fields, api, _
 
 class MessageWizard(models.TransientModel):
     _name = 'message.wizard'
-
+    _description = 'Message Wizard'
+    
     message = oe_fields.Text()
 
     @api.model
