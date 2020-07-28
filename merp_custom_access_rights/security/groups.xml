@@ -20,12 +20,6 @@
         <field name="users" eval="[(4, ref('base.user_root'))]"/>
     </record>
 
-    <record id="merp_menu_one_loc_inventory" model="res.groups">
-        <field name="name">One Location Inventory Menu</field>
-        <field name="category_id" ref="module_category_merp_menu_application"/>
-        <field name="users" eval="[(4, ref('base.user_root'))]"/>
-    </record>
-
     <record id="merp_menu_picking_wave" model="res.groups">
         <field name="name">Batch Picking Menu</field>
         <field name="category_id" ref="module_category_merp_menu_application"/>
@@ -82,6 +76,12 @@
         <field name="users" eval="[(4, ref('base.user_root'))]"/>
     </record>
 
+    <record id="merp_menu_allow_changing_settings" model="res.groups">
+        <field name="name">Settings: Allow changing settings</field>
+        <field name="category_id" ref="module_category_merp_access_application"/>
+        <field name="users" eval="[(4, ref('base.user_root'))]"/>
+    </record>
+
     <record id="merp_debug" model="res.groups">
         <field name="name">Debug: Technical Features</field>
         <field name="category_id" ref="module_category_merp_access_application"/>
@@ -126,7 +126,7 @@
         <field name="name">Warehouse manager</field>
         <field name="category_id" ref="module_category_ventor_roles"/>
         <field name="implied_ids"
-               eval="[(4, ref('ventor_role_wh_worker')), (4, ref('merp_menu_inventory_adjustments')), (4, ref('merp_menu_info')), (4, ref('merp_menu_instant_inventory')), (4, ref('merp_menu_instant_move'))]"/>
+               eval="[(4, ref('ventor_role_wh_worker')), (4, ref('merp_menu_inventory_adjustments')), (4, ref('merp_menu_info')), (4, ref('merp_menu_instant_inventory')), (4, ref('merp_menu_instant_move')), (4, ref('merp_menu_allow_changing_settings'))]"/>
     </record>
 
     <record id="ventor_role_admin" model="res.groups">
