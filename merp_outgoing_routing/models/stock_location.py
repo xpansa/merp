@@ -31,8 +31,16 @@ class StockLocation(models.Model):
 
         res = self.sudo().search([], order='{} {}'.format(
             field, ['asc', 'desc'][int(strategy_order)]))
+        processed = self.env['stock.location']
         for sequence, location in enumerate(res):
+            if location not in self:
+                continue
             location.strategy_sequence = sequence
+            processed |= location
+        remaining_locations = self - processed
+        max_seq = len(res)
+        for remaining in remaining_locations:
+            remaining.strategy_sequence =  max_seq
 
     @api.onchange('location_id')
     def _onchange_parent_location(self):
