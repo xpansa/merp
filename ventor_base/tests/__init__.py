@@ -3,3 +3,4 @@
 
 from . import test_check_default_location
 from . import test_checking_logotype
+from . import test_set_active_view

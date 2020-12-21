@@ -37,8 +37,7 @@ class VentorConfigSettings(models.TransientModel):
     )
 
     add_barcode_on_view = fields.Boolean(
-        default=False,
-        string='Add a Barcode Field on a Stock Location Form'
+        string='Add a Barcode Field on a Stock Location Form',
     )
 
     base_version = fields.Char(
@@ -63,7 +62,9 @@ class VentorConfigSettings(models.TransientModel):
     @api.model
     def get_values(self):
         res = super(VentorConfigSettings, self).get_values()
+
         conf = self.env['ventor.config'].sudo()
+
         logo = conf.get_param('logo.file', default=None)
         name = conf.get_param('logo.name', default=None)
 
@@ -71,27 +72,32 @@ class VentorConfigSettings(models.TransientModel):
             'logotype_file': logo or False,
             'logotype_name': name or False
         })
+
+        view_with_barcode = self.env.ref('ventor_base.view_location_form_inherit_additional_barcode')
+        res['add_barcode_on_view'] = view_with_barcode.active
+
         return res
 
     def set_values(self):
         res = super(VentorConfigSettings, self).set_values()
 
         conf = self.env['ventor.config'].sudo()
+
+        self._validate_logotype()
+        conf.set_param('logo.file', self.logotype_file or False)
+        conf.set_param('logo.name', self.logotype_name or False)
+
         view_with_barcode = self.env.ref('ventor_base.view_location_form_inherit_additional_barcode')
-        for record in self:
-            self._validate_logotype(record)
-            conf.set_param('logo.file', record.logotype_file or False)
-            conf.set_param('logo.name', record.logotype_name or False)
-            view_with_barcode.active = record.add_barcode_on_view
+        view_with_barcode.active = self.add_barcode_on_view
 
         return res
 
-    @staticmethod
-    def _validate_logotype(record):
-        if not record.logotype_file:
+    def _validate_logotype(self):
+        if not self.logotype_file:
             return False
 
-        dat = base64.decodebytes(record.logotype_file)
+        dat = base64.decodebytes(self.logotype_file)
+
         png = (dat[:8] == b'\211PNG\r\n\032\n' and (dat[12:16] == b'IHDR'))
         if not png:
             raise Warning(_('Apparently, the logotype is not a .png file.'))
