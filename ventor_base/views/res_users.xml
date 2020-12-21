@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<odoo>
+
+    <!-- Update User form -->
+    <record model="ir.ui.view" id="res_user_form">
+        <field name="name">Users Preferences</field>
+        <field name="model">res.users</field>
+        <field name="inherit_id" ref="base.view_users_form" />
+        <field name="arch" type="xml">
+            <data>
+                <xpath expr="//group[@name='messaging']" position="after">
+                    <group string="Ventor Application Settings" name="merp" col="8">
+                        <label for="default_inventory_location" colspan="3"/>
+                        <field name="default_inventory_location" nolabel="1" colspan="5"/>
+                        <label for="default_warehouse" colspan="3"/>
+                        <field name="default_warehouse" nolabel="1" colspan="5"/>
+                        <label for="stock_location_id" colspan="3"/>
+                        <field name="stock_location_id" nolabel="1" colspan="5"/>
+                        <label for="allow_to_change_force_source_location" colspan="3"/>
+                        <field name="allow_to_change_force_source_location" nolabel="1" colspan="5"/>
+                    </group>
+                </xpath>
+            </data>
+        </field>
+    </record>
+
+</odoo>
