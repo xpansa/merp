@@ -6,6 +6,9 @@ from odoo import models, fields, api
 
 class StockLocationMixin(models.Model):
     _name = 'stock.location.mixin'
+    _description = """Implement a method below for 
+                      the product.template and
+                      stock.inventory models"""
 
     def _get_default_location_warehouse(self):
         default_location_id = (

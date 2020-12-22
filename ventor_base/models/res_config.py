@@ -24,18 +24,6 @@ class VentorConfigSettings(models.TransientModel):
         string='Outgoing Routing'
     )
 
-    module_picking_wave = fields.Boolean(
-        string='Picking Wave',
-    )
-
-    module_picking_products_skip = fields.Boolean(
-        string='Smart Skip of Products',
-    )
-
-    module_instant_move = fields.Boolean(
-        string='Instant Move',
-    )
-
     add_barcode_on_view = fields.Boolean(
         string='Add a Barcode Field on a Stock Location Form',
     )
