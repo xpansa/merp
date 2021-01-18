@@ -28,16 +28,23 @@ class MultiplyBarcodeWizard(models.TransientModel):
             ).product_variant_id
 
         if self.remember_previous_barcode:
-            barcode = product.barcode
+            barcode = product.barcode            
+
             if barcode:
                 product_barcode_multi = self.env['product.barcode.multi'].create({
                     'name': barcode,
                     'product_id': product.id,
                 })
 
-            product.write({
-                'barcode': self.name,
-                'barcode_ids': [(4, product_barcode_multi.id)] if barcode else False,
+                product.write({
+                    'barcode': self.name,
+                    'barcode_ids': [(4, product_barcode_multi.id)],
+                })
+
+            else:
+                product.write({
+                    'barcode': self.name
             })
+
         else:
             product.barcode = self.name
