@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<odoo>
+    <data noupdate="1">
+        <record id="create_server_object_line" model="ir.server.object.lines">
+            <field name="col1" ref="mail.field_mail_mail__reply_to"/>
+            <field name="evaluation_type">equation</field>
+            <field name="value">record.email_from</field>
+        </record>
+        
+        <record id="create_action_reply_to_header" model="base.automation">
+            <field name="name">Replace reply-to header</field>
+            <field name="model_id" ref="mail.model_mail_mail"/>
+            <field name="active" eval="False"/>
+            <field name="trigger">on_create</field>
+            <field name="state">object_write</field>
+            <field name="fields_lines" eval="[(4, ref('mail_reply_to_sender.create_server_object_line'))]"/>
+        </record>
+   </data>
+</odoo>
