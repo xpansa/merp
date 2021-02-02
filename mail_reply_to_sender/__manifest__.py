@@ -15,7 +15,6 @@
         "base_automation",
     ],
     "data": [
-        "data/server_object_lines.xml",
         "data/auto_action.xml",
     ],
     "installable": True,
