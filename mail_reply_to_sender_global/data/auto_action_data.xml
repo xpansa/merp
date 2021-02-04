@@ -14,7 +14,7 @@
             <field name="active" eval="False"/>
             <field name="trigger">on_create</field>
             <field name="state">object_write</field>
-            <field name="fields_lines" eval="[(4, ref('mail_reply_to_sender.create_server_object_line'))]"/>
+            <field name="fields_lines" eval="[(4, ref('mail_reply_to_sender_global.create_server_object_line'))]"/>
         </record>
    </data>
 </odoo>
