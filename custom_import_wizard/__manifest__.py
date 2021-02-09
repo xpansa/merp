@@ -4,7 +4,7 @@
 
 {
     "name": "Custom Import Wizard",
-    "category": "Accounting",
+    "category": "Tools",
     "version": "14.0.1.0.0",
     "website": "https://ventor.tech",
     "author": "VentorTech OU",
