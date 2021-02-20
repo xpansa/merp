@@ -114,9 +114,6 @@
                     <div class="col-xs-12 col-md-4 o_setting_box">
                     </div>
                 </div>
-                <h2>Batch Picking Settings</h2>
-                <div class="row mt16 o_settings_container" name="batch_settings">
-                </div>
             </xpath>
         </field>
     </record>
