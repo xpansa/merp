@@ -8,10 +8,10 @@ class StockInventory(models.Model):
     _name = 'stock.inventory'
     _inherit = ['stock.inventory', 'stock.location.mixin']
 
-    location_ids = fields.Many2many(
-        'stock.location', string='Locations',
-        readonly=True, check_company=True,
-        states={'draft': [('readonly', False)]},
-        domain="[('company_id', '=', company_id), ('usage', 'in', ['internal', 'transit'])]",
-        default=lambda self: [self._get_default_location_warehouse(), ],
-    )
+    def _onchange_company_id(self):
+        super(StockInventory, self)._onchange_company_id(default)
+        # Apply logic only in multi-location environment
+        if self.user_has_groups('stock.group_stock_multi_locations'):
+            location_id = self._get_default_location_warehouse()
+            if location_id:
+                self.location_ids = location_id
