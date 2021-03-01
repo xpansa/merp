@@ -33,9 +33,9 @@ class CustomImportWizard(models.TransientModel):
     _description = "Custom Import Wizard"
 
     original_file = fields.Binary()
-    original_file_name = fields.Binary()
+    original_file_name = fields.Char()
     result_file = fields.Binary()
-    result_file_name = fields.Binary()
+    result_file_name = fields.Char()
     sample_file = fields.Binary()
 
     def read_original_file(self, no_convert_indexes=None):
