@@ -128,7 +128,7 @@ class CustomImportWizard(models.TransientModel):
 
             output.seek(0)
             self.result_file = binascii.b2a_base64(output.read())
-            self.result_file_name = self.original_file_name.decode().replace(
+            self.result_file_name = self.original_file_name.replace(
                 ".xlsx", "_formatted.xlsx"
             )
 
