@@ -14,3 +14,15 @@ class StockPackOperation(models.Model):
             res &= super(StockPackOperation, self)._compute_operation_valid()
         res &= self.qty_done != self.product_qty
         return res
+
+    def _get_attr(self, attr_name, flag):
+        if not flag:
+            return getattr(self, attr_name)
+        return getattr((self.package_level_id or self), attr_name)
+
+    def _get_operation_tuple(self, flag):
+        self.ensure_one()
+        return (
+            ('id', self._get_attr('id', flag)),
+            ('_type', self._get_attr('_name', flag)),
+        )

@@ -7,7 +7,8 @@ import functools
 
 
 class StockPicking(models.Model):
-    _inherit = 'stock.picking'
+    _name = 'stock.picking'
+    _inherit = ['stock.picking', 'stock.picking.mixin']
 
     operations_to_pick = fields.Many2many(
         'stock.move.line', relation='picking_operations_to_pick',
@@ -77,34 +78,3 @@ class StockPicking(models.Model):
             reverse=int(strategy_order)
         )
         return result
-
-    def _read_record(self, record_tuple):
-        """
-        record_tuple = (
-            ('id', 100),
-            ('_type', 'stock.move.line'),
-        )
-
-        id:: number (int)
-        _type:: 'stock.move.line' or 'stock.package_level' (str)
-        """
-        record_dict = dict(record_tuple)
-        record = self.env[record_dict['_type']].browse(record_dict['id'])
-        record_dict.update(record.read()[0])
-        return record_dict
-
-    def serialize_record_merp(self, pick_id):
-        """Record serialization for the mERP app."""
-        full_list, filtered_list = [], []
-        stock_pick = self.browse(int(pick_id))
-
-        if not stock_pick.exists():
-            return []
-
-        for op in stock_pick.operations_to_pick:
-            full_list.append((
-                 ('id', op.package_level_id and op.package_level_id.id or op.id),
-                 ('_type', op.package_level_id and op.package_level_id._name or op._name),
-            ))
-        [filtered_list.append(rec) for rec in full_list if rec not in filtered_list]
-        return [self._read_record(rec) for rec in filtered_list]
