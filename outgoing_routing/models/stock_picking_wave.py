@@ -5,7 +5,8 @@ from odoo import models, fields, api
 
 
 class PickingWave(models.Model):
-    _inherit = 'stock.picking.batch'
+    _name = 'stock.picking.batch'
+    _inherit = ['stock.picking.batch', 'stock.picking.mixin']
 
     related_pack_operations = fields.Many2many(
         'stock.move.line', relation='wave_pack_operations',
