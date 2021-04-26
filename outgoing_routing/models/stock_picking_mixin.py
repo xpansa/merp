@@ -27,20 +27,17 @@ class StockPickingMixin(models.AbstractModel):
         record_dict.update(record.read()[0])
         return record_dict
 
-    def serialize_record_merp(self, rec_id):
-        """Record serialization for the mERP app."""
+    def serialize_record_ventor(self, rec_id):
+        """Record serialization for the Ventor app."""
+        filtered_list = []
         try:
             stock_object = self.search([
                 ('id', '=', int(rec_id)),
             ])
         except Exception as ex:
             _logger.error(ex)
-            return []
+            return filtered_list
 
-        full_list, filtered_list = [], []
-
-        for line in stock_object.operations_to_pick:
-            full_list.append(line._get_operation_tuple())
-
+        full_list = [rec._get_operation_tuple() for rec in stock_object.operations_to_pick]
         [filtered_list.append(rec) for rec in full_list if rec not in filtered_list]
         return [self._read_record(rec) for rec in filtered_list]
