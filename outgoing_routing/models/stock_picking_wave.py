@@ -1,11 +1,12 @@
 ﻿# Copyright 2020 VentorTech OU
 # License LGPL-3.0 or later (https://www.gnu.org/licenses/lgpl-3.0).
 
-from odoo import models, fields, api, _
+from odoo import models, fields, api
 
 
 class PickingWave(models.Model):
-    _inherit = 'stock.picking.batch'
+    _name = 'stock.picking.batch'
+    _inherit = ['stock.picking.batch', 'stock.picking.mixin']
 
     related_pack_operations = fields.Many2many(
         'stock.move.line', relation='wave_pack_operations',
