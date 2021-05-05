@@ -7,7 +7,8 @@ import functools
 
 
 class StockPicking(models.Model):
-    _inherit = 'stock.picking'
+    _name = 'stock.picking'
+    _inherit = ['stock.picking', 'stock.picking.mixin']
 
     operations_to_pick = fields.Many2many(
         'stock.move.line', relation='picking_operations_to_pick',
