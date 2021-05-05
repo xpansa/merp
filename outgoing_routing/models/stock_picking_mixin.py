@@ -12,6 +12,15 @@ class StockPickingMixin(models.AbstractModel):
     _name = 'stock.picking.mixin'
     _description = 'Stock Picking Mixin'
 
+    @staticmethod
+    def _recheck_record_list(record_list):
+        rechecked_list = []
+        for rec in record_list:
+            if rec.get('_type') == 'stock.package_level' and rec.get('is_done'):
+                continue
+            rechecked_list.append(rec)
+        return rechecked_list
+
     def _read_record(self, record_tuple):
         """
         record_tuple = (
@@ -40,4 +49,5 @@ class StockPickingMixin(models.AbstractModel):
 
         full_list = [rec._get_operation_tuple() for rec in stock_object.operations_to_pick]
         [filtered_list.append(rec) for rec in full_list if rec not in filtered_list]
-        return [self._read_record(rec) for rec in filtered_list]
+        record_list = [self._read_record(rec) for rec in filtered_list]
+        return self._recheck_record_list(record_list)
