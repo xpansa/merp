@@ -32,6 +32,7 @@ class ProductProduct(models.Model):
 
     @api.constrains('barcode', 'barcode_ids', 'active')
     def _check_unique_barcode(self):
+        barcodes_duplicate = []
         for product in self:
             barcode_names = []
             if product.barcode_ids:
@@ -42,15 +43,27 @@ class ProductProduct(models.Model):
                 continue
             products = self.env['product.product'].search([
                 ('barcode', 'in', barcode_names), ('id', '!=', product.id)
-            ], limit=1)
+            ])
             barcode_ids = self.env['product.barcode.multi'].search([
                 ('name', 'in', barcode_names), ('product_id', '!=', product.id)
-            ], limit=1)
-            if products or barcode_ids or len(barcode_names) != len(set(barcode_names)):
-                raise UserError(
-                    _('The following barcode(s) were found in other active products: {0}.'
-                      '\nNote that product barcodes should not repeat themselves both in '
-                      '"Barcode" field and "Additional Barcodes" field.').format(
-                            ", ".join(barcode_names)
-                      )
-                )
+            ])
+            if len(barcode_names) != len(set(barcode_names)):
+                barcodes_multi = set([barcode for barcode in barcode_names if barcode_names.count(barcode) > 1])
+                for barcode in barcodes_multi:
+                    barcodes_duplicate.append(barcode)
+            if barcode_ids:
+                barcodes = [barcode.name for barcode in barcode_ids]
+                for barcode in barcodes:
+                    barcodes_duplicate.append(barcode)
+            if products:
+                barcodes_product = [product.barcode for product in products]
+                for barcode in barcodes_product:
+                    barcodes_duplicate.append(barcode)
+        if barcodes_duplicate:
+            raise UserError(
+                _(
+                    "The following barcode(s): {0} was found in other active products."
+                    "\nNote that product barcodes should not repeat themselves both in "
+                    '"Barcode" field and "Additional Barcodes" field.'
+                ).format(", ".join(set(barcodes_duplicate)))
+            )
