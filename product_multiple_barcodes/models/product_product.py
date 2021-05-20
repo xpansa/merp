@@ -54,11 +54,11 @@ class ProductProduct(models.Model):
             if barcode_ids:
                 barcodes = [barcode.name for barcode in barcode_ids]
                 for barcode in barcodes:
-                        barcodes_duplicate.append(barcode)
+                    barcodes_duplicate.append(barcode)
             if products:
                 barcodes_product = [product.barcode for product in products]
                 for barcode in barcodes_product:
-                        barcodes_duplicate.append(barcode)
+                    barcodes_duplicate.append(barcode)
         if barcodes_duplicate:
             raise UserError(
                 _(
