@@ -54,18 +54,16 @@ class ProductProduct(models.Model):
             if barcode_ids:
                 barcodes = [barcode.name for barcode in barcode_ids]
                 for barcode in barcodes:
-                    if barcode not in barcodes_duplicate:
                         barcodes_duplicate.append(barcode)
             if products:
                 barcodes_product = [product.barcode for product in products]
                 for barcode in barcodes_product:
-                    if barcode not in barcodes_duplicate:
                         barcodes_duplicate.append(barcode)
         if barcodes_duplicate:
             raise UserError(
                 _(
-                    "The following barcode: {0} was found in other active products."
+                    "The following barcode(s): {0} was found in other active products."
                     "\nNote that product barcodes should not repeat themselves both in "
                     '"Barcode" field and "Additional Barcodes" field.'
-                ).format(", ".join(barcodes_duplicate))
+                ).format(", ".join(set(barcodes_duplicate)))
             )
