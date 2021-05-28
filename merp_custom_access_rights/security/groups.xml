@@ -62,6 +62,24 @@
         <field name="users" eval="[(4, ref('base.user_root'))]"/>
     </record>
 
+    <record id="merp_package_management" model="res.groups">
+        <field name="name">Package Management Menu</field>
+        <field name="category_id" ref="module_category_merp_menu_application"/>
+        <field name="users" eval="[(4, ref('base.user_root'))]"/>
+    </record>
+
+    <record id="merp_external_management" model="res.groups">
+        <field name="name">External Management Menu</field>
+        <field name="category_id" ref="module_category_merp_menu_application"/>
+        <field name="users" eval="[(4, ref('base.user_root'))]"/>
+    </record>
+
+    <record id="merp_putaway" model="res.groups">
+        <field name="name">Putaway Menu</field>
+        <field name="category_id" ref="module_category_merp_menu_application"/>
+        <field name="users" eval="[(4, ref('base.user_root'))]"/>
+    </record>
+
     <!-- Ventor Access Rights -->
     <record model="ir.module.category" id="module_category_merp_access_application">
         <field name="name">Ventor Access Rights</field>
