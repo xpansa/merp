@@ -1,6 +1,7 @@
 ﻿# Copyright 2019 VentorTech OU
 # Part of Ventor modules. See LICENSE file for full copyright and licensing details.
 
+from odoo import http
 from odoo import models, fields, api, _
 
 import functools
@@ -20,6 +21,17 @@ class StockPicking(models.Model):
         compute='_compute_operations_to_pick',
         store=False,
     )
+    routing_module_version = fields.Char(
+        string='Routing Module Version',
+        compute='_compute_routing_module_version',
+        compute_sudo=True,
+    )
+
+    def _compute_routing_module_version(self):
+        for rec in self:
+            manifest = http.addons_manifest.get('outgoing_routing', False)
+            version = manifest and manifest['version'].split('.')
+            rec.routing_module_version = version and '.'.join(version[-3:])
 
     @api.depends(
         'move_line_ids',

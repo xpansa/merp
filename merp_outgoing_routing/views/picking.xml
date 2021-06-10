@@ -8,7 +8,10 @@
         <field name="arch" type="xml">
             <xpath expr="//field[@name='move_line_ids_without_package']/.." position="after">
                 <page string="To Process" name="operations_to_pick" groups="merp_custom_access_rights.merp_debug">
-                    <field name="strategy_order_r" readonly="1" />
+                    <group>
+                        <field name="routing_module_version" readonly="1"/>
+                    </group>
+                    <field name="strategy_order_r" readonly="1"/>
                     <field name="operations_to_pick" readonly="1">
                         <tree>
                             <field name="picking_id"/>
