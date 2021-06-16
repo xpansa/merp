@@ -1,10 +1,15 @@
-Product Multiole Barcodes
+Product Multiple Barcodes
 =========================
 
 This module allows to define multiple additional barcodes for products and to search products by additional barcodes and internal reference.
 
 Changelog
 ---------
+
+13.0.1.2.1 (2021-06-16)
+***********************
+
+* Changing of checking for uniqueness barcodes only by active products
 
 13.0.1.2.0 (2020-06-24)
 ***********************
