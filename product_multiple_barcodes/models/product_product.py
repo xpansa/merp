@@ -42,10 +42,14 @@ class ProductProduct(models.Model):
             if not barcode_names:
                 continue
             products = self.env['product.product'].search([
-                ('barcode', 'in', barcode_names), ('id', '!=', product.id)
+                ('barcode', 'in', barcode_names),
+                ('id', '!=', product.id),
+                ('active', '=', True),
             ])
             barcode_ids = self.env['product.barcode.multi'].search([
-                ('name', 'in', barcode_names), ('product_id', '!=', product.id)
+                ('name', 'in', barcode_names),
+                ('product_id', '!=', product.id),
+                ('product_id.active', '=', True),
             ])
             if len(barcode_names) != len(set(barcode_names)):
                 barcodes_multi = set([barcode for barcode in barcode_names if barcode_names.count(barcode) > 1])
