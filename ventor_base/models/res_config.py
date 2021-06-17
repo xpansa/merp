@@ -41,6 +41,12 @@ class VentorConfigSettings(models.TransientModel):
         related='company_id.stock_inventory_location'
     )
 
+    force_lot_validation_on_inventory_adjustment = fields.Boolean(
+        string='Force Lot Validation on Inventory Adjustment',
+        readonly=False,
+        related='company_id.force_lot_validation_on_inventory_adjustment',
+    )
+
     @api.depends('company_id')
     def _compute_base_version(self):
         manifest = http.addons_manifest.get('ventor_base', None)
@@ -58,7 +64,7 @@ class VentorConfigSettings(models.TransientModel):
 
         res.update({
             'logotype_file': logo or False,
-            'logotype_name': name or False
+            'logotype_name': name or False,
         })
 
         view_with_barcode = self.env.ref('ventor_base.view_location_form_inherit_additional_barcode')

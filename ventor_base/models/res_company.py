@@ -9,3 +9,7 @@ class Company(models.Model):
 
     stock_inventory_location = fields.Many2one('stock.location',
                                                string='Default Inventory Location')
+
+    force_lot_validation_on_inventory_adjustment = fields.Boolean(
+        string='Force Lot Validation on Inventory Adjustment',
+    )

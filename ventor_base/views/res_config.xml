@@ -60,6 +60,16 @@
                                 </div>
                             </div>
                         </div>
+                        <div class="col-12 col-lg-6 o_setting_box">
+                            <div class="o_setting_left_pane">
+                                <div>
+                                    <field name="force_lot_validation_on_inventory_adjustment"/>
+                                </div>
+                            </div>
+                            <div class="o_setting_right_pane">
+                                <label for="force_lot_validation_on_inventory_adjustment"/>
+                            </div>
+                        </div>
                     </div>
                     <h2>Custom Mobile Logo</h2>
                     <div class="row mt16 o_settings_container">
