@@ -51,6 +51,10 @@ class StockConfigSettings(models.TransientModel):
 
     @api.depends('company_id')
     def _compute_merp_version(self):
-        manifest = http.addons_manifest.get('merp_base', None)
-        version = manifest['version'].split('.')
-        self.merp_version = '.'.join(version[-3:])
+        self.env.cr.execute(
+            "SELECT latest_version FROM ir_module_module WHERE name='merp_base'"
+        )
+        result = self.env.cr.fetchone()
+        full_version = result and result[0]
+        split_value = full_version and full_version.split('.')
+        self.merp_version = split_value and '.'.join(split_value[-3:])
