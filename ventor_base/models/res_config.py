@@ -49,9 +49,13 @@ class VentorConfigSettings(models.TransientModel):
 
     @api.depends('company_id')
     def _compute_base_version(self):
-        manifest = http.addons_manifest.get('ventor_base', None)
-        version = manifest['version'].split('.')
-        self.base_version = '.'.join(version[-3:])
+        self.env.cr.execute(
+            "SELECT latest_version FROM ir_module_module WHERE name='ventor_base'"
+        )
+        result = self.env.cr.fetchone()
+        full_version = result and result[0]
+        split_value = full_version and full_version.split('.')
+        self.base_version = split_value and '.'.join(split_value[-3:])
 
     @api.model
     def get_values(self):

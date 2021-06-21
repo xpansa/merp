@@ -30,3 +30,21 @@ class Company(models.Model):
             ('none', 'Default'),
         ],
         string='Reservation Strategy', default='base')
+
+    routing_module_version = fields.Char(
+        string='Routing Module Version',
+        compute='_compute_routing_module_version',
+        compute_sudo=True,
+    )
+
+    def _compute_routing_module_version(self):
+        self.env.cr.execute(
+            "SELECT latest_version FROM ir_module_module WHERE name='outgoing_routing'"
+        )
+        result = self.env.cr.fetchone()
+        full_version = result and result[0]
+        split_value = full_version and full_version.split('.')
+        module_version = split_value and '.'.join(split_value[-3:])
+
+        for rec in self:
+            rec.routing_module_version = module_version

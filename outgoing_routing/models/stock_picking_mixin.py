@@ -1,7 +1,7 @@
 # Copyright 2020 VentorTech OU
 # License LGPL-3.0 or later (https://www.gnu.org/licenses/lgpl-3.0).
 
-from odoo import models
+from odoo import models, fields
 
 import logging
 
@@ -11,6 +11,13 @@ _logger = logging.getLogger(__file__)
 class StockPickingMixin(models.AbstractModel):
     _name = 'stock.picking.mixin'
     _description = 'Stock Picking Mixin'
+
+    company_id = fields.Many2one(
+        comodel_name='res.company',
+    )
+    routing_module_version = fields.Char(
+        related='company_id.routing_module_version',
+    )
 
     @staticmethod
     def _recheck_record_list(record_list):
