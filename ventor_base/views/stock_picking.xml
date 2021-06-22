@@ -75,7 +75,7 @@
         </record>
 
 <!-- Menus -->
-        <menuitem name="Ventor Application"
+        <menuitem name="Ventor Configuration"
                   id="ventor_app_base_menu"
                   web_icon="ventor_base,static/description/icon.png"
                   groups="ventor_role_admin"/>

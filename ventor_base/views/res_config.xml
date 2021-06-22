@@ -8,8 +8,8 @@
         <field name="arch" type="xml">
             <xpath expr="//div[hasclass('settings')]" position="inside" >
                 <div class="app_settings_block"
-                     data-string="Ventor Application"
-                     string="Ventor Application"
+                     data-string="Ventor Configuration"
+                     string="Ventor Configuration"
                      data-key="ventor_base"
                      groups="stock.group_stock_manager">
 

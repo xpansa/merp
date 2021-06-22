@@ -1,4 +1,4 @@
-from odoo import fields, models
+from odoo import fields, models, api
 
 
 class StockPickingType(models.Model):
@@ -21,7 +21,6 @@ class StockPickingType(models.Model):
         help="Product field will show the next product to be picked. "
              "Use the setting during picking and delivery. "
              "It is recommended to disable the setting for the reception area",
-        default=True
     )
 
     confirm_product = fields.Boolean(
@@ -53,7 +52,6 @@ class StockPickingType(models.Model):
         string="Change destination location",
         help="If this setting is active a user can change destination location "
              "while receiving to be placed at any available location",
-        default=True
     )
 
     manage_packages = fields.Boolean(
@@ -68,6 +66,14 @@ class StockPickingType(models.Model):
         help="Allow scan product owner. You can specify product owner while moving items. "
              "Working only with 'Consignment' setting on Odoo side"
     )
+
+    @api.model
+    def create(self, vals):
+        if 'code' in vals:
+            vals['show_next_product'] = vals['code'] != "incoming"
+            vals['change_destination_location'] = True
+
+        return super(StockPickingType, self).create(vals)
 
     def get_ventor_settings(self):
         return {
