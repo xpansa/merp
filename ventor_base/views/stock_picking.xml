@@ -72,6 +72,7 @@
             <field name="res_model">res.config.settings</field>
             <field name="view_mode">form</field>
             <field name="target">inline</field>
+            <field name="context">{'module' : 'ventor_base'}</field>
         </record>
 
 <!-- Menus -->
@@ -93,7 +94,8 @@
         <menuitem id="ventor_app_settings"
                   name="Settings"
                   parent="ventor_app_settings_menu"
-                  action="ventor_configs_action" />
+                  action="ventor_configs_action"
+                  sequence="1"/>
 
     </data>
 </odoo>
