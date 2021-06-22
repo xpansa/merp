@@ -1,7 +1,9 @@
 ﻿# Copyright 2020 VentorTech OU
 # License LGPL-3.0 or later (https://www.gnu.org/licenses/lgpl-3.0).
 
-from odoo import models, fields
+import json
+
+from odoo import models, fields, api
 
 
 class ResUsers(models.Model):
@@ -26,3 +28,25 @@ class ResUsers(models.Model):
     allow_to_change_force_source_location = fields.Boolean(
         string='Allow to change Force Source Location',
     )
+
+    ventor_global_settings = fields.Text(
+        string='Global Settings',
+        readonly=True,
+        compute='_compute_global_settings'
+    )
+
+    ventor_user_settings = fields.Text(
+        string='User Settings'
+    )
+
+    def _compute_global_settings(self):
+        settings = []
+
+        for stock_picking in self.env['stock.picking.type'].search([]):
+            settings.append({stock_picking.name: stock_picking.get_ventor_settings()})
+
+        self.ventor_global_settings = json.dumps(
+            obj={'Operation Types': settings},
+            indent='    ',
+            sort_keys=True
+        )

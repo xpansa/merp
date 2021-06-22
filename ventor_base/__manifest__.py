@@ -22,6 +22,7 @@
         'views/res_users.xml',
         'views/stock_inventory.xml',
         'views/stock_location.xml',
+        'views/stock_picking.xml',
         'views/stock_warehouse.xml',
     ],
 }
