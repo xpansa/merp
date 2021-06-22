@@ -9,9 +9,9 @@ Changelog
 14.0.1.2.0 (2021-06-22)
 ***********************
 
-Added global menu Ventor App.
-Ventor configuration checkboxes added to Operations Types.
-Users Ventor Application Settings moved to Ventor App tab
+* Added global menu Ventor App
+* Ventor configuration checkboxes added to Operations Types
+* Users Ventor Application Settings moved to Ventor App tab
 
 14.0.1.1.0 (2021-06-17)
 ***********************
