@@ -42,11 +42,11 @@ class ResUsers(models.Model):
     def _compute_global_settings(self):
         settings = []
 
-        for stock_picking in self.env['stock.picking.type'].search([]):
-            settings.append({stock_picking.name: stock_picking.get_ventor_settings()})
+        for stock_picking_type in self.env['stock.picking.type'].search([]):
+            settings.append({stock_picking_type.name: stock_picking_type.get_ventor_settings()})
 
         self.ventor_global_settings = json.dumps(
-            obj={'Operation Types': settings},
+            obj={'operation_types': settings},
             indent='    ',
             sort_keys=True
         )

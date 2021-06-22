@@ -66,12 +66,12 @@
             <field name="res_model">res.config.settings</field>
             <field name="view_mode">form</field>
             <field name="target">inline</field>
-            <field name="context">{'module' : 'ventor_base'}</field>
         </record>
 
 <!-- Menus -->
         <menuitem name="Ventor App"
                   id="ventor_app_base_menu"
+                  web_icon="ventor_base,static/description/icon.png"
                   groups="ventor_role_admin"/>
 
         <menuitem name="Settings"
