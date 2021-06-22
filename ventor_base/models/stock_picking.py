@@ -20,7 +20,8 @@ class StockPickingType(models.Model):
         string="Show next product",
         help="Product field will show the next product to be picked. "
              "Use the setting during picking and delivery. "
-             "It is recommended to disable the setting for the reception area"
+             "It is recommended to disable the setting for the reception area",
+        default=True
     )
 
     confirm_product = fields.Boolean(
@@ -51,7 +52,8 @@ class StockPickingType(models.Model):
     change_destination_location = fields.Boolean(
         string="Change destination location",
         help="If this setting is active a user can change destination location "
-             "while receiving to be placed at any available location"
+             "while receiving to be placed at any available location",
+        default=True
     )
 
     manage_packages = fields.Boolean(
@@ -69,14 +71,18 @@ class StockPickingType(models.Model):
 
     def get_ventor_settings(self):
         return {
-            'confirm_source_location': self.confirm_source_location,
-            'change_source_location': self.change_source_location,
-            'show_next_product': self.show_next_product,
-            'confirm_product': self.confirm_product,
-            'apply_default_lots': self.apply_default_lots,
-            'transfer_more_items': self.transfer_more_items,
-            'confirm_destination_location': self.confirm_destination_location,
-            'change_destination_location': self.change_destination_location,
-            'manage_packages': self.manage_packages,
-            'manage_product_owner': self.manage_product_owner,
+            "id": self.id,
+            "name": self.name,
+            "settings": {
+                "confirm_source_location": self.confirm_source_location,
+                "change_source_location": self.change_source_location,
+                "show_next_product": self.show_next_product,
+                "confirm_product": self.confirm_product,
+                "apply_default_lots": self.apply_default_lots,
+                "transfer_more_items": self.transfer_more_items,
+                "confirm_destination_location": self.confirm_destination_location,
+                "change_destination_location": self.change_destination_location,
+                "manage_packages": self.manage_packages,
+                "manage_product_owner": self.manage_product_owner,
+            }
         }

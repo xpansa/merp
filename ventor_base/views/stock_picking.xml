@@ -8,8 +8,10 @@
             <field name="model">stock.picking.type</field>
             <field name="priority">1000</field>
             <field name="arch" type="xml">
-                <tree>
-                    <field name="name"/>
+                <tree create="false" editable="top">
+                    <field name="name" attrs="{'readonly':True}"/>
+                    <field name="warehouse_id" attrs="{'readonly':True}"/>
+                    <field name="company_id" invisible="True"/>
                     <field name="confirm_source_location"/>
                     <field name="change_source_location"/>
                     <field name="show_next_product"/>
@@ -29,6 +31,10 @@
             <field name="model">stock.picking.type</field>
             <field name="inherit_id" ref="stock.view_picking_type_form"/>
             <field name="arch" type="xml">
+                <xpath expr="//form" position="attributes">
+                    <attribute name="create">0</attribute>
+                </xpath>
+
                 <xpath expr="//group[@name='stock_picking_type_lot']" position="before">
                     <group string="Ventor Configuration">
                         <group>
@@ -61,7 +67,7 @@
         </record>
 
         <record id="ventor_configs_action" model="ir.actions.act_window">
-            <field name="name">Settings</field>
+            <field name="name">Configuration</field>
             <field name="type">ir.actions.act_window</field>
             <field name="res_model">res.config.settings</field>
             <field name="view_mode">form</field>
@@ -69,12 +75,12 @@
         </record>
 
 <!-- Menus -->
-        <menuitem name="Ventor App"
+        <menuitem name="Ventor Application"
                   id="ventor_app_base_menu"
                   web_icon="ventor_base,static/description/icon.png"
                   groups="ventor_role_admin"/>
 
-        <menuitem name="Settings"
+        <menuitem name="Configuration"
                   id="ventor_app_settings_menu"
                   parent="ventor_app_base_menu"/>
 

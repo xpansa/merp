@@ -29,6 +29,10 @@ class ResUsers(models.Model):
         string='Allow to change Force Source Location',
     )
 
+    custom_package_name = fields.Char(
+        string='Custom package name'
+    )
+
     ventor_global_settings = fields.Text(
         string='Global Settings',
         readonly=True,
@@ -43,7 +47,7 @@ class ResUsers(models.Model):
         settings = []
 
         for stock_picking_type in self.env['stock.picking.type'].search([]):
-            settings.append({stock_picking_type.name: stock_picking_type.get_ventor_settings()})
+            settings.append(stock_picking_type.get_ventor_settings())
 
         self.ventor_global_settings = json.dumps(
             obj={'operation_types': settings},

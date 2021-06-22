@@ -1,3 +1,4 @@
 id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
 ventor_config_user,ventor.config user,ventor_base.model_ventor_config,base.group_user,1,0,0,0
 ventor_config_root,ventor.config root,ventor_base.model_ventor_config,base.group_system,1,1,1,1
+access_stock_location_mixin,access_stock_location_mixin,model_stock_location_mixin,base.group_user,1,0,0,0
