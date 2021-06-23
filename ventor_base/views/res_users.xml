@@ -9,7 +9,7 @@
         <field name="inherit_id" ref="base.view_users_form" />
         <field name="arch" type="xml">
             <data>
-                <xpath expr="//notebook/page[@name='references']" position="after">
+                <xpath expr="//notebook/page[@name='preferences']" position="after">
                     <page string="Ventor Preferences">
                         <group name="merp" col="8">
                             <label for="default_inventory_location" colspan="3"/>
