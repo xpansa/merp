@@ -1,12 +1,6 @@
-﻿# Copyright 2019 VentorTech OU
-# Part of Ventor modules. See LICENSE file for full copyright and licensing details.
-
-from . import models
-
-
-def _auto_fill_settings(cr, registry):
+def migrate(cr, version):
     """
-    This hook updates Ventor Settings in Operation Types
+    Updates Ventor Settings in Operation Types
     """
 
     cr.execute(

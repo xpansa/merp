@@ -3,7 +3,7 @@
 
 {
     'name': 'Ventor Base',
-    'version': '13.0.1.1.0',
+    'version': '13.0.1.2.0',
     'author': 'VentorTech',
     'website': 'https://ventor.tech/',
     'license': 'LGPL-3',
@@ -19,5 +19,7 @@
         'security/ir.model.access.csv',
         'views/res_config.xml',
         'views/res_users.xml',
+        'views/stock_picking.xml',
     ],
+    'post_init_hook': '_auto_fill_settings',
 }

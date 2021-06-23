@@ -148,7 +148,7 @@
     </record>
 
     <record id="ventor_role_admin" model="res.groups">
-        <field name="name">Admin</field>
+        <field name="name">Administrator</field>
         <field name="category_id" ref="module_category_ventor_roles"/>
         <field name="implied_ids"
                eval="[(4, ref('ventor_role_wh_manager')), (4, ref('merp_menu_create_sales_order')), (4, ref('merp_menu_create_purchase_order')), (4, ref('merp_menu_allow_update_product_on_hand')), (4, ref('merp_debug')), (4, ref('merp_ventor_settings')), (4, ref('merp_picking_wave_allow_done'))]"/>
