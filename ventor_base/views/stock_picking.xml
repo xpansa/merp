@@ -36,7 +36,7 @@
                     <group string="Ventor Configuration">
                         <group>
                             <field name="confirm_source_location"/>
-                            <field name="A"
+                            <field name="change_source_location"
                                    attrs="{'readonly':[('confirm_source_location','!=',True)]}"/>
                             <field name="show_next_product"/>
                             <field name="confirm_product"/>
