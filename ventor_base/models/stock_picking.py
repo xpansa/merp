@@ -75,6 +75,11 @@ class StockPickingType(models.Model):
 
         return super(StockPickingType, self).create(vals)
 
+    @api.onchange('confirm_source_location')
+    def _onchange_confirm_source_location(self):
+        if not self.confirm_source_location:
+            self.change_source_location = False
+
     def get_ventor_settings(self):
         return {
             "id": self.id,
