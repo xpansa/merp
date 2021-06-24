@@ -25,5 +25,5 @@
         'views/stock_picking.xml',
         'views/stock_warehouse.xml',
     ],
-    'post_init_hook': '_auto_fill_settings',
+    'post_init_hook': '_post_init_hook',
 }
