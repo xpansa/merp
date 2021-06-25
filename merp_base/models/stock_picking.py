@@ -1,4 +1,4 @@
-from odoo import fields, models, api
+from odoo import fields, models, api, _
 
 
 class StockPickingType(models.Model):
@@ -79,6 +79,28 @@ class StockPickingType(models.Model):
     def _onchange_confirm_source_location(self):
         if not self.confirm_source_location:
             self.change_source_location = False
+
+    @api.onchange('change_source_location')
+    def _onchange_change_source_location(self):
+        if self.change_source_location and not self.confirm_source_location:
+            return {
+                'warning': {
+                    'title': _("Warning"),
+                    'message': _("'Change source location' is available only "
+                                 "if 'Confirm source location' is enabled")
+                }
+            }
+
+    def write(self, vals):
+        res = super(StockPickingType, self).write(vals)
+
+        if 'change_source_location' in vals or 'confirm_source_location' in vals:
+            for stock_picking_type in self:
+                if stock_picking_type.change_source_location:
+                    if not stock_picking_type.confirm_source_location:
+                        stock_picking_type.change_source_location = False
+
+        return res
 
     def get_ventor_settings(self):
         return {
