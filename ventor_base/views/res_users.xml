@@ -9,17 +9,29 @@
         <field name="inherit_id" ref="base.view_users_form" />
         <field name="arch" type="xml">
             <data>
-                <xpath expr="//group[@name='messaging']" position="after">
-                    <group string="Ventor Application Settings" name="merp" col="8">
-                        <label for="default_inventory_location" colspan="3"/>
-                        <field name="default_inventory_location" nolabel="1" colspan="5"/>
-                        <label for="default_warehouse" colspan="3"/>
-                        <field name="default_warehouse" nolabel="1" colspan="5"/>
-                        <label for="stock_location_id" colspan="3"/>
-                        <field name="stock_location_id" nolabel="1" colspan="5"/>
-                        <label for="allow_to_change_force_source_location" colspan="3"/>
-                        <field name="allow_to_change_force_source_location" nolabel="1" colspan="5"/>
-                    </group>
+                <xpath expr="//notebook/page[@name='references']" position="after">
+                    <page string="Ventor Preferences">
+                        <group name="merp" col="8">
+                            <label for="default_inventory_location" colspan="3"/>
+                            <field name="default_inventory_location" nolabel="1" colspan="5"/>
+                            <label for="default_warehouse" colspan="3"/>
+                            <field name="default_warehouse" nolabel="1" colspan="5"/>
+                            <label for="stock_location_id" colspan="3"/>
+                            <field name="stock_location_id" nolabel="1" colspan="5"/>
+                            <label for="allow_to_change_force_source_location" colspan="3"/>
+                            <field name="allow_to_change_force_source_location" nolabel="1" colspan="5"/>
+                            <label for="custom_package_name" colspan="3"/>
+                            <field name="custom_package_name" nolabel="1" colspan="5"/>
+                        </group>
+                        <group>
+                            <field name="ventor_global_settings"
+                                   style="overflow-y: scroll; resize: none; height: 120px; width: 100%%"
+                                   groups="base.group_no_one"/>
+                            <field name="ventor_user_settings"
+                                   style="overflow-y: scroll; resize: none; height: 120px; width: 100%%"
+                                   groups="base.group_no_one"/>
+                        </group>
+                    </page>
                 </xpath>
             </data>
         </field>
