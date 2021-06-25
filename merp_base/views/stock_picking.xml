@@ -76,7 +76,7 @@
 <!-- Menus -->
         <menuitem name="Ventor Configuration"
                   id="ventor_app_base_menu"
-                  web_icon="ventor_base,static/description/icon.png"/>
+                  web_icon="merp_base,static/description/icon.png"/>
 
         <menuitem name="Configuration"
                   id="ventor_app_settings_menu"
