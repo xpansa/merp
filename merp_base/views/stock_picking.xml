@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<odoo>
+    <data>
+<!-- Views-->
+        <record id='ventor_stock_picking_view' model='ir.ui.view'>
+            <field name="name">Operation Types</field>
+            <field name="model">stock.picking.type</field>
+            <field name="priority">1000</field>
+            <field name="arch" type="xml">
+                <tree create="false" editable="top">
+                    <field name="name" attrs="{'readonly':True}"/>
+                    <field name="warehouse_id" attrs="{'readonly':True}"/>
+                    <field name="company_id" invisible="True"/>
+                    <field name="confirm_source_location"/>
+                    <field name="change_source_location"/>
+                    <field name="show_next_product"/>
+                    <field name="confirm_product"/>
+                    <field name="apply_default_lots"/>
+                    <field name="transfer_more_items"/>
+                    <field name="confirm_destination_location"/>
+                    <field name="change_destination_location"/>
+                    <field name="manage_packages"/>
+                    <field name="manage_product_owner"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="ventor_stock_picking_form" model="ir.ui.view">
+            <field name="name">Operation Types</field>
+            <field name="model">stock.picking.type</field>
+            <field name="inherit_id" ref="stock.view_picking_type_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//group[@name='stock_picking_type_lot']" position="before">
+                    <group string="Ventor Configuration">
+                        <group>
+                            <field name="confirm_source_location"/>
+                            <field name="change_source_location"
+                                   attrs="{'readonly':[('confirm_source_location','!=',True)]}"/>
+                            <field name="show_next_product"/>
+                            <field name="confirm_product"/>
+                            <field name="apply_default_lots"/>
+                        </group>
+                        <group>
+                            <field name="transfer_more_items"/>
+                            <field name="confirm_destination_location"/>
+                            <field name="change_destination_location"/>
+                            <field name="manage_packages"/>
+                            <field name="manage_product_owner"/>
+                        </group>
+                    </group>
+                </xpath>
+            </field>
+        </record>
+
+<!-- Actions-->
+
+        <record id='ventor_stock_picking_action' model='ir.actions.act_window'>
+            <field name="name">Operation Types</field>
+            <field name="res_model">stock.picking.type</field>
+            <field name="view_mode">tree,form</field>
+            <field name="usage">menu</field>
+            <field name="view_id" ref="ventor_stock_picking_view"/>
+        </record>
+
+        <record id="ventor_configs_action" model="ir.actions.act_window">
+            <field name="name">Configuration</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">res.config.settings</field>
+            <field name="view_mode">form</field>
+            <field name="target">inline</field>
+            <field name="context">{'module' : 'merp_base'}</field>
+        </record>
+
+<!-- Menus -->
+        <menuitem name="Ventor Configuration"
+                  id="ventor_app_base_menu"
+                  web_icon="merp_base,static/description/icon.png"/>
+
+        <menuitem name="Configuration"
+                  id="ventor_app_settings_menu"
+                  parent="ventor_app_base_menu"/>
+
+        <menuitem name="Operation Types"
+                  id="ventor_app_operation_app_menu"
+                  parent="ventor_app_settings_menu"
+                  action="ventor_stock_picking_action"
+                  sequence="2"/>
+
+        <menuitem id="ventor_app_settings"
+                  name="Settings"
+                  parent="ventor_app_settings_menu"
+                  action="ventor_configs_action"
+                  sequence="1"/>
+
+    </data>
+</odoo>

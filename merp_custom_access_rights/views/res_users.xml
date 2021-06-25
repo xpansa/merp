@@ -18,4 +18,8 @@
         </field>
     </record>
 
+    <record id="merp_base.ventor_app_base_menu" model="ir.ui.menu">
+        <field name="groups_id" eval="[(4, ref('ventor_role_admin'))]"/>
+    </record>
+
 </odoo>

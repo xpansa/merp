@@ -133,27 +133,42 @@
 
     <data noupdate="1">
 
-    <record id="ventor_role_wh_worker" model="res.groups">
-        <field name="name">Warehouse worker</field>
-        <field name="category_id" ref="module_category_ventor_roles"/>
-        <field name="implied_ids"
-               eval="[(4, ref('merp_menu_warehouse_operations')), (4, ref('merp_menu_picking_wave'))]"/>
-    </record>
+        <record id="ventor_role_wh_worker" model="res.groups">
+            <field name="name">Warehouse worker</field>
+            <field name="category_id" ref="module_category_ventor_roles"/>
+            <field name="implied_ids"
+                   eval="[(4, ref('merp_menu_warehouse_operations')),
+                   (4, ref('merp_menu_picking_wave'))]"/>
+        </record>
 
-    <record id="ventor_role_wh_manager" model="res.groups">
-        <field name="name">Warehouse manager</field>
-        <field name="category_id" ref="module_category_ventor_roles"/>
-        <field name="implied_ids"
-               eval="[(4, ref('ventor_role_wh_worker')), (4, ref('merp_menu_inventory_adjustments')), (4, ref('merp_menu_info')), (4, ref('merp_menu_instant_inventory')), (4, ref('merp_menu_instant_move')), (4, ref('merp_menu_allow_changing_settings'))]"/>
-    </record>
+        <record id="ventor_role_wh_manager" model="res.groups">
+            <field name="name">Warehouse manager</field>
+            <field name="category_id" ref="module_category_ventor_roles"/>
+            <field name="implied_ids"
+                   eval="[(4, ref('ventor_role_wh_worker')),
+                   (4, ref('merp_menu_inventory_adjustments')),
+                   (4, ref('merp_menu_info')),
+                   (4, ref('merp_menu_instant_inventory')),
+                   (4, ref('merp_menu_instant_move')),
+                   (4, ref('merp_package_management')),
+                   (4, ref('merp_external_management')),
+                   (4, ref('merp_putaway')),
+                   (4, ref('merp_menu_manufacturing')),
+                   (4, ref('merp_menu_allow_changing_settings'))]"/>
+        </record>
 
-    <record id="ventor_role_admin" model="res.groups">
-        <field name="name">Admin</field>
-        <field name="category_id" ref="module_category_ventor_roles"/>
-        <field name="implied_ids"
-               eval="[(4, ref('ventor_role_wh_manager')), (4, ref('merp_menu_create_sales_order')), (4, ref('merp_menu_create_purchase_order')), (4, ref('merp_menu_allow_update_product_on_hand')), (4, ref('merp_debug')), (4, ref('merp_ventor_settings')), (4, ref('merp_picking_wave_allow_done'))]"/>
-        <field name="users" eval="[(4, ref('base.user_root'))]"/>
-    </record>
+        <record id="ventor_role_admin" model="res.groups">
+            <field name="name">Administrator</field>
+            <field name="category_id" ref="module_category_ventor_roles"/>
+            <field name="implied_ids"
+                   eval="[(4, ref('ventor_role_wh_manager')),
+                          (4, ref('merp_menu_create_sales_order')),
+                          (4, ref('merp_menu_create_purchase_order')),
+                          (4, ref('merp_menu_allow_update_product_on_hand')),
+                          (4, ref('merp_debug')),
+                          (4, ref('merp_picking_wave_allow_done'))]"/>
+            <field name="users" eval="[(4, ref('base.user_root')), (4, ref('base.user_admin'))]"/>
+        </record>
 
     </data>
 
