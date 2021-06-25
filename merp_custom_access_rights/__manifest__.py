@@ -17,4 +17,5 @@
         'security/groups.xml',
         'views/res_users.xml',
     ],
+    'post_init_hook': '_post_init_hook',
 }

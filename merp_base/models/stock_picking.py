@@ -84,6 +84,8 @@ class StockPickingType(models.Model):
         return {
             "id": self.id,
             "name": self.name,
+            "wh_code": self.warehouse_id.code,
+            "wh_name": self.warehouse_id.name,
             "settings": {
                 "confirm_source_location": self.confirm_source_location,
                 "change_source_location": self.change_source_location,
