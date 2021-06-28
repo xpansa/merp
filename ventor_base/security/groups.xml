@@ -70,7 +70,7 @@
     </record>
 
     <record id="merp_external_management" model="res.groups">
-        <field name="name">External Management Menu</field>
+        <field name="name">External Transfers Menu</field>
         <field name="category_id" ref="module_category_merp_menu_application"/>
         <field name="users" eval="[(4, ref('base.user_root'))]"/>
     </record>
