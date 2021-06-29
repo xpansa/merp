@@ -6,6 +6,11 @@ Base module that allow relation between Ventor modules
 Changelog
 ---------
 
+14.0.1.2.1 (2021-06-29)
+***********************
+
+Added access rights on user's settings fields
+
 14.0.1.2.0 (2021-06-22)
 ***********************
 
