@@ -11,7 +11,6 @@ Changelog
 
 Added access rights on user's settings fields
 
-
 14.0.1.2.0 (2021-06-22)
 ***********************
 

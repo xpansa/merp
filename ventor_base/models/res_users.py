@@ -48,7 +48,7 @@ class ResUsers(models.Model):
         Adding access rights on ventor_global_settings and ventor_user_settings
         """
 
-        readable_fields = ['ventor_global_settings', 'ventor_user_settings']
+        readable_fields = ['ventor_global_settings', 'ventor_user_settings', 'custom_package_name']
         writable_fields = ['ventor_user_settings']
 
         init_res = super().__init__(pool, cr)
