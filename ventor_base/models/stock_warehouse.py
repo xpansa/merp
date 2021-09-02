@@ -1,7 +1,7 @@
 # Copyright 2020 VentorTech OU
 # License LGPL-3.0 or later (https://www.gnu.org/licenses/lgpl-3.0).
 
-from odoo import models, fields
+from odoo import api, models, fields
 
 
 class StockWarehouse(models.Model):
@@ -10,3 +10,14 @@ class StockWarehouse(models.Model):
     is_internal = fields.Boolean(
         string='Is Internal Warehouse',
     )
+
+    @api.model
+    def create(self, vals):
+        res = super(StockWarehouse, self).create(vals)
+        res.update_users_calculated_warehouse()
+        return res
+    
+    def update_users_calculated_warehouse(self):
+        users = self.env['res.users'].search([('allowed_warehouse_ids', '=', False), ('active', '=', True)])
+        for user in users:
+            user.calculated_warehouse_ids += self

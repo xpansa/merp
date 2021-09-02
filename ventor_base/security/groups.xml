@@ -166,4 +166,40 @@
         </record>
     </data>
 
+    <!-- Multi Warehouses -->
+    <record id="stock_locations_from_calculated_warehouse_ids" model="ir.rule">
+        <field name="name">See Locations only from calculated_warehouse_ids</field>
+        <field name="model_id" ref="ventor_base.model_stock_location"/>
+        <field name="groups" eval="[(4, ref('stock.group_stock_user'))]"/>
+        <field name="domain_force">['|', ('warehouse_id','=',False), ('warehouse_id','in',[wh.id for wh in user.calculated_warehouse_ids])]</field>
+    </record>
+
+    <record id="stock_operation_types_calculated_warehouse_ids" model="ir.rule">
+        <field name="name">See Operation Types from calculated_warehouse_ids</field>
+        <field name="model_id" ref="ventor_base.model_stock_picking_type"/>
+        <field name="groups" eval="[(4, ref('stock.group_stock_user'))]"/>
+        <field name="domain_force">['|', ('warehouse_id','=',False), ('warehouse_id','in',[wh.id for wh in user.calculated_warehouse_ids])]</field>
+    </record>
+
+    <record id="merp_inventory_super_administrator" model="res.groups">
+        <field name="name">Super Administrator</field>
+        <field name="category_id" ref="base.module_category_inventory_inventory"/>
+        <field name="implied_ids" eval="[(4, ref('stock.group_stock_manager'))]"/>
+        <field name="users" eval="[(4, ref('base.user_root')), (4, ref('base.user_admin'))]"/>
+    </record>
+
+    <record id="stock_operation_types_super_administrator" model="ir.rule">
+        <field name="name">See All Operation Types</field>
+        <field name="model_id" ref="ventor_base.model_stock_picking_type"/>
+        <field name="groups" eval="[(4, ref('merp_inventory_super_administrator'))]"/>
+        <field name="domain_force">[(1,'=', 1)]</field>
+    </record>
+
+    <record id="stock_location_super_administrator" model="ir.rule">
+        <field name="name">See All Location</field>
+        <field name="model_id" ref="ventor_base.model_stock_location"/>
+        <field name="groups" eval="[(4, ref('merp_inventory_super_administrator'))]"/>
+        <field name="domain_force">[(1,'=', 1)]</field>
+    </record>
+
 </odoo>

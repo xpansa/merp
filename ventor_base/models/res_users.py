@@ -9,6 +9,23 @@ from odoo import models, fields, api
 class ResUsers(models.Model):
     _inherit = 'res.users'
 
+    allowed_warehouse_ids = fields.Many2many(
+        comodel_name='stock.warehouse',
+        string='Allowed Warehouses',
+        help='Leave empty to allow users to work in all warehouses',
+    )
+
+    calculated_warehouse_ids = fields.Many2many(
+        'stock.warehouse',
+        'res_user_warehouse_calculated_rel',
+        column1='res_users_id',
+        column2='stock_warehouse_id',
+        string='Calculated Warehouses',
+        readonly=True,
+        compute="_compute_warehouses",
+        store=True,
+    )
+
     default_inventory_location = fields.Many2one(
         comodel_name='stock.location',
         string='Default Inventory Location',
@@ -67,3 +84,12 @@ class ResUsers(models.Model):
             indent='    ',
             sort_keys=True
         )
+
+    @api.depends("allowed_warehouse_ids")
+    def _compute_warehouses(self):
+        warehouses = self.env["stock.warehouse"].search([])
+        for user in self:
+            if user.allowed_warehouse_ids:
+                user.calculated_warehouse_ids = user.allowed_warehouse_ids
+            else:
+                user.calculated_warehouse_ids = warehouses
