@@ -87,9 +87,8 @@ class ResUsers(models.Model):
 
     @api.depends("allowed_warehouse_ids")
     def _compute_warehouses(self):
-        warehouses = self.env["stock.warehouse"].search([])
         for user in self:
             if user.allowed_warehouse_ids:
                 user.calculated_warehouse_ids = user.allowed_warehouse_ids
             else:
-                user.calculated_warehouse_ids = warehouses
+                user.calculated_warehouse_ids = self.env["stock.warehouse"].search([])

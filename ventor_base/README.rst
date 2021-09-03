@@ -6,7 +6,7 @@ Base module that allow relation between Ventor modules
 Changelog
 ---------
 
-14.0.1.2.2 (2021-09-02)
+14.0.1.3.0 (2021-09-02)
 ***********************
 
 Added restricting access to warehouses for odoo users

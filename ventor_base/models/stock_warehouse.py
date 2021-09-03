@@ -18,6 +18,6 @@ class StockWarehouse(models.Model):
         return res
     
     def update_users_calculated_warehouse(self):
-        users = self.env['res.users'].search([('allowed_warehouse_ids', '=', False), ('active', '=', True)])
+        users = self.env['res.users'].with_context(active_test=False).search([('allowed_warehouse_ids', '=', False), ('login', 'not in', ['__system__', 'default', 'portaltemplate']), ('share','=',False)])
         for user in users:
             user.calculated_warehouse_ids += self
