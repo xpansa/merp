@@ -4,6 +4,7 @@
 # mixin must be imported at first
 from . import stock_location_mixin
 
+from . import stock_location
 from . import ventor_config
 from . import stock_picking
 from . import product

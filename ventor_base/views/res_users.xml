@@ -33,6 +33,12 @@
                         </group>
                     </page>
                 </xpath>
+                <xpath expr="//page[@name='access_rights']//group" position="after">
+                    <group string="Multi Warehouses">
+                        <field name="allowed_warehouse_ids"  widget="many2many_tags" options="{'no_create': True}"/>
+                        <field name="calculated_warehouse_ids"  groups="base.group_no_one" widget="many2many_tags" options="{'no_create': True}"/>
+                    </group>
+                </xpath>
             </data>
         </field>
     </record>
