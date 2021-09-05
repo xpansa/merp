@@ -48,10 +48,34 @@ class StockPickingType(models.Model):
              "User has to scan a barcode of destination location"
     )
 
+    apply_quantity_automatically = fields.Boolean(
+        string="Apply quantity automatically",
+        help="Automatically validate the line after scanning a destination location. "
+             "Warning: you have to insert QTY first before destination location"
+    )
+
     change_destination_location = fields.Boolean(
         string="Change destination location",
         help="If this setting is active a user can change destination location "
              "while receiving to be placed at any available location",
+    )
+
+    autocomplete_the_item_quantity_field = fields.Boolean(
+        string="Autocomplete the item quantity field",
+        help="Automatically insert expected quantity. No need to enter the quantity "
+             "of goods using the keyboard or using scanning"
+    )
+
+    show_print_attachment_button = fields.Boolean(
+        string="Show Print attachment button",
+        help="Showing the Print attachment button in the toolbar instead of "
+             "keeping it in the hidden menu"
+    )
+
+    show_put_in_pack_button = fields.Boolean(
+        string="Show Put in pack button",
+        help="Showing the Put in pack button in the toolbar instead of "
+             "keeping it in the hidden menu"
     )
 
     manage_packages = fields.Boolean(
@@ -80,6 +104,11 @@ class StockPickingType(models.Model):
         if not self.confirm_source_location:
             self.change_source_location = False
 
+    @api.onchange('confirm_destination_location')
+    def _onchange_confirm_destination_location(self):
+        if not self.confirm_destination_location:
+            self.apply_quantity_automatically = False
+
     @api.onchange('change_source_location')
     def _onchange_change_source_location(self):
         if self.change_source_location and not self.confirm_source_location:
@@ -91,6 +120,17 @@ class StockPickingType(models.Model):
                 }
             }
 
+    @api.onchange('apply_quantity_automatically')
+    def _onchange_apply_quantity_automatically(self):
+        if self.apply_quantity_automatically and not self.confirm_destination_location:
+            return {
+                'warning': {
+                    'title': _("Warning"),
+                    'message': _("'Autocomplete the item quantity field' is available only "
+                                 "if 'Change destination location' is enabled")
+                }
+            }
+
     def write(self, vals):
         res = super(StockPickingType, self).write(vals)
 
@@ -99,6 +139,12 @@ class StockPickingType(models.Model):
                 if stock_picking_type.change_source_location:
                     if not stock_picking_type.confirm_source_location:
                         stock_picking_type.change_source_location = False
+
+        if 'apply_quantity_automatically' in vals or 'confirm_destination_location' in vals:
+            for stock_picking_type in self:
+                if stock_picking_type.apply_quantity_automatically:
+                    if not stock_picking_type.confirm_destination_location:
+                        stock_picking_type.apply_quantity_automatically = False
 
         return res
 
@@ -116,7 +162,11 @@ class StockPickingType(models.Model):
                 "apply_default_lots": self.apply_default_lots,
                 "transfer_more_items": self.transfer_more_items,
                 "confirm_destination_location": self.confirm_destination_location,
+                "apply_quantity_automatically": self.apply_quantity_automatically,
                 "change_destination_location": self.change_destination_location,
+                "autocomplete_the_item_quantity_field": self.autocomplete_the_item_quantity_field,
+                "show_print_attachment_button": self.show_print_attachment_button,
+                "show_put_in_pack_button": self.show_put_in_pack_button,
                 "manage_packages": self.manage_packages,
                 "manage_product_owner": self.manage_product_owner,
             }
