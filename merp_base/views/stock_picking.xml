@@ -19,7 +19,11 @@
                     <field name="apply_default_lots"/>
                     <field name="transfer_more_items"/>
                     <field name="confirm_destination_location"/>
+                    <field name="apply_quantity_automatically"/>
                     <field name="change_destination_location"/>
+                    <field name="autocomplete_the_item_quantity_field"/>
+                    <field name="show_print_attachment_button"/>
+                    <field name="show_put_in_pack_button"/>
                     <field name="manage_packages"/>
                     <field name="manage_product_owner"/>
                 </tree>
@@ -40,11 +44,16 @@
                             <field name="show_next_product"/>
                             <field name="confirm_product"/>
                             <field name="apply_default_lots"/>
-                        </group>
-                        <group>
                             <field name="transfer_more_items"/>
                             <field name="confirm_destination_location"/>
+                        </group>
+                        <group>
+                            <field name="apply_quantity_automatically"
+                                   attrs="{'readonly':[('confirm_destination_location','!=',True)]}"/>
                             <field name="change_destination_location"/>
+                            <field name="autocomplete_the_item_quantity_field"/>
+                            <field name="show_print_attachment_button"/>
+                            <field name="show_put_in_pack_button"/>
                             <field name="manage_packages"/>
                             <field name="manage_product_owner"/>
                         </group>
