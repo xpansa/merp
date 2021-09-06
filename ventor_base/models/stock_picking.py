@@ -67,8 +67,8 @@ class StockPickingType(models.Model):
     )
 
     show_print_attachment_button = fields.Boolean(
-        string="Show Print attachment button",
-        help="Showing the Print attachment button in the toolbar instead of "
+        string="Show Print attachments button",
+        help="Showing the Print attachments button in the toolbar instead of "
              "keeping it in the hidden menu"
     )
 
