@@ -23,6 +23,7 @@ class ResUsers(models.Model):
         string='Calculated Warehouses',
         readonly=True,
         compute="_compute_warehouses",
+        compute_sudo=False,
         store=True,
     )
 
@@ -89,6 +90,6 @@ class ResUsers(models.Model):
     def _compute_warehouses(self):
         for user in self:
             if user.allowed_warehouse_ids:
-                user.calculated_warehouse_ids = user.allowed_warehouse_ids
+                user.calculated_warehouse_ids = [(6, 0, user.allowed_warehouse_ids.ids)]
             else:
-                user.calculated_warehouse_ids = self.env["stock.warehouse"].search([])
+                user.sudo().calculated_warehouse_ids = [(6, 0, self.env["stock.warehouse"].sudo().search([]).ids)]
