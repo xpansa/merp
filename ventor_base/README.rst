@@ -6,6 +6,11 @@ Base module that allow relation between Ventor modules
 Changelog
 ---------
 
+14.0.1.3.1 (2021-09-06)
+***********************
+
+Adding access to all default warehouses for users
+
 14.0.1.3.0 (2021-09-02)
 ***********************
 
