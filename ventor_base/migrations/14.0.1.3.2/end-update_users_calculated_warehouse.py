@@ -13,4 +13,4 @@ def migrate(cr, version):
             ])
     warehouses = env["stock.warehouse"].search([])
     for user in users:
-        user.sudo().calculated_warehouse_ids = [(6, 0, warehouses.ids)]
+        user.calculated_warehouse_ids = [(6, 0, warehouses.ids)]
