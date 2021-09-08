@@ -88,8 +88,16 @@ class ResUsers(models.Model):
 
     @api.depends("allowed_warehouse_ids")
     def _compute_warehouses(self):
+        current_company_whs = self.env["stock.warehouse"].search([("company_id", "=", self.env.company.id)])
+        delete_list = []
+        for wh in current_company_whs:
+            delete_list.append((3, wh.id, 0))
         for user in self:
+            update_list = delete_list.copy()
             if user.allowed_warehouse_ids:
-                user.calculated_warehouse_ids = [(6, 0, user.allowed_warehouse_ids.ids)]
+                for wh_id in user.allowed_warehouse_ids.ids:
+                    update_list.append((4, wh_id, 0))
             else:
-                user.calculated_warehouse_ids = [(6, 0, self.env["stock.warehouse"].search([]).ids)]
+                for wh in current_company_whs:
+                    update_list.append((4, wh.id, 0))
+            user.calculated_warehouse_ids = update_list

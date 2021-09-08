@@ -6,6 +6,11 @@ Base module that allow relation between Ventor modules
 Changelog
 ---------
 
+14.0.1.3.3 (2021-09-08)
+***********************
+
+* Added support for multi-company
+
 14.0.1.3.2 (2021-09-06)
 ***********************
 
