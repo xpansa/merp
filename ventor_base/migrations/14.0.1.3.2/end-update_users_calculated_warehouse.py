@@ -7,9 +7,8 @@ def migrate(cr, version):
 
     env = api.Environment(cr, SUPERUSER_ID, {})
     users = env['res.users'].with_context(active_test=False).search([
-            ('allowed_warehouse_ids', '=', False), 
-            ('login', 'not in', ['__system__', 'default', 'portaltemplate']), 
-            ('share','=',False)
+            ('allowed_warehouse_ids', '=', False),
+            ('share', '=', False)
             ])
     warehouses = env["stock.warehouse"].search([])
     for user in users:

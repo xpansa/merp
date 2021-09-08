@@ -166,100 +166,100 @@
         </record>
     </data>
 
-    <!-- Multi Warehouses -->
-    <record id="stock_locations_from_calculated_warehouse_ids" model="ir.rule">
-        <field name="name">See Locations only from calculated_warehouse_ids</field>
-        <field name="model_id" ref="ventor_base.model_stock_location"/>
+    <!-- Multi Warehouses User Rules Section -->
+    <!-- Multi Warehouses: Location -->
+    <record id="stock_location_rule_stock_user" model="ir.rule">
+        <field name="name">See locations from allowed warehouses</field>
+        <field name="model_id" ref="stock.model_stock_location"/>
         <field name="groups" eval="[(4, ref('stock.group_stock_user'))]"/>
         <field name="domain_force">['|', ('warehouse_id','=',False), ('warehouse_id','in',[wh.id for wh in user.calculated_warehouse_ids])]</field>
     </record>
 
-    <record id="stock_operation_types_calculated_warehouse_ids" model="ir.rule">
-        <field name="name">See Operation Types from calculated_warehouse_ids</field>
+    <record id="stock_location_rule_stock_manager" model="ir.rule">
+        <field name="name">See All Location</field>
+        <field name="model_id" ref="stock.model_stock_location"/>
+        <field name="groups" eval="[(4, ref('stock.group_stock_manager'))]"/>
+        <field name="domain_force">[(1,'=',1)]</field>
+    </record>
+
+    <!-- Multi Warehouses: Picking Type -->
+    <record id="stock_picking_type_rule_stock_user" model="ir.rule">
+        <field name="name">See Operation Types from allowed warehouses</field>
         <field name="model_id" ref="ventor_base.model_stock_picking_type"/>
         <field name="groups" eval="[(4, ref('stock.group_stock_user'))]"/>
         <field name="domain_force">['|', ('warehouse_id','=',False), ('warehouse_id','in',[wh.id for wh in user.calculated_warehouse_ids])]</field>
     </record>
 
-    <record model="ir.rule" id="stock_scrap_company_rule_calculated_warehouse_ids_user">
-        <field name="name">See stock_scrap_user</field>
+    <record id="stock_picking_type_rule_stock_manager" model="ir.rule">
+        <field name="name">See all Operation Types</field>
+        <field name="model_id" ref="stock.model_stock_picking_type"/>
+        <field name="groups" eval="[(4, ref('stock.group_stock_manager'))]"/>
+        <field name="domain_force">[(1,'=',1)]</field>
+    </record>
+
+    <!-- Multi Warehouses: Scrap Orders -->
+    <record model="ir.rule" id="stock_scrap_rule_stock_user">
+        <field name="name">See Scrap Orders from allowed warehouses</field>
         <field name="model_id" ref="stock.model_stock_scrap"/>
         <field name="groups" eval="[(4, ref('stock.group_stock_user'))]"/>
         <field name="domain_force">['|', ('location_id.warehouse_id','=',False), ('location_id.warehouse_id','in',[wh.id for wh in user.calculated_warehouse_ids])]</field>
     </record>
 
-    <record model="ir.rule" id="stock_scrap_company_rule_calculated_warehouse_ids_super_admin">
-        <field name="name">See All Stock Scrap Orders</field>
+    <record model="ir.rule" id="stock_scrap_rule_stock_manager">
+        <field name="name">See All Scrap Orders</field>
         <field name="model_id" ref="stock.model_stock_scrap"/>
         <field name="groups" eval="[(4, ref('stock.group_stock_manager'))]"/>
-        <field name="domain_force">[(1,'=', 1)]</field>
+        <field name="domain_force">[(1,'=',1)]</field>
     </record>
 
-    <record model="ir.rule" id="stock_reordering_rules_company_rule_calculated_warehouse_ids_user">
-        <field name="name">See Reordering Rules user</field>
+    <!-- Multi Warehouses: Reordering Rules -->
+    <record model="ir.rule" id="stock_warehouse_orderpoint_rule_stock_user">
+        <field name="name">See Reordering Rules from allowed warehouses</field>
         <field name="model_id" ref="stock.model_stock_warehouse_orderpoint"/>
         <field name="groups" eval="[(4, ref('stock.group_stock_user'))]"/>
         <field name="domain_force">['|', ('location_id.warehouse_id','=',False), ('location_id.warehouse_id','in',[wh.id for wh in user.calculated_warehouse_ids])]</field>
     </record>
 
-    <record model="ir.rule" id="stock_reordering_rules_company_rule_calculated_warehouse_ids_admin">
+    <record model="ir.rule" id="stock_warehouse_orderpoint_rule_stock_manager">
         <field name="name">See All Reordering Rules</field>
         <field name="model_id" ref="stock.model_stock_warehouse_orderpoint"/>
         <field name="groups" eval="[(4, ref('stock.group_stock_manager'))]"/>
-        <field name="domain_force">[(1,'=', 1)]</field>
+        <field name="domain_force">[(1,'=',1)]</field>
     </record>
 
-    <record model="ir.rule" id="stock_quant_company_rule_calculated_warehouse_ids_user">
-        <field name="name">See Stock Quants User</field>
+    <!-- Multi Warehouses: Quants -->
+    <record model="ir.rule" id="stock_quant_rule_stock_user">
+        <field name="name">See Quants from allowed warehouses</field>
         <field name="model_id" ref="stock.model_stock_quant"/>
         <field name="groups" eval="[(4, ref('stock.group_stock_user'))]"/>
         <field name="domain_force">['|', ('location_id.warehouse_id','=',False), ('location_id.warehouse_id','in',[wh.id for wh in user.calculated_warehouse_ids])]</field>
     </record>
 
-    <record model="ir.rule" id="stock_quant_company_rule_calculated_warehouse_ids_admin">
-        <field name="name">See Stock Quants</field>
+    <record model="ir.rule" id="stock_quant_rule_stock_manager">
+        <field name="name">See all Stock Quants</field>
         <field name="model_id" ref="stock.model_stock_quant"/>
         <field name="groups" eval="[(4, ref('stock.group_stock_manager'))]"/>
-        <field name="domain_force">[(1,'=', 1)]</field>
+        <field name="domain_force">[(1,'=',1)]</field>
     </record>
 
-    <record id="stock_operation_types_super_administrator" model="ir.rule">
-        <field name="name">See All Operation Types</field>
-        <field name="model_id" ref="ventor_base.model_stock_picking_type"/>
-        <field name="groups" eval="[(4, ref('stock.group_stock_manager'))]"/>
-        <field name="domain_force">[(1,'=', 1)]</field>
-    </record>
-
-    <record id="stock_location_super_administrator" model="ir.rule">
-        <field name="name">See All Location</field>
-        <field name="model_id" ref="ventor_base.model_stock_location"/>
-        <field name="groups" eval="[(4, ref('stock.group_stock_manager'))]"/>
-        <field name="domain_force">[(1,'=', 1)]</field>
-    </record>
-
-    <record model="ir.rule" id="stock_warehouse_comp_rule_admin">
-        <field name="name">See All Stock Warehouse</field>
-        <field name="model_id" ref="stock.model_stock_warehouse"/>
-        <field name="groups" eval="[(4, ref('stock.group_stock_manager'))]"/>
-        <field name="domain_force">[(1,'=', 1)]</field>
-    </record>
-
-    <record model="ir.rule" id="stock_warehouse_comp_rule_user_wh">
-        <field name="name">See Stock Warehouse</field>
+    <!-- Multi Warehouses: Warehouses -->
+    <record model="ir.rule" id="stock_warehouse_rule_stock_user">
+        <field name="name">See Warehouses from allowed warehouses</field>
         <field name="model_id" ref="stock.model_stock_warehouse"/>
         <field name="groups" eval="[(4, ref('stock.group_stock_user'))]"/>
         <field name="domain_force">['|', ('id','=',False), ('id','in',[wh.id for wh in user.calculated_warehouse_ids])]</field>
     </record>
 
-    <record model="ir.rule" id="stock_picking_admin">
-        <field name="name">See All Stock Picking</field>
-        <field name="model_id" ref="stock.model_stock_picking"/>
+    <record model="ir.rule" id="stock_warehouse_rule_stock_manager">
+        <field name="name">See all Warehouses</field>
+        <field name="model_id" ref="stock.model_stock_warehouse"/>
         <field name="groups" eval="[(4, ref('stock.group_stock_manager'))]"/>
-        <field name="domain_force">[(1,'=', 1)]</field>
+        <field name="domain_force">[(1,'=',1)]</field>
     </record>
 
-    <record model="ir.rule" id="stock_picking_user">
-        <field name="name">See Stock Picking</field>
+    <!-- Multi Warehouses: Stock Pickings -->
+    <record model="ir.rule" id="stock_picking_rule_stock_user">
+        <field name="name">See Stock Pickings from allowed warehouses</field>
         <field name="model_id" ref="stock.model_stock_picking"/>
         <field name="groups" eval="[(4, ref('stock.group_stock_user'))]"/>
         <field name="domain_force">[
@@ -275,15 +275,16 @@
             ]</field>
     </record>
 
-    <record model="ir.rule" id="stock_move_admin">
-        <field name="name">See All Stock Move</field>
-        <field name="model_id" ref="stock.model_stock_move"/>
+    <record model="ir.rule" id="stock_picking_rule_stock_manager">
+        <field name="name">See all Stock Pickings</field>
+        <field name="model_id" ref="stock.model_stock_picking"/>
         <field name="groups" eval="[(4, ref('stock.group_stock_manager'))]"/>
-        <field name="domain_force">[(1,'=', 1)]</field>
+        <field name="domain_force">[(1,'=',1)]</field>
     </record>
 
-    <record model="ir.rule" id="stock_move_user">
-        <field name="name">See Stock Move</field>
+    <!-- Multi Warehouses: Stock Move -->
+    <record model="ir.rule" id="stock_move_rule_stock_user">
+        <field name="name">See Stock Moves from allowed warehouses</field>
         <field name="model_id" ref="stock.model_stock_move"/>
         <field name="groups" eval="[(4, ref('stock.group_stock_user'))]"/>
         <field name="domain_force">[
@@ -297,15 +298,16 @@
             ]</field>
     </record>
 
-    <record model="ir.rule" id="stock_move_line_admin">
-        <field name="name">See All Stock Move Line</field>
-        <field name="model_id" ref="stock.model_stock_move_line"/>
+    <record model="ir.rule" id="stock_move_rule_stock_manager">
+        <field name="name">See all Stock Moves</field>
+        <field name="model_id" ref="stock.model_stock_move"/>
         <field name="groups" eval="[(4, ref('stock.group_stock_manager'))]"/>
-        <field name="domain_force">[(1,'=', 1)]</field>
+        <field name="domain_force">[(1,'=',1)]</field>
     </record>
 
-    <record model="ir.rule" id="stock_move_line_user">
-        <field name="name">See Stock Move Line</field>
+    <!-- Multi Warehouses: Stock Move -->
+    <record model="ir.rule" id="stock_move_line_rule_stock_user">
+        <field name="name">See Stock Move Lines from allowed warehouses</field>
         <field name="model_id" ref="stock.model_stock_move_line"/>
         <field name="groups" eval="[(4, ref('stock.group_stock_user'))]"/>
         <field name="domain_force">[
@@ -317,5 +319,12 @@
                         ('location_dest_id.warehouse_id', '=', False),
                         ('location_dest_id.warehouse_id','in',[wh.id for wh in user.calculated_warehouse_ids]),
             ]</field>
+    </record>
+
+    <record model="ir.rule" id="stock_move_line_rule_stock_manager">
+        <field name="name">See all Stock Move Lines</field>
+        <field name="model_id" ref="stock.model_stock_move_line"/>
+        <field name="groups" eval="[(4, ref('stock.group_stock_manager'))]"/>
+        <field name="domain_force">[(1,'=',1)]</field>
     </record>
 </odoo>
