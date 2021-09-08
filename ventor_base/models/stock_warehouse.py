@@ -20,6 +20,6 @@ class StockWarehouse(models.Model):
     def update_users_calculated_warehouse(self):
         users = self.env['res.users'].with_context(active_test=False).search([
             ('allowed_warehouse_ids', '=', False),
-            ('share','=',False)])
+            ('share', '=', False)])
         for user in users:
             user.calculated_warehouse_ids = [(4, self.id)]
