@@ -92,4 +92,4 @@ class ResUsers(models.Model):
             if user.allowed_warehouse_ids:
                 user.calculated_warehouse_ids = [(6, 0, user.allowed_warehouse_ids.ids)]
             else:
-                user.sudo().calculated_warehouse_ids = [(6, 0, self.env["stock.warehouse"].sudo().search([]).ids)]
+                user.calculated_warehouse_ids = [(6, 0, self.env["stock.warehouse"].search([]).ids)]
