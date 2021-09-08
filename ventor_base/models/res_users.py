@@ -12,7 +12,7 @@ class ResUsers(models.Model):
     allowed_warehouse_ids = fields.Many2many(
         comodel_name='stock.warehouse',
         string='Allowed Warehouses',
-        help='Leave empty to allow users to work in all warehouses',
+        help='List of all warehouses user has access to',
     )
 
     default_inventory_location = fields.Many2one(
