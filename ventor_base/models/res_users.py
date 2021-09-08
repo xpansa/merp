@@ -24,7 +24,7 @@ class ResUsers(models.Model):
         readonly=True,
         compute="_compute_warehouses",
         compute_sudo=False,
-        store=True,
+        store=True
     )
 
     default_inventory_location = fields.Many2one(
