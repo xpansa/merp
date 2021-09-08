@@ -15,18 +15,6 @@ class ResUsers(models.Model):
         help='Leave empty to allow users to work in all warehouses',
     )
 
-    calculated_warehouse_ids = fields.Many2many(
-        'stock.warehouse',
-        'res_user_warehouse_calculated_rel',
-        column1='res_users_id',
-        column2='stock_warehouse_id',
-        string='Calculated Warehouses',
-        readonly=True,
-        compute="_compute_warehouses",
-        compute_sudo=False,
-        store=True
-    )
-
     default_inventory_location = fields.Many2one(
         comodel_name='stock.location',
         string='Default Inventory Location',
@@ -85,19 +73,3 @@ class ResUsers(models.Model):
             indent='    ',
             sort_keys=True
         )
-
-    @api.depends("allowed_warehouse_ids")
-    def _compute_warehouses(self):
-        current_company_whs = self.env["stock.warehouse"].search([("company_id", "=", self.env.company.id)])
-        delete_list = []
-        for wh in current_company_whs:
-            delete_list.append((3, wh.id, 0))
-        for user in self:
-            update_list = delete_list.copy()
-            if user.allowed_warehouse_ids:
-                for wh_id in user.allowed_warehouse_ids.ids:
-                    update_list.append((4, wh_id, 0))
-            else:
-                for wh in current_company_whs:
-                    update_list.append((4, wh.id, 0))
-            user.calculated_warehouse_ids = update_list

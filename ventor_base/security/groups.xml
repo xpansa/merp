@@ -172,7 +172,7 @@
         <field name="name">See locations from allowed warehouses</field>
         <field name="model_id" ref="stock.model_stock_location"/>
         <field name="groups" eval="[(4, ref('stock.group_stock_user'))]"/>
-        <field name="domain_force">['|', ('warehouse_id','=',False), ('warehouse_id','in',[wh.id for wh in user.calculated_warehouse_ids])]</field>
+        <field name="domain_force">['|', ('warehouse_id','=',False), ('warehouse_id','in',[wh.id for wh in user.allowed_warehouse_ids])]</field>
     </record>
 
     <record id="stock_location_rule_stock_manager" model="ir.rule">
@@ -187,7 +187,7 @@
         <field name="name">See Operation Types from allowed warehouses</field>
         <field name="model_id" ref="ventor_base.model_stock_picking_type"/>
         <field name="groups" eval="[(4, ref('stock.group_stock_user'))]"/>
-        <field name="domain_force">['|', ('warehouse_id','=',False), ('warehouse_id','in',[wh.id for wh in user.calculated_warehouse_ids])]</field>
+        <field name="domain_force">['|', ('warehouse_id','=',False), ('warehouse_id','in',[wh.id for wh in user.allowed_warehouse_ids])]</field>
     </record>
 
     <record id="stock_picking_type_rule_stock_manager" model="ir.rule">
@@ -202,7 +202,7 @@
         <field name="name">See Scrap Orders from allowed warehouses</field>
         <field name="model_id" ref="stock.model_stock_scrap"/>
         <field name="groups" eval="[(4, ref('stock.group_stock_user'))]"/>
-        <field name="domain_force">['|', ('location_id.warehouse_id','=',False), ('location_id.warehouse_id','in',[wh.id for wh in user.calculated_warehouse_ids])]</field>
+        <field name="domain_force">['|', ('location_id.warehouse_id','=',False), ('location_id.warehouse_id','in',[wh.id for wh in user.allowed_warehouse_ids])]</field>
     </record>
 
     <record model="ir.rule" id="stock_scrap_rule_stock_manager">
@@ -217,7 +217,7 @@
         <field name="name">See Reordering Rules from allowed warehouses</field>
         <field name="model_id" ref="stock.model_stock_warehouse_orderpoint"/>
         <field name="groups" eval="[(4, ref('stock.group_stock_user'))]"/>
-        <field name="domain_force">['|', ('location_id.warehouse_id','=',False), ('location_id.warehouse_id','in',[wh.id for wh in user.calculated_warehouse_ids])]</field>
+        <field name="domain_force">['|', ('location_id.warehouse_id','=',False), ('location_id.warehouse_id','in',[wh.id for wh in user.allowed_warehouse_ids])]</field>
     </record>
 
     <record model="ir.rule" id="stock_warehouse_orderpoint_rule_stock_manager">
@@ -232,7 +232,7 @@
         <field name="name">See Quants from allowed warehouses</field>
         <field name="model_id" ref="stock.model_stock_quant"/>
         <field name="groups" eval="[(4, ref('stock.group_stock_user'))]"/>
-        <field name="domain_force">['|', ('location_id.warehouse_id','=',False), ('location_id.warehouse_id','in',[wh.id for wh in user.calculated_warehouse_ids])]</field>
+        <field name="domain_force">['|', ('location_id.warehouse_id','=',False), ('location_id.warehouse_id','in',[wh.id for wh in user.allowed_warehouse_ids])]</field>
     </record>
 
     <record model="ir.rule" id="stock_quant_rule_stock_manager">
@@ -247,7 +247,7 @@
         <field name="name">See Warehouses from allowed warehouses</field>
         <field name="model_id" ref="stock.model_stock_warehouse"/>
         <field name="groups" eval="[(4, ref('stock.group_stock_user'))]"/>
-        <field name="domain_force">['|', ('id','=',False), ('id','in',[wh.id for wh in user.calculated_warehouse_ids])]</field>
+        <field name="domain_force">['|', ('id','=',False), ('id','in',[wh.id for wh in user.allowed_warehouse_ids])]</field>
     </record>
 
     <record model="ir.rule" id="stock_warehouse_rule_stock_manager">
@@ -267,11 +267,11 @@
                         '|','|',
                             ('location_id', '=', False),
                             ('location_id.warehouse_id', '=', False),
-                            ('location_id.warehouse_id','in',[wh.id for wh in user.calculated_warehouse_ids]),
+                            ('location_id.warehouse_id','in',[wh.id for wh in user.allowed_warehouse_ids]),
                         '|','|',
                             ('location_dest_id', '=', False),
                             ('location_dest_id.warehouse_id', '=', False),
-                            ('location_dest_id.warehouse_id','in',[wh.id for wh in user.calculated_warehouse_ids]),
+                            ('location_dest_id.warehouse_id','in',[wh.id for wh in user.allowed_warehouse_ids]),
             ]</field>
     </record>
 
@@ -291,10 +291,10 @@
                 '&amp;',
                     '|',
                         ('location_id.warehouse_id', '=', False),
-                        ('location_id.warehouse_id','in',[wh.id for wh in user.calculated_warehouse_ids]),
+                        ('location_id.warehouse_id','in',[wh.id for wh in user.allowed_warehouse_ids]),
                     '|',
                         ('location_dest_id.warehouse_id', '=', False),
-                        ('location_dest_id.warehouse_id','in',[wh.id for wh in user.calculated_warehouse_ids]),
+                        ('location_dest_id.warehouse_id','in',[wh.id for wh in user.allowed_warehouse_ids]),
             ]</field>
     </record>
 
@@ -314,10 +314,10 @@
                 '&amp;',
                     '|',
                         ('location_id.warehouse_id', '=', False),
-                        ('location_id.warehouse_id','in',[wh.id for wh in user.calculated_warehouse_ids]),
+                        ('location_id.warehouse_id','in',[wh.id for wh in user.allowed_warehouse_ids]),
                     '|',
                         ('location_dest_id.warehouse_id', '=', False),
-                        ('location_dest_id.warehouse_id','in',[wh.id for wh in user.calculated_warehouse_ids]),
+                        ('location_dest_id.warehouse_id','in',[wh.id for wh in user.allowed_warehouse_ids]),
             ]</field>
     </record>
 
