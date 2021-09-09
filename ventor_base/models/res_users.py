@@ -73,3 +73,9 @@ class ResUsers(models.Model):
             indent='    ',
             sort_keys=True
         )
+
+    def write(self, vals):
+        result = super().write(vals)
+        if 'allowed_warehouse_ids' in vals:
+            self.env['res.users'].invalidate_cache(fnames=['allowed_warehouse_ids'])
+        return result
