@@ -76,6 +76,6 @@ class ResUsers(models.Model):
 
     def write(self, vals):
         result = super().write(vals)
-        if 'allowed_warehouse_ids' in vals:
-            self.env['res.users'].invalidate_cache(fnames=['allowed_warehouse_ids'])
+        if result and 'allowed_warehouse_ids' in vals:
+            self.env['ir.rule'].clear_cache()
         return result
