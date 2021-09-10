@@ -12,19 +12,7 @@ class ResUsers(models.Model):
     allowed_warehouse_ids = fields.Many2many(
         comodel_name='stock.warehouse',
         string='Allowed Warehouses',
-        help='Leave empty to allow users to work in all warehouses',
-    )
-
-    calculated_warehouse_ids = fields.Many2many(
-        'stock.warehouse',
-        'res_user_warehouse_calculated_rel',
-        column1='res_users_id',
-        column2='stock_warehouse_id',
-        string='Calculated Warehouses',
-        readonly=True,
-        compute="_compute_warehouses",
-        compute_sudo=False,
-        store=True,
+        help='List of all warehouses user has access to',
     )
 
     default_inventory_location = fields.Many2one(
@@ -86,10 +74,8 @@ class ResUsers(models.Model):
             sort_keys=True
         )
 
-    @api.depends("allowed_warehouse_ids")
-    def _compute_warehouses(self):
-        for user in self:
-            if user.allowed_warehouse_ids:
-                user.calculated_warehouse_ids = [(6, 0, user.allowed_warehouse_ids.ids)]
-            else:
-                user.sudo().calculated_warehouse_ids = [(6, 0, self.env["stock.warehouse"].sudo().search([]).ids)]
+    def write(self, vals):
+        result = super().write(vals)
+        if result and 'allowed_warehouse_ids' in vals:
+            self.env['ir.rule'].clear_cache()
+        return result
