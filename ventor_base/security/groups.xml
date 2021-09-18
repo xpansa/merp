@@ -282,6 +282,29 @@
         <field name="domain_force">[(1,'=',1)]</field>
     </record>
 
+    <!-- See Picking Batches from allowed Warehouses -->
+    <record model="ir.rule" id="stock_picking_batch_rule_stock_user">
+        <field name="name">See Picking Batches from allowed warehouses</field>
+        <field name="model_id" ref="stock_picking_batch.model_stock_picking_batch"/>
+        <field name="groups" eval="[(4, ref('stock.group_stock_user'))]"/>
+        <field name="domain_force">['|', ('picking_type_id','=',False), ('picking_type_id.warehouse_id','in',[wh.id for wh in user.allowed_warehouse_ids])]</field>
+    </record>
+
+    <record model="ir.rule" id="stock_picking_batch_rule_stock_manager">
+        <field name="name">See all Picking Batches</field>
+        <field name="model_id" ref="stock_picking_batch.model_stock_picking_batch"/>
+        <field name="groups" eval="[(4, ref('stock.group_stock_manager'))]"/>
+        <field name="domain_force">[(1,'=',1)]</field>
+    </record>
+
+    <!-- TO FIX: In Odoo Standard for some reason there are no multi-company rules for picking batches -->
+    <record model="ir.rule" id="stock_picking_batch_rule">
+        <field name="name">stock_picking_batch multi-company</field>
+        <field name="model_id" search="[('model','=','stock.picking.batch')]" model="ir.model"/>
+        <field name="domain_force">[('company_id', 'in', company_ids)]</field>
+    </record>
+    <!-- END of FIX-->
+
     <!-- Multi Warehouses: Stock Move -->
     <record model="ir.rule" id="stock_move_rule_stock_user">
         <field name="name">See Stock Moves from allowed warehouses</field>
