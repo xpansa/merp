@@ -56,7 +56,7 @@
                             <div class="o_setting_right_pane">
                                 <label for="add_barcode_on_view"/>
                                 <div class="text-muted">
-                                    Use this if the barcode field were not on the form
+                                    Use it to activate barcodes for the Community version
                                 </div>
                             </div>
                         </div>

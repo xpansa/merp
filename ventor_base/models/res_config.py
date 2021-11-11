@@ -25,7 +25,7 @@ class VentorConfigSettings(models.TransientModel):
     )
 
     add_barcode_on_view = fields.Boolean(
-        string='Add a Barcode Field on a Stock Location Form',
+        string='Show the Location barcode field on the form',
     )
 
     base_version = fields.Char(
