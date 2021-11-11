@@ -2,7 +2,7 @@
 # License LGPL-3.0 or later (https://www.gnu.org/licenses/lgpl-3.0).
 
 {
-    "name": "Ventor Two Factor Authentication",
+    "name": "Two Factor Authentication",
     "summary": """
         2FA implemented via Google Authenticator. Logging into the system requires
          additional key generated on your mobile device.
